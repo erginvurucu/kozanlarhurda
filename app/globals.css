@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* Endustriyel palet: celik gri + bakir vurgu */
+  --color-celik-50: #f6f7f9;
+  --color-celik-100: #eceef2;
+  --color-celik-200: #d4d9e2;
+  --color-celik-300: #aeb7c7;
+  --color-celik-400: #8190a7;
+  --color-celik-500: #62728c;
+  --color-celik-600: #4d5a73;
+  --color-celik-700: #3f4a5e;
+  --color-celik-800: #363f4f;
+  --color-celik-900: #1f2531;
+  --color-celik-950: #14181f;
+
+  --color-bakir-50: #fdf6ef;
+  --color-bakir-100: #f9e8d7;
+  --color-bakir-200: #f2cdae;
+  --color-bakir-300: #e9aa7a;
+  --color-bakir-400: #df7f44;
+  --color-bakir-500: #d86220;
+  --color-bakir-600: #c74a16;
+  --color-bakir-700: #a53715;
+  --color-bakir-800: #842d18;
+  --color-bakir-900: #6b2717;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: #fff;
+  color: var(--color-celik-900);
+  font-family: var(--font-sans);
+  /* Mobilde sabit CTA cubugu icerigi kapatmasin */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+  }
+}
+
+/* Erisilebilirlik: klavye odagi her zaman gorunur */
+:focus-visible {
+  outline: 3px solid var(--color-bakir-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

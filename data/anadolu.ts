@@ -1,0 +1,243 @@
+import type { Ilce } from "./types";
+
+/** Anadolu yakasi ilceleri. */
+export const anadoluIlceleri: Ilce[] = [
+  {
+    slug: "kadikoy",
+    ad: "Kadıköy",
+    yaka: "anadolu",
+    mahalleler: ["Moda", "Caferağa", "Fenerbahçe", "Göztepe", "Erenköy", "Suadiye", "Bostancı", "Kozyatağı", "Acıbadem", "Fikirtepe"],
+    sanayi: ["Kozyatağı Plaza Hattı", "Hasanpaşa Ticaret Bölgesi"],
+    profil:
+      "Kadıköy'de hurda akışını eski yapı stoku ve kentsel dönüşüm birlikte belirliyor. Moda, Caferağa ve Göztepe'de 1960-1990 arası apartman dokusu hâkim; buradan kombi, petek, dökme demir radyatör, demir doğrama ve tesisat metali düzenli çıkıyor. Fikirtepe ise İstanbul'un en büyük kentsel dönüşüm alanlarından biri; yıkım kaynaklı yapı hurdası akışı burada çok yüksek. Kozyatağı hattındaki plazalar ise ofis tadilatı kaynaklı metal ve elektronik ekipman üretiyor.",
+    erisim: "Moda ve Caferağa'da sokaklar dar, park kısıtlı; küçük araç kullanılıyor. Kozyatağı ve Bostancı hattında erişim rahat. Fikirtepe şantiye alımları koordineli yapılıyor.",
+    varis: "Ortalama 25-40 dakika",
+    komsu: ["uskudar", "atasehir", "maltepe"],
+    sss: [
+      { s: "Dökme demir radyatör alıyor musunuz?", c: "Evet. Kadıköy'ün eski binalarında dökme demir radyatör yaygın; ayrı kategoride ve demirden farklı fiyatla değerlendiriliyor." },
+      { s: "Fikirtepe'deki dönüşüm binasından söküm yapıyor musunuz?", c: "Evet, yıkım öncesi doğrama ve metal ayrıştırma müteahhit koordinasyonuyla yapılıyor." },
+      { s: "Moda'da park yeri yok, nasıl geliyorsunuz?", c: "Küçük araçla geliniyor ve randevu trafik dışı saatlere alınıyor; gerekirse yakın noktadan taşıma yapılıyor." },
+    ],
+  },
+  {
+    slug: "uskudar",
+    ad: "Üsküdar",
+    yaka: "anadolu",
+    mahalleler: ["Kuzguncuk", "Beylerbeyi", "Çengelköy", "Altunizade", "Bulgurlu", "Ünalan", "Kısıklı", "Acıbadem", "Selimiye", "Ahmediye"],
+    sanayi: ["Altunizade Ofis Bölgesi", "Bulgurlu Ticaret Hattı"],
+    profil:
+      "Üsküdar, tarihi doku ile modern ofis bölgelerinin bir arada bulunduğu bir ilçe. Kuzguncuk, Beylerbeyi ve Çengelköy'deki eski ahşap ve kâgir yapılarda restorasyon kaynaklı dökme demir, eski doğrama ve kurşun çıkıyor. Altunizade hattındaki ofis ve hastane yoğunluğu ise kurumsal alım kaynağı: metal mobilya, tıbbi cihaz kabini ve klima. Bulgurlu ve Ünalan tarafında ise yoğun konut dokusundan standart ev hurdası geliyor.",
+    erisim: "Boğaz hattındaki mahallelerde sokaklar çok dar ve eğimli, küçük araç zorunlu. Altunizade ve Bulgurlu'da erişim rahat.",
+    varis: "Ortalama 30-45 dakika",
+    komsu: ["kadikoy", "atasehir", "umraniye", "beykoz"],
+    sss: [
+      { s: "Çengelköy'deki dar sokağa araç girer mi?", c: "Küçük araçla giriliyor; giriş mümkün değilse en yakın noktaya park edilip taşıma personeliyle yükleme yapılıyor." },
+      { s: "Tarihi evimden çıkan eski doğramayı alıyor musunuz?", c: "Evet, ancak tescilli yapılarda koruma kurulu izni olmadan söküm yapılmıyor." },
+      { s: "Altunizade'deki ofisimizden alım yapılabilir mi?", c: "Evet, kurumsal ofis boşaltmaları için ekip yönlendiriliyor ve irsaliye düzenleniyor." },
+    ],
+  },
+  {
+    slug: "atasehir",
+    ad: "Ataşehir",
+    yaka: "anadolu",
+    mahalleler: ["Barbaros", "Küçükbakkalköy", "İçerenköy", "Yenisahra", "Ferhatpaşa", "Örnek", "Esatpaşa", "Mustafa Kemal", "Kayışdağı"],
+    sanayi: ["Ataşehir Finans Merkezi", "İçerenköy Ticaret Bölgesi"],
+    profil:
+      "Ataşehir, Anadolu yakasının plaza merkezi ve hurda akışı büyük ölçüde kurumsal. Finans merkezi ve Barbaros hattındaki ofis binalarında taşınma ve tadilat sıklığı yüksek; çelik dolap, ofis mobilyası metali, sunucu kabini, kablo ve klima düzenli çıkan kalemler. Konut tarafı ise büyük ölçüde yeni ve site ağırlıklı; çıkan beyaz eşya görece yeni olduğundan ikinci el değerlendirmesi sık yapılıyor. İçerenköy hattındaki showroomlar ise vitrin metali kaynağı.",
+    erisim: "Geniş yol yapısı ve otopark imkânı erişimi kolaylaştırıyor. Plaza ve sitelerde giriş izni ile yük asansörü rezervasyonu gerekiyor.",
+    varis: "Ortalama 30-45 dakika",
+    komsu: ["kadikoy", "uskudar", "umraniye", "maltepe", "sancaktepe"],
+    sss: [
+      { s: "Finans merkezindeki ofisimizden alım yapılabilir mi?", c: "Evet. Kurumsal ofis boşaltmalarında bina giriş prosedürü önceden tamamlanıp irsaliyeli alım yapılıyor." },
+      { s: "Sitemde yük asansörü var, süreç nasıl işliyor?", c: "Yönetim bilgilendirmesi sonrası yük asansörü rezervasyonu yapılıyor ve alım hızlı tamamlanıyor." },
+      { s: "Elektronik ofis ekipmanı alıyor musunuz?", c: "Metal içerikli ekipman alınıyor; veri içeren cihazlarda disk sökümü ve teslimi talep üzerine yapılıyor." },
+    ],
+  },
+  {
+    slug: "umraniye",
+    ad: "Ümraniye",
+    yaka: "anadolu",
+    mahalleler: ["Dudullu", "Yukarı Dudullu", "Aşağı Dudullu", "Çakmak", "Atakent", "Ihlamurkuyu", "Tantavi", "Esenşehir", "Saray", "Namık Kemal"],
+    sanayi: ["Yukarı Dudullu Organize Sanayi Bölgesi (İMES)", "Aşağı Dudullu Sanayi", "Ümraniye Sanayi Sitesi"],
+    profil:
+      "Ümraniye, Anadolu yakasının sanayi kalbi. İMES Organize Sanayi Bölgesi ve Dudullu hattında metal işleme, makine imalatı ve kalıpçılık firmaları yoğun; buradan çıkan hurda tonajlı ve düzenli: talaş, sac fire, hurda kalıp, profil artığı ve makine sökümü. Bu yoğunluk Ümraniye'yi Anadolu yakasının en güçlü hurda arz bölgesi yapıyor. İlçenin konut alanları ise geniş ve kalabalık; ev hurdası akışı da paralel şekilde yüksek.",
+    erisim: "Sanayi bölgelerinde kamyon ve tır erişimi tam, forklift destekli yükleme mümkün. Konut bölgelerinde kamyonet kullanılıyor.",
+    varis: "Ortalama 30-45 dakika",
+    komsu: ["atasehir", "uskudar", "sancaktepe", "cekmekoy", "beykoz"],
+    sss: [
+      { s: "İMES'teki firmamızdan düzenli alım yapılabilir mi?", c: "Evet. İMES ve Dudullu'daki üretici firmalarla periyodik, kantarlı ve irsaliyeli alım anlaşmaları yapılıyor." },
+      { s: "Talaş ve döküm firesi alınıyor mu?", c: "Evet, talaş ayrı kategoride değerlendiriliyor ve cinsine göre (çelik, alüminyum, pirinç) ayrı fiyatlanıyor." },
+      { s: "Makine sökümü yapıyor musunuz?", c: "Evet, ağır makine sökümü ve indirme ekiple yapılıyor; vinç gereken durumlar önceden planlanıyor." },
+    ],
+  },
+  {
+    slug: "maltepe",
+    ad: "Maltepe",
+    yaka: "anadolu",
+    mahalleler: ["Cevizli", "Küçükyalı", "Altayçeşme", "Bağlarbaşı", "Fındıklı", "Gülsuyu", "Zümrütevler", "İdealtepe", "Esenkent", "Girne"],
+    sanayi: ["Cevizli Ticaret Bölgesi", "Maltepe Sanayi Sitesi"],
+    profil:
+      "Maltepe, sahil hattındaki yeni site projeleri ile iç kesimlerdeki eski yapı stokunun birlikte bulunduğu bir ilçe. Sahil tarafındaki rezidanslardan ev yenileme kaynaklı görece yeni beyaz eşya çıkarken, Gülsuyu ve Başıbüyük gibi kentsel dönüşüm bölgelerinden yapı hurdası, doğrama ve korkuluk geliyor. Cevizli hattındaki ticari alan ise showroom ve ofis kaynaklı metal üretiyor.",
+    erisim: "Sahil yolu ve E-5 erişimi rahat. İç kesimlerde eğimli ve dar sokaklar için kamyonet kullanılıyor. Sitelerde yönetim izni gerekiyor.",
+    varis: "Ortalama 35-50 dakika",
+    komsu: ["kadikoy", "atasehir", "kartal", "sancaktepe"],
+    sss: [
+      { s: "Sahildeki rezidansımdan alım yapılıyor mu?", c: "Evet, site yönetimi bilgilendirmesi sonrası yük asansörüyle alım yapılıyor." },
+      { s: "Kentsel dönüşüm bölgesinden toplu söküm var mı?", c: "Evet, Gülsuyu ve çevresinde yıkım öncesi metal sökümü yapılıyor." },
+      { s: "Eğimli sokağa araç çıkabiliyor mu?", c: "Evet, bölgenin yol yapısına uygun araçlarla hizmet veriliyor." },
+    ],
+  },
+  {
+    slug: "kartal",
+    ad: "Kartal",
+    yaka: "anadolu",
+    mahalleler: ["Soğanlık", "Yakacık", "Cevizli", "Orhantepe", "Esentepe", "Kordonboyu", "Uğur Mumcu", "Hürriyet", "Petrol İş", "Atalar"],
+    sanayi: ["Kartal Sanayi Bölgesi", "Soğanlık Sanayi Sitesi", "Yakacık Sanayi Hattı"],
+    profil:
+      "Kartal, eski sanayi kimliğini kentsel dönüşümle birlikte dönüştüren bir ilçe. Soğanlık ve Yakacık hattında hâlâ aktif metal işleme ve otomotiv yan sanayi atölyeleri var; buradan sac fire, hurda tezgâh ve araç parçası çıkıyor. Sahil hattındaki eski sanayi arazilerinin konuta dönüşmesi nedeniyle yıkım kaynaklı tonajlı çelik konstrüksiyon akışı da dönemsel olarak yüksek. Konut bölgeleri klasik ev hurdası üretiyor.",
+    erisim: "E-5 ve sahil yolu erişimi güçlü, sanayi hattında kamyon girişi rahat. Yakacık'ın eğimli bölgelerinde kamyonet kullanılıyor.",
+    varis: "Ortalama 40-55 dakika",
+    komsu: ["maltepe", "pendik", "sancaktepe", "sultanbeyli"],
+    sss: [
+      { s: "Otomotiv yan sanayi hurdası alıyor musunuz?", c: "Evet. Kartal'da oto yan sanayi yoğun; sac parça, jant, akü ve motor bloğu düzenli alınıyor." },
+      { s: "Fabrika yıkımından çelik konstrüksiyon alımı olur mu?", c: "Evet, tonajlı çelik konstrüksiyon sökümü ve alımı yapılıyor; kantarlı ve irsaliyeli çalışılıyor." },
+      { s: "Soğanlık'taki atölyemden periyodik alım mümkün mü?", c: "Evet, düzenli fire çıkaran atölyelerle periyodik alım anlaşması yapılıyor." },
+    ],
+  },
+  {
+    slug: "pendik",
+    ad: "Pendik",
+    yaka: "anadolu",
+    mahalleler: ["Kaynarca", "Güzelyalı", "Batı", "Doğu", "Velibaba", "Kurtköy", "Şeyhli", "Sanayi", "Esenyalı", "Yenişehir"],
+    sanayi: ["Pendik Organize Sanayi Bölgesi", "Kurtköy Sanayi Hattı", "Tersaneler Bölgesi"],
+    profil:
+      "Pendik'in hurda profilini tersane ve sanayi belirliyor. Tersaneler bölgesinden gemi söküm ve bakım kaynaklı ağır çelik, sac levha, çelik halat ve pirinç aksam çıkıyor — bu, İstanbul'da başka az bölgede görülen bir kalem. Kurtköy hattındaki OSB ve havalimanı çevresi lojistik depoları ise klasik sanayi firesi ve raf hurdası üretiyor. Yoğun konut bölgelerinden de düzenli ev hurdası geliyor.",
+    erisim: "Sanayi ve tersane bölgelerinde kamyon/tır erişimi tam. Tersane alımlarında iş güvenliği ve giriş prosedürü zorunlu. Konut bölgelerinde kamyonet.",
+    varis: "Ortalama 45-65 dakika",
+    komsu: ["kartal", "tuzla", "sancaktepe", "sultanbeyli", "cekmekoy"],
+    sss: [
+      { s: "Tersane kaynaklı ağır çelik alıyor musunuz?", c: "Evet. Pendik tersane bölgesinde ağır sac ve çelik konstrüksiyon alımı yapılıyor; kantarlı ve irsaliyeli çalışılıyor." },
+      { s: "Kurtköy'deki depomuzdan raf sökümü yapılır mı?", c: "Evet, depo raf sistemi sökümü ve alımı ekiple yapılıyor." },
+      { s: "Pirinç ve bronz aksam ayrı mı değerlendiriliyor?", c: "Evet, pirinç ve bronz demirden çok daha yüksek fiyatla ve ayrı kategoride alınıyor." },
+    ],
+  },
+  {
+    slug: "tuzla",
+    ad: "Tuzla",
+    yaka: "anadolu",
+    mahalleler: ["Aydınlı", "Orhanlı", "Tepeören", "İçmeler", "Postane", "Cami", "Şifa", "Anadolu", "Mimar Sinan"],
+    sanayi: ["Tuzla Tersaneler Bölgesi", "Tuzla Organize Sanayi Bölgesi", "Orhanlı Sanayi Hattı", "Aydınlı OSB"],
+    profil:
+      "Tuzla, Türkiye'nin en büyük tersane bölgesine ev sahipliği yapıyor ve hurda profili bu nedenle son derece özel. Gemi bakım, onarım ve söküm faaliyetlerinden ağır çelik sac, çelik halat, pirinç pervane aksamı, bakır boru ve alüminyum güverte elemanı çıkıyor. Bu kalemler tonajlı ve yüksek değerli. Aydınlı ve Orhanlı OSB'lerde ise otomotiv ve makine imalatı yoğun; buradan sac fire, talaş ve kalıp hurdası geliyor. Konut alımı Tuzla'da toplam içinde küçük bir paya sahip.",
+    erisim: "Tersane ve OSB'lerde tır erişimi ve vinç imkânı mevcut. Tersane girişlerinde iş güvenliği belgesi ve önceden bildirim zorunlu.",
+    varis: "Ortalama 55-75 dakika",
+    komsu: ["pendik"],
+    sss: [
+      { s: "Tersaneden tonajlı çelik alımı yapıyor musunuz?", c: "Evet. Tuzla tersane bölgesinde kantarlı, irsaliyeli ve iş güvenliği kurallarına uygun tonajlı alım yapılıyor." },
+      { s: "Pirinç pervane ve bakır boru alınıyor mu?", c: "Evet, bu kalemler yüksek değerli ve ayrı kategoride tartılarak alınıyor." },
+      { s: "OSB'deki fabrikamızdan düzenli hizmet alabilir miyiz?", c: "Evet, Aydınlı ve Orhanlı OSB'lerde periyodik fire alımı ve konteyner bırakma hizmeti veriliyor." },
+    ],
+  },
+  {
+    slug: "sancaktepe",
+    ad: "Sancaktepe",
+    yaka: "anadolu",
+    mahalleler: ["Sarıgazi", "Samandıra", "Yenidoğan", "Abdurrahmangazi", "Osmangazi", "Eyüp Sultan", "Meclis", "Merve"],
+    sanayi: ["Samandıra Sanayi Bölgesi", "Sarıgazi Sanayi Sitesi"],
+    profil:
+      "Sancaktepe, hızlı konutlaşan ancak sanayi geçmişini koruyan bir ilçe. Samandıra hattında lojistik depolar ve orta ölçekli imalathaneler yoğun; buradan raf sistemi, palet demiri, sac fire ve makine parçası çıkıyor. İlçenin konut bölgeleri görece yeni ve site ağırlıklı olduğundan ev hurdası akışı büyüyor. Ayrıca müstakil ev dokusunun korunduğu alanlarda bahçe demiri ve hurda kazan da düzenli kalemler.",
+    erisim: "TEM bağlantısı güçlü, sanayi hattında kamyon erişimi rahat. Yeni konut bölgelerinde geniş yol yapısı mevcut.",
+    varis: "Ortalama 40-55 dakika",
+    komsu: ["umraniye", "cekmekoy", "sultanbeyli", "kartal", "atasehir", "maltepe"],
+    sss: [
+      { s: "Samandıra'daki depomuzdan raf alımı olur mu?", c: "Evet, depo raf sistemi sökümü ve tonajlı alım yapılıyor." },
+      { s: "Müstakil evimin bahçesindeki hurdayı alıyor musunuz?", c: "Evet, bahçe demiri, kazan, su deposu ve hurda metal alınıyor." },
+      { s: "Aynı gün gelme imkânı var mı?", c: "Sabah verilen taleplerde çoğunlukla aynı gün, öğleden sonra verilenlerde ertesi gün ekip yönlendiriliyor." },
+    ],
+  },
+  {
+    slug: "cekmekoy",
+    ad: "Çekmeköy",
+    yaka: "anadolu",
+    mahalleler: ["Taşdelen", "Alemdağ", "Ömerli", "Hüseyinli", "Sırapınar", "Merkez", "Mimar Sinan", "Cumhuriyet", "Soğukpınar"],
+    sanayi: ["Taşdelen Sanayi Bölgesi", "Alemdağ Ticaret Hattı"],
+    profil:
+      "Çekmeköy, orman ve villa dokusunun baskın olduğu bir ilçe. Ömerli, Hüseyinli ve Alemdağ hattında müstakil ev ve villa yoğunluğu yüksek; buradan bahçe ekipmanı, hurda demir, kazan, şömine aksamı ve üst segment beyaz eşya çıkıyor. Taşdelen sanayi bölgesinde ise orta ölçekli imalathanelerden metal fire geliyor. İlçenin dağınık yerleşim yapısı, toplu alım planlamasını verimli kılıyor.",
+    erisim: "Villa bahçelerine araç girişi mümkün. Köy ve orman yolu bağlantılarında yol koşulları değişken; mesafe nedeniyle randevu önceden planlanıyor.",
+    varis: "Ortalama 45-65 dakika",
+    komsu: ["umraniye", "sancaktepe", "beykoz", "sile", "pendik"],
+    sss: [
+      { s: "Villamın bahçesinden hurda alımı yapıyor musunuz?", c: "Evet, bahçe içi alım yapılıyor; hurda demir, kazan ve bahçe ekipmanı alınıyor." },
+      { s: "Kalorifer kazanı değişimimde eskisini alıyor musunuz?", c: "Evet, hurda kazan düzenli alınan kalemlerden; söküm ve indirme dahil hizmet veriliyor." },
+      { s: "Uzak mahallelere geliyor musunuz?", c: "Evet, ancak mesafe nedeniyle randevu önceden planlanıyor ve toplu alımlar tercih ediliyor." },
+    ],
+  },
+  {
+    slug: "sultanbeyli",
+    ad: "Sultanbeyli",
+    yaka: "anadolu",
+    mahalleler: ["Abdurrahmangazi", "Mehmet Akif", "Hasanpaşa", "Turgutreis", "Fatih", "Battalgazi", "Mimar Sinan", "Ahmet Yesevi"],
+    sanayi: ["Sultanbeyli Sanayi Sitesi", "Oto Sanayi Bölgesi"],
+    profil:
+      "Sultanbeyli'nin hurda profilinde oto sanayi belirleyici. İlçedeki oto tamir, kaporta ve yedek parça atölyeleri yoğun; hurda araç parçası, sac kaporta, jant, akü ve motor bloğu en düzenli çıkan kalemler. Konut dokusu yoğun ve yapı stoku görece yeni sayılmakla birlikte hızlı büyüme nedeniyle tadilat kaynaklı doğrama ve tesisat metali akışı da güçlü. Sanayi sitesindeki küçük imalathaneler ek bir metal fire kaynağı.",
+    erisim: "TEM bağlantısı güçlü. Sanayi sitesinde kamyon erişimi rahat, konut bölgelerinde kamyonet kullanılıyor.",
+    varis: "Ortalama 45-60 dakika",
+    komsu: ["sancaktepe", "kartal", "pendik"],
+    sss: [
+      { s: "Oto kaporta hurdası alıyor musunuz?", c: "Evet. Sultanbeyli'de oto sanayi yoğun; kaporta sacı, jant ve motor parçası düzenli alınıyor." },
+      { s: "Akü alımı yapıyor musunuz?", c: "Evet, akü ayrı kategoride ve kendi fiyatı üzerinden alınıyor." },
+      { s: "Atölyeme düzenli geliyor musunuz?", c: "Evet, oto sanayi atölyeleriyle haftalık veya aylık periyotta alım anlaşması yapılabiliyor." },
+    ],
+  },
+  {
+    slug: "beykoz",
+    ad: "Beykoz",
+    yaka: "anadolu",
+    mahalleler: ["Kavacık", "Paşabahçe", "Anadolu Hisarı", "Kanlıca", "Çubuklu", "Acarkent", "Riva", "Göksu", "İncirköy"],
+    sanayi: ["Kavacık Ofis Bölgesi", "Paşabahçe Sanayi Hattı"],
+    profil:
+      "Beykoz, Boğaz hattı, orman ve villa bölgelerinin oluşturduğu kendine özgü bir ilçe. Kavacık'taki ofis binalarından kurumsal tadilat kaynaklı metal çıkarken, Acarkent ve Riva hattındaki villa bölgelerinden bahçe ekipmanı, hurda demir ve üst segment beyaz eşya geliyor. Paşabahçe ve Çubuklu'daki eski yapı stokunda ise restorasyon kaynaklı dökme demir ve eski doğrama düzenli kalemler. Boğaz köylerinde araç erişimi en büyük kısıt.",
+    erisim: "Kavacık ve ana arterlerde erişim rahat. Boğaz köylerinde sokaklar çok dar ve eğimli, küçük araç zorunlu. Riva hattında mesafe uzun.",
+    varis: "Ortalama 45-70 dakika",
+    komsu: ["uskudar", "umraniye", "cekmekoy", "sile"],
+    sss: [
+      { s: "Acarkent'teki villamdan alım yapılıyor mu?", c: "Evet, villa bölgelerinde bahçe içi alım yapılıyor." },
+      { s: "Boğaz köyündeki dar sokağa araç girer mi?", c: "Küçük araçla giriliyor; giriş mümkün değilse yakın noktaya park edilip taşıma personeliyle yükleme yapılıyor." },
+      { s: "Kavacık'taki ofisimizden alım olur mu?", c: "Evet, ofis tadilatı ve taşınma kaynaklı metal alımı yapılıyor." },
+    ],
+  },
+  {
+    slug: "sile",
+    ad: "Şile",
+    yaka: "anadolu",
+    mahalleler: ["Ağva", "Merkez", "Çayırbaşı", "Doğancılı", "Kumbaba", "Balibey", "Hacıllı", "Teke"],
+    sanayi: ["Şile Sanayi Sitesi"],
+    profil:
+      "Şile, İstanbul'un en kırsal ve turizm ağırlıklı ilçelerinden. Hurda profili tamamen farklı: yazlık ev ve pansiyonlardan sezonluk beyaz eşya, tarım ve hayvancılıktan sulama borusu, ahır konstrüksiyonu ve tarım aleti, sahil hattından ise tekne bakım kaynaklı paslanmaz ve alüminyum aksam çıkıyor. Nüfus yoğunluğu düşük olduğu için tekil alım yerine toplu ve planlı alım tercih ediliyor.",
+    erisim: "Mesafe uzun ve köy yolları değişken. Randevu mutlaka önceden planlanıyor; genellikle belirli miktarın üzerindeki alımlar için ekip yönlendiriliyor.",
+    varis: "Ortalama 90-120 dakika",
+    komsu: ["beykoz", "cekmekoy"],
+    sss: [
+      { s: "Şile'ye gerçekten geliyor musunuz?", c: "Evet, ancak mesafe nedeniyle randevu önceden planlanıyor ve toplu alımlar tercih ediliyor." },
+      { s: "Yazlık evimden sezon sonu alım yapılabilir mi?", c: "Evet, sezon kapanışlarında toplu alım randevusu veriliyor." },
+      { s: "Tekne aksamı ve paslanmaz alıyor musunuz?", c: "Evet, paslanmaz ve alüminyum tekne aksamı ayrı kategoride değerlendiriliyor." },
+    ],
+  },
+  {
+    slug: "adalar",
+    ad: "Adalar",
+    yaka: "anadolu",
+    mahalleler: ["Büyükada", "Heybeliada", "Burgazada", "Kınalıada", "Sedef Adası"],
+    sanayi: [],
+    profil:
+      "Adalar, İstanbul'un motorlu araç kısıtı bulunan tek ilçesi ve bu durum hurda alımını tamamen farklı bir operasyona dönüştürüyor. Ada içinde yük taşıma elektrikli araç veya el arabasıyla yapılıyor, hurda ise vapurla karaya aktarılıyor. Bu nedenle alım mutlaka önceden planlanıyor ve genellikle belirli bir miktar biriktiğinde toplu olarak gerçekleştiriliyor. Çıkan kalemler ağırlıklı olarak köşk ve yazlık ev kaynaklı beyaz eşya, dökme demir ve eski doğrama.",
+    erisim: "Motorlu araç kısıtı nedeniyle ada içi taşıma elektrikli araçla, karaya aktarım vapurla yapılıyor. Operasyon tamamen randevulu ve planlı yürütülüyor.",
+    varis: "Vapur seferine bağlı, randevu ile planlanır",
+    komsu: ["maltepe", "kartal"],
+    sss: [
+      { s: "Adalar'a hurda alımına geliyor musunuz?", c: "Evet, ancak motorlu araç kısıtı nedeniyle operasyon önceden planlanıyor. Genellikle belirli miktar biriktiğinde toplu alım yapılıyor." },
+      { s: "Ada içinde taşımayı nasıl yapıyorsunuz?", c: "Ada içi taşıma elektrikli araç veya el arabasıyla, karaya aktarım ise vapurla yapılıyor." },
+      { s: "Köşkümdeki eski dökme demir alınır mı?", c: "Evet, dökme demir ayrı kategoride değerlendiriliyor. Tescilli yapılarda koruma kurulu izni gerekebilir." },
+    ],
+  },
+];
