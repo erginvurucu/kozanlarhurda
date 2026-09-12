@@ -140,7 +140,7 @@ body {
 }
 
 .animate-ticker {
-  animation: ticker-scroll 20s linear infinite;
+  animation: ticker-scroll 50s linear infinite;
   display: flex;
   white-space: nowrap;
 }
