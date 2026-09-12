@@ -137,14 +137,14 @@ export default function AnaSayfa() {
             </p>
 
             <h1 className="mt-5 text-[38px] leading-[1.08] text-white sm:text-[52px]">
-              <span className="text-fistik-400">Sorumlu tartım</span>,
-              <br className="hidden sm:block" /> güvenilir hizmet
+              Hurdanızı <span className="text-fistik-400">biz indiririz</span>,
+              <br className="hidden sm:block" /> tartımı siz izlersiniz
             </h1>
 
             <p className="mt-6 max-w-prose text-lg leading-relaxed text-kurum-300">
-              Hurdanızı biz indiririz, tartımı siz izlersiniz. Kat farkı yok,
-              asansör şartı yok, indirmek için üste para istemiyoruz. Ödeme
-              teslim anında nakit.
+              Kat farkı yok, asansör şartı yok, indirmek için üste para
+              istemiyoruz. Kalibreli kantarla yerinde tartım, ödeme teslim
+              anında nakit.
             </p>
 
             <ul className="mt-8 flex flex-col">

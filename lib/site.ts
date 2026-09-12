@@ -32,7 +32,7 @@ export const site = {
    * cunku saha arastirmasi musterinin soyut soze degil somut vaade
    * tepki verdigini gosterdi.
    */
-  slogan: "Sorumlu geri dönüşüm, net değerlendirme",
+  slogan: "Hurda ve Metal Alım Hizmetleri",
 
   description:
     "İstanbul genelinde yerinde hurda alımı. Bakır, alüminyum, demir, beyaz eşya ve sanayi hurdası için ücretsiz keşif, indirme dahil, tartım gözünüzün önünde.",
