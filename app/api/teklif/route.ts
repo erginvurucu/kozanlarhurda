@@ -35,6 +35,11 @@ export async function POST(req: Request) {
   const notu = String(form.get("not") ?? "").trim();
   const kvkk = form.get("kvkk");
 
+  // Kurumsal (B2B) alanlar - opsiyoneldir, ev formunda hic gonderilmez.
+  const firma = String(form.get("firma") ?? "").trim().slice(0, 120);
+  const tonaj = String(form.get("tonaj") ?? "").trim().slice(0, 60);
+  const periyodik = String(form.get("periyodik") ?? "").trim() === "evet";
+
   if (!ad || !telefon || !ilce || !tur) {
     return NextResponse.json({ mesaj: "Zorunlu alanlar eksik" }, { status: 400 });
   }
@@ -64,11 +69,14 @@ export async function POST(req: Request) {
   }
 
   const metin = [
-    "🔔 YENİ HURDA TALEBİ",
+    firma ? "🏭 KURUMSAL HURDA TALEBİ" : "🔔 YENİ HURDA TALEBİ",
+    firma ? `Firma: ${firma}` : null,
     `Ad: ${ad}`,
     `Telefon: ${telefon}`,
     `İlçe: ${ilce}`,
     `Tür: ${tur}`,
+    tonaj ? `Yaklaşık tonaj: ${tonaj}` : null,
+    periyodik ? "Periyodik anlaşma ile ilgileniyor" : null,
     notu ? `Not: ${notu}` : null,
     fotolar.length ? `Fotoğraf: ${fotolar.length} adet` : null,
     `Zaman: ${new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" })}`,

@@ -26,7 +26,14 @@ type Durum = "bos" | "gonderiliyor" | "tamam" | "hata";
  * Bu sektörde güvenin somut nesnesi kantar fişidir; form da onu andırır:
  * üstü perforeli beyaz kâğıt, mono alan etiketleri, cetvelli satırlar.
  */
-export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
+export function LeadForm({
+  varsayilanIlce,
+  kurumsal = false,
+}: {
+  varsayilanIlce?: string;
+  /** Kurumsal sayfada firma, tonaj ve periyodik anlasma alanlarini acar. */
+  kurumsal?: boolean;
+}) {
   const [durum, setDurum] = useState<Durum>("bos");
   const [hata, setHata] = useState<string>("");
 
@@ -81,15 +88,20 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
     <div className="fis w-full p-6 sm:p-7">
       <header className="border-b border-dashed border-kurum-300 pb-5">
         <div className="flex items-baseline justify-between gap-4">
-          <p className="etiket etiket-fistik">Fiyat talebi</p>
+          <p className="etiket etiket-fistik">
+            {kurumsal ? "Kurumsal teklif" : "Fiyat talebi"}
+          </p>
           <p className="rakam text-[11px] text-kurum-400">ÜCRETSİZ</p>
         </div>
         <h2 className="mt-2 text-[22px] leading-tight text-lacivert-900">
-          Hurdanızın fiyatını öğrenin
+          {kurumsal
+            ? "Tesisiniz için teklif alın"
+            : "Hurdanızın fiyatını öğrenin"}
         </h2>
         <p className="mt-2 text-sm text-kurum-600">
-          Keşif, indirme ve nakliye ücretsiz. Fiyatı beğenmezseniz hiçbir
-          yükümlülüğünüz yok.
+          {kurumsal
+            ? "Keşif ücretsiz. Tonajlı alımda irsaliye ve kantar fişi eksiksiz düzenlenir."
+            : "Keşif, indirme ve nakliye ücretsiz. Fiyatı beğenmezseniz hiçbir yükümlülüğünüz yok."}
         </p>
       </header>
 
@@ -106,8 +118,24 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
           />
         </div>
 
+        {kurumsal && (
+          <div className="mb-4">
+            <Alan etiket="Firma adı" id="firma">
+              <input
+                id="firma"
+                name="firma"
+                type="text"
+                required
+                autoComplete="organization"
+                className={girdi}
+                placeholder="Tesis / şirket unvanı"
+              />
+            </Alan>
+          </div>
+        )}
+
         <div className="grid gap-4 sm:grid-cols-2">
-          <Alan etiket="Adınız" id="ad">
+          <Alan etiket={kurumsal ? "Yetkili" : "Adınız"} id="ad">
             <input
               id="ad"
               name="ad"
@@ -172,6 +200,35 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
           </Alan>
         </div>
 
+        {kurumsal && (
+          <div className="mt-4">
+            <Alan
+              etiket="Yaklaşık tonaj"
+              id="tonaj"
+              ipucu="Bilmiyorsanız boş bırakın, keşifte birlikte belirleriz"
+              zorunluDegil
+            >
+              <input
+                id="tonaj"
+                name="tonaj"
+                type="text"
+                className={girdi}
+                placeholder="Örn. 3–5 ton / ayda ~2 ton"
+              />
+            </Alan>
+
+            <label className="mt-4 flex items-start gap-3 text-sm text-kurum-700">
+              <input
+                type="checkbox"
+                name="periyodik"
+                value="evet"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-lacivert-600"
+              />
+              Düzenli fire çıkıyor, periyodik anlaşma ile ilgileniyorum
+            </label>
+          </div>
+        )}
+
         <div className="mt-4">
           <Alan
             etiket="Fotoğraf"
@@ -197,7 +254,11 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
               name="not"
               rows={2}
               className={girdi}
-              placeholder="Kat, asansör durumu, yaklaşık miktar gibi bilgiler işimizi kolaylaştırır."
+              placeholder={
+                kurumsal
+                  ? "Malzeme cinsi, söküm gerekip gerekmediği, saha erişimi gibi bilgiler işimizi kolaylaştırır."
+                  : "Kat, asansör durumu, yaklaşık miktar gibi bilgiler işimizi kolaylaştırır."
+              }
             />
           </Alan>
         </div>
@@ -265,7 +326,7 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
               Gönderiliyor…
             </>
           ) : (
-            "Ücretsiz fiyat al"
+            kurumsal ? "Teklif talep et" : "Ücretsiz fiyat al"
           )}
         </button>
       </form>

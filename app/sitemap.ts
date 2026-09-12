@@ -21,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${site.url}/kurumsal`,
+      lastModified: simdi,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
+    {
       url: `${site.url}/rehber`,
       lastModified: simdi,
       changeFrequency: "weekly" as const,
