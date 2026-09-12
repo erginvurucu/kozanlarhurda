@@ -50,17 +50,20 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
     return (
       <div
         role="status"
-        className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center"
+        className="w-full rounded-3xl border-2 border-yesil-300 bg-yesil-50 p-10 text-center"
       >
-        <p className="text-lg font-semibold text-green-900">Talebiniz alındı.</p>
-        <p className="mt-2 text-green-800">
+        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yesil-500 text-white text-2xl animate-bounce-in shadow-lg shadow-yesil-200">
+          ✓
+        </div>
+        <p className="text-xl font-bold text-yesil-900">Talebiniz alındı!</p>
+        <p className="mt-2 text-yesil-700">
           En kısa sürede sizi arayacağız. Acele ediyorsanız doğrudan
           telefonla da ulaşabilirsiniz.
         </p>
         <button
           type="button"
           onClick={() => setDurum("bos")}
-          className="mt-5 rounded-lg border border-green-300 px-4 py-2 font-medium text-green-900"
+          className="mt-6 rounded-xl border-2 border-yesil-400 px-5 py-2.5 font-semibold text-yesil-800 hover:bg-yesil-100 transition-colors"
         >
           Yeni talep gönder
         </button>
@@ -69,148 +72,170 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
   }
 
   return (
-    <form
-      onSubmit={gonder}
-      className="rounded-2xl border border-celik-200 bg-white p-6 shadow-sm sm:p-8"
-      noValidate={false}
-    >
-      {/* Bot tuzagi - gorunmez alan */}
-      <div className="hidden" aria-hidden="true">
-        <label htmlFor="website">Web siteniz</label>
-        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Alan etiket="Adınız" id="ad">
-          <input
-            id="ad"
-            name="ad"
-            type="text"
-            required
-            autoComplete="name"
-            className={girdi}
-            placeholder="Ad Soyad"
-          />
-        </Alan>
-
-        <Alan etiket="Telefon" id="telefon" ipucu="Sizi bu numaradan arayacağız">
-          <input
-            id="telefon"
-            name="telefon"
-            type="tel"
-            required
-            inputMode="tel"
-            autoComplete="tel"
-            pattern="[0-9\s()+-]{10,20}"
-            className={girdi}
-            placeholder="05XX XXX XX XX"
-          />
-        </Alan>
-
-        <Alan etiket="İlçe" id="ilce">
-          <select
-            id="ilce"
-            name="ilce"
-            required
-            defaultValue={varsayilanIlce ?? ""}
-            className={girdi}
-          >
-            <option value="" disabled>
-              Seçiniz
-            </option>
-            {ilceler.map((i) => (
-              <option key={i.slug} value={i.ad}>
-                {i.ad}
-              </option>
-            ))}
-          </select>
-        </Alan>
-
-        <Alan etiket="Hurda türü" id="tur">
-          <select id="tur" name="tur" required defaultValue="" className={girdi}>
-            <option value="" disabled>
-              Seçiniz
-            </option>
-            {HURDA_TURLERI.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
-            ))}
-          </select>
-        </Alan>
-      </div>
-
-      <div className="mt-5">
-        <Alan
-          etiket="Fotoğraf"
-          id="foto"
-          ipucu="Fotoğraf gönderirseniz çok daha net fiyat verebiliriz (en fazla 5 adet)"
-          zorunluDegil
-        >
-          <input
-            id="foto"
-            name="foto"
-            type="file"
-            accept="image/*"
-            multiple
-            className="block w-full text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-celik-100 file:px-4 file:py-2.5 file:font-medium file:text-celik-800 hover:file:bg-celik-200"
-          />
-        </Alan>
-      </div>
-
-      <div className="mt-5">
-        <Alan etiket="Not" id="not" zorunluDegil>
-          <textarea
-            id="not"
-            name="not"
-            rows={3}
-            className={girdi}
-            placeholder="Kat, asansör durumu, yaklaşık miktar gibi bilgiler işimizi kolaylaştırır."
-          />
-        </Alan>
-      </div>
-
-      {/* KVKK - onceden isaretli DEGIL, yasal zorunluluk */}
-      <div className="mt-6 flex gap-3 rounded-xl bg-celik-50 p-4">
-        <input
-          id="kvkk"
-          name="kvkk"
-          type="checkbox"
-          required
-          className="mt-1 h-5 w-5 shrink-0 accent-bakir-500"
-        />
-        <label htmlFor="kvkk" className="text-sm leading-relaxed text-celik-700">
-          <a href="/kvkk" className="font-medium underline">
-            Aydınlatma Metni
-          </a>
-          'ni okudum. İletişim bilgilerimin, talebimi karşılayabilmek amacıyla
-          bölgemdeki anlaşmalı hurda alım firmasına aktarılmasına onay veriyorum.
-        </label>
-      </div>
-
-      {durum === "hata" && (
-        <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-800">
-          {hata}. Lütfen tekrar deneyin veya doğrudan telefonla ulaşın.
+    <div className="w-full rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-6 shadow-2xl sm:p-8">
+      {/* Form başlığı */}
+      <div className="mb-6">
+        <div className="inline-flex items-center gap-2 rounded-full bg-kirmizi-500/20 border border-kirmizi-400/30 px-3 py-1 mb-3">
+          <span className="text-kirmizi-300 text-xs font-semibold tracking-wide uppercase">
+            Ücretsiz Fiyat Al
+          </span>
+        </div>
+        <h2 className="text-xl font-bold text-white font-heading">
+          Hızlı Teklif Formu
+        </h2>
+        <p className="text-sm text-white/60 mt-1">
+          Keşif ve nakliye ücretsiz. Fiyatı beğenmezseniz yükümlülük yok.
         </p>
-      )}
+      </div>
 
-      <button
-        type="submit"
-        disabled={durum === "gonderiliyor"}
-        className="mt-6 w-full rounded-xl bg-bakir-500 px-6 py-4 text-lg font-semibold text-white transition hover:bg-bakir-600 disabled:opacity-60"
+      <form
+        onSubmit={gonder}
+        noValidate={false}
       >
-        {durum === "gonderiliyor" ? "Gönderiliyor…" : "Ücretsiz fiyat al"}
-      </button>
+        {/* Bot tuzağı */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="website">Web siteniz</label>
+          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+        </div>
 
-      <p className="mt-3 text-center text-xs text-celik-500">
-        Keşif ve nakliye ücretsiz. Fiyatı beğenmezseniz hiçbir yükümlülüğünüz yok.
-      </p>
-    </form>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Alan etiket="Adınız" id="ad">
+            <input
+              id="ad"
+              name="ad"
+              type="text"
+              required
+              autoComplete="name"
+              className={girdi}
+              placeholder="Ad Soyad"
+            />
+          </Alan>
+
+          <Alan etiket="Telefon" id="telefon" ipucu="Bu numaradan arayacağız">
+            <input
+              id="telefon"
+              name="telefon"
+              type="tel"
+              required
+              inputMode="tel"
+              autoComplete="tel"
+              pattern="[0-9\s()+-]{10,20}"
+              className={girdi}
+              placeholder="05XX XXX XX XX"
+            />
+          </Alan>
+
+          <Alan etiket="İlçe" id="ilce">
+            <select
+              id="ilce"
+              name="ilce"
+              required
+              defaultValue={varsayilanIlce ?? ""}
+              className={girdi}
+            >
+              <option value="" disabled>
+                Seçiniz
+              </option>
+              {ilceler.map((i) => (
+                <option key={i.slug} value={i.ad}>
+                  {i.ad}
+                </option>
+              ))}
+            </select>
+          </Alan>
+
+          <Alan etiket="Hurda türü" id="tur">
+            <select id="tur" name="tur" required defaultValue="" className={girdi}>
+              <option value="" disabled>
+                Seçiniz
+              </option>
+              {HURDA_TURLERI.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </Alan>
+        </div>
+
+        <div className="mt-4">
+          <Alan
+            etiket="Fotoğraf"
+            id="foto"
+            ipucu="Fotoğraf gönderirseniz çok daha net fiyat verebiliriz (en fazla 5 adet)"
+            zorunluDegil
+          >
+            <input
+              id="foto"
+              name="foto"
+              type="file"
+              accept="image/*"
+              multiple
+              className="block w-full text-sm text-white/70 file:mr-3 file:rounded-lg file:border-0 file:bg-white/20 file:px-4 file:py-2 file:font-medium file:text-white hover:file:bg-white/30 file:cursor-pointer transition-colors"
+            />
+          </Alan>
+        </div>
+
+        <div className="mt-4">
+          <Alan etiket="Not" id="not" zorunluDegil>
+            <textarea
+              id="not"
+              name="not"
+              rows={2}
+              className={girdi}
+              placeholder="Kat, asansör durumu, yaklaşık miktar gibi bilgiler işimizi kolaylaştırır."
+            />
+          </Alan>
+        </div>
+
+        {/* KVKK */}
+        <div className="mt-5 flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4">
+          <input
+            id="kvkk"
+            name="kvkk"
+            type="checkbox"
+            required
+            className="mt-1 h-5 w-5 shrink-0 accent-kirmizi-500"
+          />
+          <label htmlFor="kvkk" className="text-xs leading-relaxed text-white/60">
+            <a href="/kvkk" className="font-medium underline text-white/80 hover:text-white">
+              Aydınlatma Metni
+            </a>
+            &apos;ni okudum. İletişim bilgilerimin talebimi karşılayabilmek amacıyla
+            bölgemdeki anlaşmalı hurda alım firmasına aktarılmasına onay veriyorum.
+          </label>
+        </div>
+
+        {durum === "hata" && (
+          <p role="alert" className="mt-4 rounded-xl bg-kirmizi-900/50 border border-kirmizi-600 p-3 text-sm text-kirmizi-300">
+            {hata}. Lütfen tekrar deneyin veya doğrudan telefonla ulaşın.
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={durum === "gonderiliyor"}
+          className="mt-5 w-full btn-kirmizi text-white rounded-2xl px-6 py-4 text-lg font-bold disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        >
+          {durum === "gonderiliyor" ? (
+            <>
+              <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Gönderiliyor…
+            </>
+          ) : (
+            "Ücretsiz Fiyat Al →"
+          )}
+        </button>
+      </form>
+    </div>
   );
 }
 
 const girdi =
-  "w-full rounded-xl border border-celik-300 px-4 py-3 text-base outline-none transition focus:border-bakir-500";
+  "w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder-white/40 outline-none transition focus:border-kirmizi-400 focus:bg-white/15 focus:ring-1 focus:ring-kirmizi-400";
 
 function Alan({
   etiket,
@@ -227,16 +252,16 @@ function Alan({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block font-medium text-celik-800">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-white/80">
         {etiket}
         {zorunluDegil && (
-          <span className="ml-1.5 text-sm font-normal text-celik-500">
+          <span className="ml-1.5 text-xs font-normal text-white/40">
             (isteğe bağlı)
           </span>
         )}
       </label>
       {children}
-      {ipucu && <p className="mt-1.5 text-sm text-celik-500">{ipucu}</p>}
+      {ipucu && <p className="mt-1.5 text-xs text-white/40">{ipucu}</p>}
     </div>
   );
 }

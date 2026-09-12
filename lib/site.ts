@@ -7,8 +7,15 @@ export const site = {
   name: "Kozanlar Hurda",
   /** Resmi unvan - yasal metinler, irsaliye, kurumsal yazismalar. */
   legalName: "Kozanlar Metal Geri Dönüşüm",
+  /** Markanin kisa adi - basili malzeme, telefon, sozlu kullanim. */
   domain: "kozanlarhurda.com",
-  url: "https://kozanlarhurda.com",
+  /**
+   * Kanonik adres. Vercel siteyi www'de yayinliyor ve koku (apex) oraya
+   * 308 ile yonlendiriyor; canonical / sitemap / robots / JSON-LD bu adresle
+   * birebir ayni olmali, yoksa her sitemap URL'i bir yonlendirmeye carpar.
+   * Vercel'de kok adres birincil yapilirsa burayi www'siz hale getir.
+   */
+  url: "https://www.kozanlarhurda.com",
   // TODO: gercek numara ile degistir
   phone: "+905555555555",
   phoneDisplay: "0555 555 55 55",

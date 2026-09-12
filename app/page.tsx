@@ -42,20 +42,35 @@ const GENEL_SSS = [
 
 const ADIMLAR = [
   {
+    no: "01",
+    ikon: "📸",
     baslik: "Fotoğrafı gönderin",
     metin:
       "WhatsApp'tan hurdanızın fotoğrafını atın veya formu doldurun. Ne kadar net görürsek fiyat o kadar net olur.",
+    renk: "from-kirmizi-500 to-kirmizi-700",
   },
   {
+    no: "02",
+    ikon: "💬",
     baslik: "Fiyatı öğrenin",
     metin:
       "Güncel piyasa üzerinden fiyat aralığını hemen söyleyelim. Anlaşırsak randevu saatini birlikte belirleriz.",
+    renk: "from-yesil-500 to-yesil-700",
   },
   {
+    no: "03",
+    ikon: "💰",
     baslik: "Ekip gelsin, ödemeyi alın",
     metin:
-      "Söküm, indirme ve taşıma bize ait — kat farkı gözetmeyiz. Tartım kalibreli kantarla gözünüzün önünde yapılır, ödeme teslim anında nakit.",
+      "Söküm, indirme ve taşıma bize ait — kat farkı gözetmeyiz. Tartım kalibreli kantarla, ödeme teslim anında nakit.",
+    renk: "from-kirmizi-500 to-yesil-600",
   },
+];
+
+const ISTATISTIKLER = [
+  { sayi: "39", birim: "İlçe", aciklama: "İstanbul geneli hizmet" },
+  { sayi: "7/24", birim: "Destek", aciklama: "Her zaman ulaşabilirsiniz" },
+  { sayi: "0", birim: "TL", aciklama: "Keşif & nakliye ücreti" },
 ];
 
 export default function AnaSayfa() {
@@ -63,44 +78,94 @@ export default function AnaSayfa() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="border-b border-celik-200 bg-gradient-to-b from-celik-50 to-white">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 lg:grid-cols-2 lg:py-20">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-bakir-100 px-3.5 py-1.5 text-sm font-medium text-bakir-800">
-              İstanbul'un 39 ilçesinde hizmet
-            </p>
-            <h1 className="mt-5 text-4xl font-bold leading-tight text-celik-900 sm:text-5xl">
-              Hurdanızı <span className="text-bakir-600">biz indiririz</span>,
-              tartımı siz izlersiniz
+      {/* ── TICKER BANDI ── */}
+      <div className="bg-karanlik-900 text-white py-2 overflow-hidden">
+        <div className="animate-ticker flex gap-16 text-sm font-medium">
+          {[...Array(2)].map((_, outer) => (
+            <span key={outer} className="flex gap-16 shrink-0">
+              {[
+                "♻ Bakır Alımı",
+                "♻ Alüminyum Alımı",
+                "♻ Demir & Çelik",
+                "♻ Beyaz Eşya",
+                "♻ Kombi & Kazan",
+                "♻ Hurda Araç",
+                "♻ Sanayi Hurdası",
+                "♻ Klima & Elektronik",
+              ].map((item) => (
+                <span key={item} className="text-karanlik-300">
+                  <span className="text-yesil-400 mr-2">●</span>
+                  {item}
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── HERO ── */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-karanlik-900 via-karanlik-800 to-karanlik-900 text-white">
+        {/* Arka plan dekorasyon küreleri */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-kirmizi-600/20 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-yesil-600/20 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-kirmizi-900/10 rounded-full blur-3xl" />
+        </div>
+
+        {/* Metal grid arka planı */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-16 lg:grid-cols-2 lg:py-24">
+          <div className="flex flex-col justify-center">
+            {/* Üst badge */}
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-yesil-700/50 bg-yesil-900/30 px-4 py-2 text-sm font-medium text-yesil-300 mb-6">
+              <svg viewBox="0 0 24 24" className="h-4 w-4 animate-spin-slow text-yesil-400" fill="currentColor" aria-hidden="true">
+                <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4C7.58 4 4 7.58 4 12s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+              </svg>
+              İstanbul&apos;un 39 ilçesinde hizmet
+            </div>
+
+            {/* Ana başlık */}
+            <h1 className="text-4xl font-black leading-[1.1] sm:text-5xl lg:text-6xl font-heading">
+              Hurdanızı{" "}
+              <span className="text-gradient-kirmizi">biz indiririz</span>
+              ,
+              <br />
+              tartımı siz{" "}
+              <span className="text-gradient-yesil">izlersiniz</span>
             </h1>
-            <p className="mt-5 max-w-prose text-lg leading-relaxed text-celik-600">
+
+            <p className="mt-5 max-w-lg text-lg leading-relaxed text-karanlik-300">
               Kat farkı yok, asansör şartı yok, indirmek için üste para
               istemiyoruz. Kalibreli kantarla yerinde tartım, ödeme teslim
               anında nakit.
             </p>
 
-            <ul className="mt-6 flex flex-col gap-2">
+            {/* Vaatler */}
+            <ul className="mt-6 flex flex-col gap-2.5">
               {site.sozler.map((s) => (
-                <li key={s} className="flex items-start gap-2.5 text-celik-700">
-                  <svg
-                    viewBox="0 0 20 20"
-                    aria-hidden="true"
-                    className="mt-1 h-4 w-4 shrink-0 text-bakir-500"
-                    fill="currentColor"
-                  >
-                    <path d="M7.6 13.4 4.2 10l-1.2 1.2 4.6 4.6 9-9-1.2-1.2z" />
-                  </svg>
+                <li key={s} className="flex items-center gap-3 text-karanlik-200">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-yesil-500 text-white text-xs font-bold">
+                    ✓
+                  </span>
                   {s}
                 </li>
               ))}
             </ul>
 
+            {/* CTA butonları */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={telLink}
                 data-cta="tel"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-bakir-500 px-7 py-4 text-lg font-semibold text-white transition hover:bg-bakir-600"
+                className="inline-flex items-center justify-center gap-2.5 btn-kirmizi text-white rounded-2xl px-7 py-4 text-lg font-bold"
               >
                 <PhoneIcon className="h-5 w-5" aria-hidden="true" />
                 {site.phoneDisplay}
@@ -110,130 +175,196 @@ export default function AnaSayfa() {
                 data-cta="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-7 py-4 text-lg font-semibold text-white transition hover:brightness-95"
+                className="inline-flex items-center justify-center gap-2.5 btn-yesil text-white rounded-2xl px-7 py-4 text-lg font-bold"
               >
                 <WhatsAppIcon className="h-5 w-5" aria-hidden="true" />
-                WhatsApp'tan sor
+                WhatsApp&apos;tan sor
               </a>
             </div>
 
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-celik-200 pt-6">
-              {[
-                ["İndirme dahil", "Kat farkı yok"],
-                ["Aynı gün", "Randevu imkânı"],
-                ["Nakit", "Teslim anında"],
-              ].map(([ust, alt]) => (
-                <div key={ust}>
-                  <dt className="text-xl font-bold text-celik-900">{ust}</dt>
-                  <dd className="mt-0.5 text-sm text-celik-600">{alt}</dd>
+            {/* İstatistikler */}
+            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
+              {ISTATISTIKLER.map(({ sayi, birim, aciklama }) => (
+                <div key={birim}>
+                  <dt className="text-2xl font-black text-white font-heading">
+                    {sayi}
+                    <span className="text-kirmizi-400 ml-0.5 text-xl">{birim === "TL" ? " TL" : ""}</span>
+                    {birim !== "TL" && <span className="block text-xs font-medium text-yesil-400 mt-0.5 uppercase tracking-wider">{birim}</span>}
+                  </dt>
+                  <dd className="mt-0.5 text-xs text-karanlik-400">{aciklama}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          <div id="teklif" className="scroll-mt-24">
+          {/* Form tarafı */}
+          <div id="teklif" className="scroll-mt-24 flex items-center">
             <LeadForm />
           </div>
         </div>
       </section>
 
-      {/* NASIL CALISIR */}
-      <section id="nasil" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16">
-        <h2 className="text-3xl font-bold text-celik-900">Nasıl çalışır?</h2>
-        <p className="mt-3 max-w-prose text-celik-600">
-          Üç adım, tek gün. İndirme bizden, sürprizli maliyet veya gizli kesinti yok.
-        </p>
-        <ol className="mt-10 grid gap-6 md:grid-cols-3">
-          {ADIMLAR.map((a, i) => (
-            <li
-              key={a.baslik}
-              className="rounded-2xl border border-celik-200 bg-white p-6"
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-lg bg-celik-900 font-bold text-white">
-                {i + 1}
-              </span>
-              <h3 className="mt-4 text-lg font-semibold text-celik-900">
-                {a.baslik}
-              </h3>
-              <p className="mt-2 leading-relaxed text-celik-600">{a.metin}</p>
-            </li>
-          ))}
-        </ol>
+      {/* ── NASIL ÇALIŞIR ── */}
+      <section id="nasil" className="scroll-mt-20 py-20 bg-white">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="text-center mb-12">
+            <span className="inline-block text-kirmizi-600 font-semibold text-sm tracking-widest uppercase mb-3">
+              Basit Süreç
+            </span>
+            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
+              Nasıl çalışır?
+            </h2>
+            <p className="mt-3 max-w-prose mx-auto text-karanlik-500">
+              Üç adım, tek gün. İndirme bizden, sürprizli maliyet veya gizli kesinti yok.
+            </p>
+          </div>
+
+          <ol className="grid gap-6 md:grid-cols-3">
+            {ADIMLAR.map((a, i) => (
+              <li
+                key={a.baslik}
+                className="relative rounded-3xl bg-white border-2 border-karanlik-100 p-8 hover:border-kirmizi-200 hover:shadow-xl hover:shadow-kirmizi-50 transition-all duration-300 group"
+              >
+                {/* Bağlantı oku */}
+                {i < ADIMLAR.length - 1 && (
+                  <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 text-2xl text-karanlik-200">
+                    →
+                  </div>
+                )}
+
+                {/* Numara badge */}
+                <div
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${a.renk} text-white shadow-lg mb-5`}
+                >
+                  <span className="text-2xl">{a.ikon}</span>
+                </div>
+
+                <div className="text-xs font-bold text-karanlik-300 tracking-widest uppercase mb-2">
+                  ADIM {a.no}
+                </div>
+                <h3 className="text-xl font-bold text-karanlik-900 font-heading group-hover:text-kirmizi-600 transition-colors">
+                  {a.baslik}
+                </h3>
+                <p className="mt-2 leading-relaxed text-karanlik-500">{a.metin}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
-      {/* ONCELIKLI BOLGELER */}
-      <section className="bg-celik-50 py-16">
+      {/* ── ÖNCELİKLİ BÖLGELER ── */}
+      <section className="py-20 bg-karanlik-50">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-3xl font-bold text-celik-900">
-            En yoğun çalıştığımız bölgeler
-          </h2>
-          <p className="mt-3 max-w-prose text-celik-600">
-            Her bölgenin hurdası farklıdır. Sizin bölgenizde neyin çıktığını ve
-            nasıl çalıştığımızı ilçe sayfasında anlattık.
-          </p>
+          <div className="mb-12">
+            <span className="inline-block text-yesil-600 font-semibold text-sm tracking-widest uppercase mb-3">
+              Hizmet Bölgeleri
+            </span>
+            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
+              En yoğun çalıştığımız bölgeler
+            </h2>
+            <p className="mt-3 max-w-prose text-karanlik-500">
+              Her bölgenin hurdası farklıdır. Sizin bölgenizde neyin çıktığını ve
+              nasıl çalıştığımızı ilçe sayfasında anlattık.
+            </p>
+          </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {one.map((i) => (
               <Link
                 key={i.slug}
                 href={`/${i.slug}`}
-                className="group rounded-2xl border border-celik-200 bg-white p-6 transition hover:border-bakir-400 hover:shadow-md"
+                className="group relative rounded-2xl bg-white border-2 border-transparent p-6 transition-all duration-300 hover:border-kirmizi-400 hover:shadow-xl hover:shadow-kirmizi-50 overflow-hidden"
               >
-                <h3 className="text-xl font-semibold text-celik-900 group-hover:text-bakir-600">
-                  {i.ad} Hurdacı
-                </h3>
-                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-celik-600">
-                  {i.profil}
-                </p>
-                <p className="mt-4 text-sm font-medium text-bakir-600">
-                  {i.varis} →
-                </p>
+                {/* Hover arka plan efekti */}
+                <div className="absolute inset-0 bg-gradient-to-br from-kirmizi-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div className="relative">
+                  {/* Geri dönüşüm ikonu */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-yesil-100 text-yesil-600 text-lg font-bold group-hover:bg-kirmizi-100 group-hover:text-kirmizi-600 transition-colors">
+                      ♻
+                    </span>
+                    <span className="text-sm font-semibold text-kirmizi-500 group-hover:translate-x-1 transition-transform">
+                      {i.varis} →
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-karanlik-900 group-hover:text-kirmizi-700 font-heading transition-colors">
+                    {i.ad} Hurdacı
+                  </h3>
+                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-karanlik-500">
+                    {i.profil}
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
 
           <Link
             href="/bolgeler"
-            className="mt-8 inline-flex items-center gap-2 font-semibold text-celik-900 underline underline-offset-4"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl border-2 border-karanlik-200 px-5 py-3 font-semibold text-karanlik-700 hover:border-kirmizi-400 hover:text-kirmizi-600 transition-all duration-200"
           >
             39 ilçenin tamamını gör
+            <span>→</span>
           </Link>
         </div>
       </section>
 
-      {/* SSS */}
-      <section className="mx-auto max-w-3xl px-4 py-16">
-        <h2 className="text-3xl font-bold text-celik-900">Sık sorulan sorular</h2>
-        <div className="mt-8 divide-y divide-celik-200 border-y border-celik-200">
-          {GENEL_SSS.map((x) => (
-            <details key={x.s} className="group py-5">
-              <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-celik-900">
-                {x.s}
-                <span
-                  aria-hidden="true"
-                  className="mt-1 shrink-0 text-bakir-500 transition group-open:rotate-45"
-                >
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 leading-relaxed text-celik-600">{x.c}</p>
-            </details>
-          ))}
+      {/* ── SSS ── */}
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-3xl px-4">
+          <div className="text-center mb-12">
+            <span className="inline-block text-kirmizi-600 font-semibold text-sm tracking-widest uppercase mb-3">
+              Merak Edilenler
+            </span>
+            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
+              Sık sorulan sorular
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {GENEL_SSS.map((x, i) => (
+              <details
+                key={x.s}
+                className="group rounded-2xl border-2 border-karanlik-100 bg-white overflow-hidden hover:border-kirmizi-200 transition-colors"
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 font-semibold text-karanlik-900 list-none">
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-kirmizi-100 text-kirmizi-600 text-xs font-bold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    {x.s}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-karanlik-100 text-karanlik-600 text-xl font-light group-open:bg-kirmizi-100 group-open:text-kirmizi-600 group-open:rotate-45 transition-all duration-300"
+                  >
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-5">
+                  <div className="h-px bg-karanlik-100 mb-4" />
+                  <p className="leading-relaxed text-karanlik-600">{x.c}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* TUM ILCELER - ic linkleme */}
-      <section className="border-t border-celik-200 py-14">
+      {/* ── TÜM İLÇELER ── */}
+      <section className="border-t-2 border-karanlik-100 py-16 bg-karanlik-50">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-xl font-bold text-celik-900">
+          <h2 className="text-xl font-bold text-karanlik-900 font-heading flex items-center gap-3 mb-6">
+            <span className="h-1 w-6 rounded bg-kirmizi-500 inline-block" />
             İstanbul geneli hurda alımı
           </h2>
-          <ul className="mt-5 flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-2">
             {ilceler.map((i) => (
               <li key={i.slug}>
                 <Link
                   href={`/${i.slug}`}
-                  className="inline-block rounded-lg border border-celik-200 px-3 py-1.5 text-sm text-celik-700 transition hover:border-bakir-400 hover:text-bakir-600"
+                  className="inline-block rounded-lg border border-karanlik-200 bg-white px-3 py-1.5 text-sm text-karanlik-600 transition-all duration-150 hover:border-kirmizi-400 hover:text-kirmizi-600 hover:shadow-sm"
                 >
                   {i.ad} Hurdacı
                 </Link>

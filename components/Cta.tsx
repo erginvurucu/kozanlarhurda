@@ -2,19 +2,19 @@ import { site, telLink, waLink } from "@/lib/site";
 
 type Props = { bolge?: string; className?: string };
 
-/** Mobilde ekranin altinda sabit duran Ara / WhatsApp cubugu. */
+/** Mobilde ekranın altında sabit duran Ara / WhatsApp çubuğu. */
 export function StickyCallBar({ bolge }: Props) {
   const mesaj = bolge
     ? `Merhaba, ${bolge} bölgesinde hurda satmak istiyorum.`
     : "Merhaba, hurda satmak istiyorum.";
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 flex md:hidden border-t border-celik-200 bg-white/95 backdrop-blur pb-[env(safe-area-inset-bottom)]">
+    <div className="fixed inset-x-0 bottom-0 z-50 flex md:hidden shadow-2xl pb-[env(safe-area-inset-bottom)]">
       <a
         href={telLink}
         data-cta="tel"
         data-bolge={bolge ?? "genel"}
-        className="flex flex-1 items-center justify-center gap-2 py-4 font-semibold text-celik-900"
+        className="flex flex-1 items-center justify-center gap-2 py-4 font-bold text-white btn-kirmizi"
       >
         <PhoneIcon className="h-5 w-5" aria-hidden="true" />
         Hemen Ara
@@ -25,7 +25,7 @@ export function StickyCallBar({ bolge }: Props) {
         data-bolge={bolge ?? "genel"}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-1 items-center justify-center gap-2 bg-[#25D366] py-4 font-semibold text-white"
+        className="flex flex-1 items-center justify-center gap-2 py-4 font-bold text-white btn-yesil"
       >
         <WhatsAppIcon className="h-5 w-5" aria-hidden="true" />
         WhatsApp
@@ -34,7 +34,7 @@ export function StickyCallBar({ bolge }: Props) {
   );
 }
 
-/** Sayfa icinde kullanilan buyuk cagri blogu. */
+/** Sayfa içinde kullanılan büyük çağrı bloğu. */
 export function CtaBlok({ bolge, className = "" }: Props) {
   const baslik = bolge ? `${bolge} için ücretsiz fiyat alın` : "Ücretsiz fiyat alın";
   const mesaj = bolge
@@ -43,43 +43,57 @@ export function CtaBlok({ bolge, className = "" }: Props) {
 
   return (
     <section
-      className={`rounded-2xl bg-celik-900 px-6 py-10 text-white sm:px-10 ${className}`}
+      className={`relative overflow-hidden rounded-3xl bg-karanlik-900 px-6 py-12 text-white sm:px-10 ${className}`}
       aria-labelledby="cta-baslik"
     >
-      <h2 id="cta-baslik" className="text-2xl font-bold sm:text-3xl">
-        {baslik}
-      </h2>
-      <p className="mt-3 max-w-prose text-celik-200">
-        Fotoğrafını gönderin, aynı gün fiyat verelim. Keşif ve nakliye ücretsiz,
-        ödeme yerinde ve nakit.
-      </p>
-      <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-        <a
-          href={telLink}
-          data-cta="tel"
-          data-bolge={bolge ?? "genel"}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-bakir-500 px-6 py-3.5 font-semibold text-white transition hover:bg-bakir-600"
-        >
-          <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-          {site.phoneDisplay}
-        </a>
-        <a
-          href={waLink(mesaj)}
-          data-cta="whatsapp"
-          data-bolge={bolge ?? "genel"}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-6 py-3.5 font-semibold text-white transition hover:brightness-95"
-        >
-          <WhatsAppIcon className="h-5 w-5" aria-hidden="true" />
-          WhatsApp'tan yazın
-        </a>
-        <a
-          href="#teklif"
-          className="inline-flex items-center justify-center rounded-xl border border-celik-600 px-6 py-3.5 font-semibold text-white transition hover:bg-celik-800"
-        >
-          Formu doldurun
-        </a>
+      {/* Arka plan efekti */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-0 w-72 h-72 bg-kirmizi-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-yesil-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      </div>
+
+      <div className="relative">
+        <div className="inline-flex items-center gap-2 rounded-full bg-yesil-900/60 border border-yesil-700 px-3 py-1 mb-4">
+          <span className="text-yesil-400 text-sm">♻</span>
+          <span className="text-xs text-yesil-300 font-medium">Ücretsiz Keşif & Taşıma</span>
+        </div>
+
+        <h2 id="cta-baslik" className="text-2xl font-bold sm:text-3xl font-heading">
+          {baslik}
+        </h2>
+        <p className="mt-3 max-w-prose text-karanlik-300">
+          Fotoğrafını gönderin, aynı gün fiyat verelim. Keşif ve nakliye ücretsiz,
+          ödeme yerinde ve nakit.
+        </p>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <a
+            href={telLink}
+            data-cta="tel"
+            data-bolge={bolge ?? "genel"}
+            className="inline-flex items-center justify-center gap-2 btn-kirmizi text-white rounded-xl px-6 py-3.5 font-semibold"
+          >
+            <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+            {site.phoneDisplay}
+          </a>
+          <a
+            href={waLink(mesaj)}
+            data-cta="whatsapp"
+            data-bolge={bolge ?? "genel"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 btn-yesil text-white rounded-xl px-6 py-3.5 font-semibold"
+          >
+            <WhatsAppIcon className="h-5 w-5" aria-hidden="true" />
+            WhatsApp&apos;tan yazın
+          </a>
+          <a
+            href="#teklif"
+            className="inline-flex items-center justify-center rounded-xl border-2 border-white/20 px-6 py-3.5 font-semibold text-white hover:bg-white/10 transition-colors"
+          >
+            Formu doldurun
+          </a>
+        </div>
       </div>
     </section>
   );

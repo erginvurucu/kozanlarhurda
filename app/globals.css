@@ -1,33 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* Endustriyel palet: celik gri + bakir vurgu */
-  --color-celik-50: #f6f7f9;
-  --color-celik-100: #eceef2;
-  --color-celik-200: #d4d9e2;
-  --color-celik-300: #aeb7c7;
-  --color-celik-400: #8190a7;
-  --color-celik-500: #62728c;
-  --color-celik-600: #4d5a73;
-  --color-celik-700: #3f4a5e;
-  --color-celik-800: #363f4f;
-  --color-celik-900: #1f2531;
-  --color-celik-950: #14181f;
+  /* === KOZANLAR HURDA TASARIM SİSTEMİ === */
 
-  --color-bakir-50: #fdf6ef;
-  --color-bakir-100: #f9e8d7;
-  --color-bakir-200: #f2cdae;
-  --color-bakir-300: #e9aa7a;
-  --color-bakir-400: #df7f44;
-  --color-bakir-500: #d86220;
-  --color-bakir-600: #c74a16;
-  --color-bakir-700: #a53715;
-  --color-bakir-800: #842d18;
-  --color-bakir-900: #6b2717;
+  /* Kırmızı - Ana CTA & Güç */
+  --color-kirmizi-50: #fff1f0;
+  --color-kirmizi-100: #ffe0de;
+  --color-kirmizi-200: #ffc6c2;
+  --color-kirmizi-300: #ff9a93;
+  --color-kirmizi-400: #ff5f55;
+  --color-kirmizi-500: #f83030;
+  --color-kirmizi-600: #e51111;
+  --color-kirmizi-700: #c10b0b;
+  --color-kirmizi-800: #9f0d0d;
+  --color-kirmizi-900: #830f0f;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  /* Yeşil - Geri Dönüşüm & Çevre */
+  --color-yesil-50: #f0fdf3;
+  --color-yesil-100: #dcfce5;
+  --color-yesil-200: #bbf7ca;
+  --color-yesil-300: #86efac;
+  --color-yesil-400: #4ade80;
+  --color-yesil-500: #22c55e;
+  --color-yesil-600: #16a34a;
+  --color-yesil-700: #15803d;
+  --color-yesil-800: #166534;
+  --color-yesil-900: #14532d;
+
+  /* Koyu - Metin & Arka Plan */
+  --color-karanlik-50: #f4f5f7;
+  --color-karanlik-100: #e5e7eb;
+  --color-karanlik-200: #d1d5db;
+  --color-karanlik-300: #9ca3af;
+  --color-karanlik-400: #6b7280;
+  --color-karanlik-500: #4b5563;
+  --color-karanlik-600: #374151;
+  --color-karanlik-700: #1f2937;
+  --color-karanlik-800: #111827;
+  --color-karanlik-900: #0a0f1a;
+
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", ui-sans-serif, sans-serif;
 }
+
+/* =====================
+   TEMEL AYARLAR
+   ===================== */
 
 html {
   scroll-behavior: smooth;
@@ -35,11 +54,11 @@ html {
 }
 
 body {
-  background: #fff;
-  color: var(--color-celik-900);
+  background: #ffffff;
+  color: var(--color-karanlik-800);
   font-family: var(--font-sans);
-  /* Mobilde sabit CTA cubugu icerigi kapatmasin */
   padding-bottom: env(safe-area-inset-bottom);
+  overflow-x: hidden;
 }
 
 @media (max-width: 767px) {
@@ -48,11 +67,168 @@ body {
   }
 }
 
-/* Erisilebilirlik: klavye odagi her zaman gorunur */
 :focus-visible {
-  outline: 3px solid var(--color-bakir-500);
+  outline: 3px solid var(--color-kirmizi-500);
   outline-offset: 2px;
   border-radius: 4px;
+}
+
+/* =====================
+   ÖZEL ANİMASYONLAR
+   ===================== */
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(248, 48, 48, 0.4); }
+  50% { box-shadow: 0 0 0 16px rgba(248, 48, 48, 0); }
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  60% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* =====================
+   YARDIMCI SINIFLAR
+   ===================== */
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float-up {
+  animation: float-up 0.6s ease-out forwards;
+}
+
+.animate-shimmer {
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s ease-out forwards;
+}
+
+.animate-ticker {
+  animation: ticker-scroll 20s linear infinite;
+  display: flex;
+  white-space: nowrap;
+}
+
+/* Gradient metin efekti */
+.text-gradient-kirmizi {
+  background: linear-gradient(135deg, #f83030 0%, #c10b0b 50%, #f83030 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+.text-gradient-yesil {
+  background: linear-gradient(135deg, #22c55e 0%, #15803d 50%, #22c55e 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Metal doku arka planı */
+.bg-metal-pattern {
+  background-color: #0a0f1a;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.015) 2px,
+      rgba(255,255,255,0.015) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.01) 2px,
+      rgba(255,255,255,0.01) 4px
+    );
+}
+
+/* Cam efekti */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Kırmızı gradient buton */
+.btn-kirmizi {
+  background: linear-gradient(135deg, #f83030 0%, #c10b0b 100%);
+  box-shadow: 0 4px 20px rgba(248, 48, 48, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-kirmizi:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(248, 48, 48, 0.5);
+  filter: brightness(1.08);
+}
+
+.btn-kirmizi:active {
+  transform: translateY(0);
+}
+
+/* Yeşil gradient buton */
+.btn-yesil {
+  background: linear-gradient(135deg, #25D366 0%, #15803d 100%);
+  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-yesil:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.45);
+  filter: brightness(1.08);
+}
+
+/* Section divider */
+.diagonal-divider {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.diagonal-divider-reverse {
+  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
