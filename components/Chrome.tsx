@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { site, telLink, mailLink } from "@/lib/site";
 import { PhoneIcon } from "./Cta";
-import { yakayaGore } from "@/data/ilceler";
+import { yakayaGore, sehreGore } from "@/data/ilceler";
 
 /**
  * Marka kilitlemesi — logonun yapısını yazıyla kurar:
@@ -99,13 +99,15 @@ export function Header() {
 export function Footer() {
   const avrupa = yakayaGore("avrupa");
   const anadolu = yakayaGore("anadolu");
+  // Trakya ilcelerinin "yaka"si yok; il bazinda cekiliyor.
+  const trakya = [...sehreGore("Tekirdağ"), ...sehreGore("Kırklareli")];
 
   return (
     <footer className="mt-24 zemin-kareli-koyu text-white">
       <div className="serit" />
 
       <div className="mx-auto max-w-6xl px-4 py-14">
-        <div className="grid gap-12 md:grid-cols-[1.1fr_1fr_1fr]">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.15fr_1fr_1fr_1fr]">
           {/* Künye */}
           <div>
             <Marka koyuZemin boyut="buyuk" />
@@ -160,8 +162,9 @@ export function Footer() {
             </dl>
           </div>
 
-          <FooterIlceListesi baslik="Avrupa Yakası" ilceler={avrupa} />
-          <FooterIlceListesi baslik="Anadolu Yakası" ilceler={anadolu} />
+          <FooterIlceListesi baslik="İstanbul — Avrupa" ilceler={avrupa} />
+          <FooterIlceListesi baslik="İstanbul — Anadolu" ilceler={anadolu} />
+          <FooterIlceListesi baslik="Trakya Sanayi" ilceler={trakya} />
         </div>
 
         <div className="mt-14 flex flex-col gap-4 border-t border-white/10 pt-6 text-sm text-kurum-400 sm:flex-row sm:items-center sm:justify-between">

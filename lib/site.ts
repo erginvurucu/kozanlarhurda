@@ -35,7 +35,7 @@ export const site = {
   slogan: "Hurda ve Metal Alım Hizmetleri",
 
   description:
-    "İstanbul genelinde yerinde hurda alımı. Bakır, alüminyum, demir, beyaz eşya ve sanayi hurdası için ücretsiz keşif, indirme dahil, tartım gözünüzün önünde.",
+    "İstanbul ve Trakya genelinde yerinde hurda alımı. Bakır, alüminyum, demir ve sanayi hurdası; organize sanayi bölgelerinde tonajlı alım, irsaliyeli süreç ve periyodik anlaşma.",
   locale: "tr_TR",
 
   sozler: [

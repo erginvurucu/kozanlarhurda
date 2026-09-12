@@ -8,10 +8,15 @@ export type Mahalle = {
   sss?: SSS[];
 };
 
+export type Sehir = "İstanbul" | "Tekirdağ" | "Kırklareli";
+
 export type Ilce = {
   slug: string;
   ad: string;
-  yaka: "avrupa" | "anadolu";
+  /** Hangi il. Belirtilmezse Istanbul kabul edilir. */
+  sehir?: Sehir;
+  /** Sadece Istanbul icin anlamli; Trakya ilcelerinde bos birakilir. */
+  yaka?: "avrupa" | "anadolu";
   /** Oncelikli ilceler elle yazilmis zengin icerige sahiptir. */
   oncelik?: boolean;
   /** Gercek mahalle adlari - icerik farklilasmasinin temeli. */
@@ -22,7 +27,11 @@ export type Ilce = {
   profil: string;
   /** Arac erisimi ve saha notu. */
   erisim: string;
-  /** Yaklasik varis suresi. */
+  /**
+   * Varis bilgisi. Istanbul'da dakika cinsinden ("Ortalama 30-45 dakika"),
+   * Trakya'da randevu esasli ("Randevulu, tonaja gore planlanir") yazilir -
+   * sanayi isinde ekip ayni gun degil, planlanan gun gider.
+   */
   varis: string;
   /** Komsu ilce sluglari - ic linkleme icin. */
   komsu: string[];

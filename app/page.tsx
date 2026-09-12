@@ -45,7 +45,7 @@ const GENEL_SSS = [
   },
   {
     s: "Hangi bölgelere hizmet veriyorsunuz?",
-    c: "İstanbul'un 39 ilçesinin tamamına hizmet veriyoruz. Bölgenize özel bilgi için ilçe sayfanıza göz atabilirsiniz.",
+    c: "İstanbul'un 39 ilçesinin tamamına, ayrıca Tekirdağ ve Kırklareli'nin sanayi ilçelerine hizmet veriyoruz. Trakya'da Çerkezköy, Çorlu, Ergene, Lüleburgaz ve çevresindeki organize sanayi bölgelerinde tonajlı alım ve periyodik anlaşma yapıyoruz.",
   },
 ];
 
@@ -69,7 +69,7 @@ const ADIMLAR = [
 ];
 
 const KUNYE = [
-  { deger: "39", birim: "ilçe", aciklama: "İstanbul geneli" },
+  { deger: "51", birim: "ilçe", aciklama: "İstanbul + Trakya" },
   { deger: "0", birim: "TL", aciklama: "Keşif, indirme, nakliye" },
   { deger: "Nakit", birim: "", aciklama: "Teslim anında ödeme" },
 ];
@@ -133,7 +133,7 @@ export default function AnaSayfa() {
                 slogan oldugu icin ikisi ust uste dolgu gibi okunuyordu.
                 Slogan footer'da marka kilitlemesinin yaninda duruyor. */}
             <p className="etiket etiket-acik">
-              İstanbul&apos;un 39 ilçesinde yerinde hurda alımı
+              İstanbul ve Trakya&apos;da yerinde hurda alımı
             </p>
 
             <h1 className="mt-5 text-[38px] leading-[1.08] text-white sm:text-[52px]">
@@ -322,7 +322,7 @@ export default function AnaSayfa() {
             href="/bolgeler"
             className="dugme dugme-cerceve mt-9 px-5 py-3 text-[15px]"
           >
-            39 ilçenin tamamını gör
+            Tüm bölgeleri gör
           </Link>
         </div>
       </section>
@@ -361,7 +361,7 @@ export default function AnaSayfa() {
       {/* ── TÜM İLÇELER ── */}
       <section className="zemin-kareli border-t border-kurum-200 py-16">
         <div className="mx-auto max-w-6xl px-4">
-          <p className="etiket">İstanbul geneli</p>
+          <p className="etiket">İstanbul ve Trakya</p>
           <h2 className="mt-2 text-2xl">Hizmet verdiğimiz ilçeler</h2>
 
           <ul className="mt-7 flex flex-wrap gap-2">
