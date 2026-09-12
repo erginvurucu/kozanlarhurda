@@ -13,12 +13,12 @@ import { usdKuru, tlYaz } from "@/lib/kur";
 
 /** Seritte gosterilecek kalemler - arama hacmine gore secildi. */
 const VITRIN = [
-  "Bakır (temiz / 1. kalite)",
-  "Alüminyum profil (temiz)",
-  "Pirinç (sarı)",
-  "Hurda demir (ekstra / kalın sac)",
-  "Paslanmaz (304)",
-  "Bakır kablo (soyulmuş)",
+  "Soyma Bakır",
+  "Araiş Sarı MS70",
+  "PTT Kablo",
+  "Alüminyum Profil",
+  "Ekstra Hurda",
+  "Krom",
 ];
 
 function kalemBul(gruplar: FiyatGrubu[], ad: string): FiyatKalemi | undefined {

@@ -83,16 +83,17 @@ export async function usdKuru(): Promise<KurSonucu> {
  * guven biter - saha arastirmasindaki en sik sikayet buydu.
  */
 export function tlyeCevir(usd: number, kur: number): number {
-  const tl = usd * kur;
-  if (tl >= 100) return Math.floor(tl / 5) * 5; // 5 TL adimlarla
-  if (tl >= 10) return Math.floor(tl);
-  return Math.floor(tl * 10) / 10; // kurusu onemli olan ucuz kalemler
+  // Kurusa kadar ASAGI yuvarlanir. Iki sebep:
+  // 1) Ilan edilen rakam odenecek rakamin ustunde olmamali.
+  // 2) Kaba yuvarlama ucuz kalemlerde ciddi sapma yaratiyordu
+  //    (14,56 -> 14 gibi, yaklasik %4).
+  return Math.floor(usd * kur * 100) / 100;
 }
 
 /** 1.234,5 gibi Turkce bicimde yazar. */
 export function tlYaz(n: number): string {
   return n.toLocaleString("tr-TR", {
     minimumFractionDigits: 0,
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 2,
   });
 }
