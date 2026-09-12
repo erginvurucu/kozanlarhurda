@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { site, telLink, waLink } from "@/lib/site";
 import { oncelikliler, ilceler } from "@/data/ilceler";
-import { LeadForm } from "@/components/LeadForm";
+import Image from "next/image";
+import { TeklifVeHesap } from "@/components/TeklifVeHesap";
 import {
   StickyCallBar,
   PhoneIcon,
@@ -120,7 +121,7 @@ export default function AnaSayfa() {
 
       {/* ── HERO ── */}
       <section className="zemin-kareli-koyu text-white">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1fr_0.95fr] lg:py-16">
           <div>
             {/* Eyebrow'da marka slogani kullanilmiyor: basligin kendisi de
                 slogan oldugu icin ikisi ust uste dolgu gibi okunuyordu.
@@ -198,8 +199,32 @@ export default function AnaSayfa() {
             </dl>
           </div>
 
-          <div id="teklif" className="scroll-mt-24">
-            <LeadForm />
+          {/* Saha gorselleri: polip vinc ve hurda yigini.
+              Dekoratif olduklari icin alt metinleri bos ve aria-hidden;
+              tasidiklari bilgi zaten metinde var. */}
+          <div
+            aria-hidden="true"
+            className="relative hidden aspect-square w-full select-none lg:block"
+          >
+            <Image
+              src="/polip-vinc.png"
+              alt=""
+              fill
+              priority
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="object-contain object-right-top"
+            />
+            {/* DİKKAT: sizes içinde "0px" dalı kullanma — tarayıcı sıfır
+                genişlikli kaynak seçip görseli hiç yüklemiyor. */}
+            <Image
+              src="/hurda-yigini.png"
+              alt=""
+              width={850}
+              height={850}
+              priority
+              sizes="(min-width: 1024px) 30vw, 100vw"
+              className="absolute -bottom-2 left-0 h-auto w-[64%] object-contain"
+            />
           </div>
         </div>
       </section>
@@ -208,6 +233,9 @@ export default function AnaSayfa() {
 
       {/* ── FİYAT ŞERİDİ ── */}
       <FiyatSeridi />
+
+      {/* ── TEKLİF FORMU + HESAP MAKİNESİ ── */}
+      <TeklifVeHesap />
 
       {/* ── NASIL ÇALIŞIR ── */}
       <section id="nasil" className="scroll-mt-20 bg-white py-20">
