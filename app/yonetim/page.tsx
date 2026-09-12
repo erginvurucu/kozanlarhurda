@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { oturumVarMi, panelKullanilabilir } from "@/lib/yonetim";
-import { fiyatlariBirlestir } from "@/lib/fiyatDeposu";
+import { fiyatlariBirlestir, depoHazirMi } from "@/lib/fiyatDeposu";
 import { usdKuru } from "@/lib/kur";
 import { Giris, Panel } from "./PanelIstemci";
 
@@ -52,7 +52,7 @@ export default async function YonetimSayfasi() {
         gruplar={gruplar}
         guncelleme={guncelleme}
         kur={kur.usd}
-        depoHazir={Boolean(process.env.BLOB_READ_WRITE_TOKEN)}
+        depoHazir={depoHazirMi()}
       />
     </Kabuk>
   );

@@ -160,9 +160,10 @@ export function Panel({
 
       {!depoHazir && (
         <p className="mt-6 border-l-[3px] border-damga-500 bg-damga-50 px-5 py-4 text-sm leading-relaxed text-damga-500">
-          <strong>Depo kurulmamış.</strong> Vercel&apos;de Storage → Blob
-          oluşturup projeye bağlamanız gerekiyor; aksi halde kaydet
-          çalışmaz.
+          <strong>Depo bağlı değil.</strong> Vercel → Storage →{" "}
+          <code className="rakam">kozanlar-fiyat</code> → Projects →
+          Connect to Project adımından bu projeye bağlayın, sonra
+          yeniden dağıtım yapın. Bağlanana kadar kaydetme çalışmaz.
         </p>
       )}
 

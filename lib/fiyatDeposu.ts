@@ -22,8 +22,28 @@ export type KayitliFiyatlar = {
 
 export const BOS: KayitliFiyatlar = { guncelleme: "", kalemler: {} };
 
-function tokenVarMi(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+/**
+ * Depo kimlik dogrulama ayari.
+ *
+ * Vercel'de projeye bagli bir Blob deposu artik OIDC ile calisir:
+ * ayri bir read-write token olusmaz, bunun yerine STORE_ID verilir ve
+ * kimlik dogrulama VERCEL_OIDC_TOKEN uzerinden otomatik yapilir.
+ * Eski kurulumlarda (veya Vercel disinda) BLOB_READ_WRITE_TOKEN kullanilir.
+ *
+ * Ikisini de destekliyoruz; hangisi varsa o.
+ */
+function depoAyari(): { storeId?: string } | null {
+  const storeId =
+    process.env.BLOB_STORE_ID ?? process.env.BLOB_READ_WRITE_TOKEN_STORE_ID;
+  if (storeId) return { storeId };
+  // Token varsa SDK onu ortam degiskeninden kendisi okur.
+  if (process.env.BLOB_READ_WRITE_TOKEN) return {};
+  return null;
+}
+
+/** Panel arayuzu bunu kullanir. */
+export function depoHazirMi(): boolean {
+  return depoAyari() !== null;
 }
 
 /**
@@ -32,13 +52,15 @@ function tokenVarMi(): boolean {
  * bunu "fiyat girilmemis" olarak yorumlar.
  */
 export async function fiyatlariOku(): Promise<KayitliFiyatlar> {
-  if (!tokenVarMi()) return BOS;
+  const ayar = depoAyari();
+  if (!ayar) return BOS;
 
   try {
     // Depo "private" oldugu icin SDK uzerinden okuyoruz; dosya URL'si
     // disaridan dogrudan cekilemez. Fiyatin disariya acik olmasina
     // gerek de yok - siteye biz basiyoruz.
     const blob = await get(DOSYA, {
+      ...ayar,
       access: "private",
       // Panelden kaydedilen degisiklik aninda gorunsun.
       useCache: false,
@@ -56,9 +78,10 @@ export async function fiyatlariOku(): Promise<KayitliFiyatlar> {
 
 /** Panelden gelen veriyi kaydeder. */
 export async function fiyatlariYaz(kalemler: KayitliFiyatlar["kalemler"]) {
-  if (!tokenVarMi()) {
+  const ayar = depoAyari();
+  if (!ayar) {
     throw new Error(
-      "Depo yapılandırılmamış: Vercel'de Blob store oluşturulmalı.",
+      "Depo yapılandırılmamış: Blob deposu projeye bağlanmalı.",
     );
   }
 
@@ -68,6 +91,7 @@ export async function fiyatlariYaz(kalemler: KayitliFiyatlar["kalemler"]) {
   };
 
   await put(DOSYA, JSON.stringify(govde), {
+    ...ayar,
     access: "private",
     contentType: "application/json",
     // Ayni dosyanin uzerine yaz; her kayitta yeni dosya olusmasin.
