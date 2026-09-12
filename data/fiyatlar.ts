@@ -1,20 +1,29 @@
 /**
- * HURDA FIYAT TABLOSU
+ * HURDA ALIM FIYATLARI — USD BAZLI
  *
- * ⚠️ ONEMLI: min/max degerleri bilerek `null` birakildi.
- * Hurda fiyatlari gunluk degisir ve uydurma rakam yayinlamak hem
- * musteriyi yanlis yonlendirir hem de guveni yok eder.
- * Gercek alim fiyatlarinizi girdiginizde tablo otomatik dolar ve
- * "Arayın" yerine rakam gosterilir.
+ * ⚠️ Degerler bilerek `null`. Uydurma rakam yayinlamak musteriyi yanlis
+ * yonlendirir ve guveni yok eder; saha arastirmasindaki en sik sikayet
+ * "geldi ama fiyati dusurdu" idi.
  *
- * guncelleme: fiyat girildiginde MUTLAKA bu tarihi de guncelle.
+ * NASIL DOLDURULUR
+ * Her kaleme, o kalem icin KILO BASINA odedigin tutari DOLAR cinsinden
+ * yaz. Ornek: bakiri kilo 13 dolardan aliyorsan -> usdMin: 12.5, usdMax: 13.5
+ *
+ * Site bunu TCMB gunluk kuruyla TL'ye cevirir (lib/kur.ts) ve tablo her
+ * gun kendiliginden guncellenir. Kur degistikce elle rakam girmen
+ * gerekmez; sadece alim marjin degisince bu dosyaya donersin.
+ *
+ * TL degil USD tutulmasinin sebebi: hurda piyasasi dolara endekslidir.
+ * TL yazilirsa her kur hareketinde tablo yanlis kalir.
  */
+
+import { tlyeCevir, tlYaz } from "@/lib/kur";
 
 export type FiyatKalemi = {
   ad: string;
   birim: "kg" | "adet";
-  min: number | null;
-  max: number | null;
+  usdMin: number | null;
+  usdMax: number | null;
   not?: string;
 };
 
@@ -32,33 +41,33 @@ export const fiyatGruplari: FiyatGrubu[] = [
     aciklama:
       "Hurdanın en değerli kalemi. Temizliği ve cinsi fiyatı belirgin şekilde değiştirir.",
     kalemler: [
-      { ad: "Bakır (temiz / 1. kalite)", birim: "kg", min: null, max: null },
-      { ad: "Bakır (yanık / 2. kalite)", birim: "kg", min: null, max: null },
-      { ad: "Bakır kablo (soyulmuş)", birim: "kg", min: null, max: null },
-      { ad: "Bakır kablo (soyulmamış)", birim: "kg", min: null, max: null, not: "Bakır oranına göre değişir" },
-      { ad: "Kalorifer / klima bakırı", birim: "kg", min: null, max: null },
+      { ad: "Bakır (temiz / 1. kalite)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Bakır (yanık / 2. kalite)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Bakır kablo (soyulmuş)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Bakır kablo (soyulmamış)", birim: "kg", usdMin: null, usdMax: null, not: "Bakır oranına göre değişir" },
+      { ad: "Kalorifer / klima bakırı", birim: "kg", usdMin: null, usdMax: null },
     ],
   },
   {
     baslik: "Alüminyum",
     aciklama: "Cinsine göre ciddi fiyat farkı olan bir grup.",
     kalemler: [
-      { ad: "Alüminyum profil (temiz)", birim: "kg", min: null, max: null },
-      { ad: "Alüminyum döküm", birim: "kg", min: null, max: null },
-      { ad: "Alüminyum talaş", birim: "kg", min: null, max: null },
-      { ad: "Alüminyum jant", birim: "kg", min: null, max: null },
-      { ad: "Alüminyum radyatör", birim: "kg", min: null, max: null },
+      { ad: "Alüminyum profil (temiz)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Alüminyum döküm", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Alüminyum talaş", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Alüminyum jant", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Alüminyum radyatör", birim: "kg", usdMin: null, usdMax: null },
     ],
   },
   {
     baslik: "Pirinç, bronz ve kurşun",
     aciklama: "Tesisat ve makine aksamından çıkan yüksek değerli metaller.",
     kalemler: [
-      { ad: "Pirinç (sarı)", birim: "kg", min: null, max: null },
-      { ad: "Pirinç talaş", birim: "kg", min: null, max: null },
-      { ad: "Bronz", birim: "kg", min: null, max: null },
-      { ad: "Kurşun", birim: "kg", min: null, max: null },
-      { ad: "Çinko", birim: "kg", min: null, max: null },
+      { ad: "Pirinç (sarı)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Pirinç talaş", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Bronz", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Kurşun", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Çinko", birim: "kg", usdMin: null, usdMax: null },
     ],
   },
   {
@@ -66,12 +75,12 @@ export const fiyatGruplari: FiyatGrubu[] = [
     aciklama:
       "Tonajlı işlerin ana kalemi. Miktar arttıkça kilo fiyatı da yukarı çekilir.",
     kalemler: [
-      { ad: "Hurda demir (ekstra / kalın sac)", birim: "kg", min: null, max: null },
-      { ad: "Hurda demir (karışık)", birim: "kg", min: null, max: null },
-      { ad: "Dökme demir (pik)", birim: "kg", min: null, max: null },
-      { ad: "Demir talaş", birim: "kg", min: null, max: null },
-      { ad: "Paslanmaz (304)", birim: "kg", min: null, max: null },
-      { ad: "Paslanmaz (316)", birim: "kg", min: null, max: null },
+      { ad: "Hurda demir (ekstra / kalın sac)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Hurda demir (karışık)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Dökme demir (pik)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Demir talaş", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Paslanmaz (304)", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Paslanmaz (316)", birim: "kg", usdMin: null, usdMax: null },
     ],
   },
   {
@@ -79,20 +88,39 @@ export const fiyatGruplari: FiyatGrubu[] = [
     aciklama:
       "Çalışır durumdaki cihazlarda hurda kilo fiyatı değil, ikinci el değeri konuşulur.",
     kalemler: [
-      { ad: "Buzdolabı", birim: "adet", min: null, max: null },
-      { ad: "Çamaşır makinesi", birim: "adet", min: null, max: null },
-      { ad: "Bulaşık makinesi", birim: "adet", min: null, max: null },
-      { ad: "Fırın / ocak", birim: "adet", min: null, max: null },
-      { ad: "Kombi", birim: "adet", min: null, max: null },
-      { ad: "Klima (iç + dış ünite)", birim: "adet", min: null, max: null },
-      { ad: "Petek / radyatör", birim: "kg", min: null, max: null },
-      { ad: "Akü", birim: "kg", min: null, max: null },
+      { ad: "Buzdolabı", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Çamaşır makinesi", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Bulaşık makinesi", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Fırın / ocak", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Kombi", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Klima (iç + dış ünite)", birim: "adet", usdMin: null, usdMax: null },
+      { ad: "Petek / radyatör", birim: "kg", usdMin: null, usdMax: null },
+      { ad: "Akü", birim: "kg", usdMin: null, usdMax: null },
     ],
   },
 ];
 
-export const fiyatYazdir = (k: FiyatKalemi) => {
-  if (k.min === null || k.max === null) return null;
-  if (k.min === k.max) return `${k.min} ₺/${k.birim}`;
-  return `${k.min} – ${k.max} ₺/${k.birim}`;
-};
+/**
+ * Kalemin TL karsiligini yazar. Kur disaridan verilir (lib/kur.ts),
+ * boylece veri katmani ag cagrisi yapmaz ve test edilebilir kalir.
+ * Fiyat girilmemisse `null` doner ve arayuz "Arayın" gosterir.
+ */
+export function fiyatYazdir(
+  k: FiyatKalemi,
+  kur: number,
+): { metin: string; birim: string } | null {
+  if (k.usdMin === null || k.usdMax === null) return null;
+
+  const alt = tlyeCevir(k.usdMin, kur);
+  const ust = tlyeCevir(k.usdMax, kur);
+
+  return {
+    metin: alt === ust ? tlYaz(alt) : `${tlYaz(alt)} – ${tlYaz(ust)}`,
+    birim: `₺/${k.birim}`,
+  };
+}
+
+/** Tabloda gosterilecek fiyati olan kalem var mi? */
+export const fiyatGirildiMi = fiyatGruplari.some((g) =>
+  g.kalemler.some((k) => k.usdMin !== null && k.usdMax !== null),
+);

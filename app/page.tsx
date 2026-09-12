@@ -8,6 +8,7 @@ import {
   WhatsAppIcon,
   OnayIkon,
 } from "@/components/Cta";
+import { FiyatSeridi } from "@/components/FiyatSeridi";
 import { faqSchema, jsonLd } from "@/lib/schema";
 
 const GENEL_SSS = [
@@ -121,17 +122,22 @@ export default function AnaSayfa() {
       <section className="zemin-kareli-koyu text-white">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
           <div>
-            <p className="etiket etiket-acik">{site.slogan}</p>
+            {/* Eyebrow'da marka slogani kullanilmiyor: basligin kendisi de
+                slogan oldugu icin ikisi ust uste dolgu gibi okunuyordu.
+                Slogan footer'da marka kilitlemesinin yaninda duruyor. */}
+            <p className="etiket etiket-acik">
+              İstanbul&apos;un 39 ilçesinde yerinde hurda alımı
+            </p>
 
             <h1 className="mt-5 text-[38px] leading-[1.08] text-white sm:text-[52px]">
-              Hurdanızı <span className="text-fistik-400">biz indiririz</span>,
-              <br className="hidden sm:block" /> tartımı siz izlersiniz
+              <span className="text-fistik-400">Sorumlu tartım</span>,
+              <br className="hidden sm:block" /> güvenilir hizmet
             </h1>
 
             <p className="mt-6 max-w-prose text-lg leading-relaxed text-kurum-300">
-              Kat farkı yok, asansör şartı yok, indirmek için üste para
-              istemiyoruz. Kalibreli kantarla yerinde tartım, ödeme teslim
-              anında nakit.
+              Hurdanızı biz indiririz, tartımı siz izlersiniz. Kat farkı yok,
+              asansör şartı yok, indirmek için üste para istemiyoruz. Ödeme
+              teslim anında nakit.
             </p>
 
             <ul className="mt-8 flex flex-col">
@@ -199,6 +205,9 @@ export default function AnaSayfa() {
       </section>
 
       <div className="serit" />
+
+      {/* ── FİYAT ŞERİDİ ── */}
+      <FiyatSeridi />
 
       {/* ── NASIL ÇALIŞIR ── */}
       <section id="nasil" className="scroll-mt-20 bg-white py-20">

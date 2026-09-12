@@ -21,6 +21,11 @@ export const metadata: Metadata = {
     url: site.url,
   },
   twitter: { card: "summary_large_image" },
+  /* Google Search Console dogrulamasi - HTML etiketi yontemi.
+     <meta name="google-site-verification" ...> olarak basilir. */
+  verification: {
+    google: "iCDr6VVt-MaAlm5ongnIn2frtj9gQoek6G56jFROX7U",
+  },
   robots: {
     index: true,
     follow: true,

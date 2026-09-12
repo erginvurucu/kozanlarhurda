@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { fiyatGruplari, fiyatYazdir, guncelleme } from "@/data/fiyatlar";
+import { fiyatGruplari, fiyatYazdir } from "@/data/fiyatlar";
+import { usdKuru, tlYaz } from "@/lib/kur";
 import { site } from "@/lib/site";
 import { CtaBlok, StickyCallBar } from "@/components/Cta";
 import { LeadForm } from "@/components/LeadForm";
@@ -35,12 +36,8 @@ const SSS = [
   },
 ];
 
-export default function FiyatlarSayfasi() {
-  const tarih = new Date(guncelleme).toLocaleDateString("tr-TR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
+export default async function FiyatlarSayfasi() {
+  const kur = await usdKuru();
 
   return (
     <>
@@ -49,13 +46,33 @@ export default function FiyatlarSayfasi() {
           Güncel Hurda Fiyatları
         </h1>
         <p className="mt-4 max-w-prose text-lg text-kurum-600">
-          Hurda fiyatları LME endeksi ve kura bağlı olarak her gün değişir.
-          Aşağıdaki tablo alım yaptığımız kalemleri gösterir; günün kesin rakamı
-          için bizi arayın.
+          Hurda fiyatları dolara endekslidir; tablo TCMB günlük kuruyla her gün
+          kendiliğinden güncellenir. Kesin rakam hurdanın cinsine, temizliğine
+          ve miktarına göre yerinde netleşir.
         </p>
-        <p className="mt-3 text-sm text-kurum-500">
-          Son güncelleme: <time dateTime={guncelleme}>{tarih}</time>
-        </p>
+
+        <dl className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3 border-y border-kurum-200 py-4">
+          <div>
+            <dt className="etiket">TCMB döviz satış</dt>
+            <dd className="rakam mt-1 text-lg font-semibold text-lacivert-900">
+              {tlYaz(kur.usd)} ₺
+              <span className="ml-1.5 text-sm font-normal text-kurum-500">
+                / 1 USD
+              </span>
+            </dd>
+          </div>
+          <div>
+            <dt className="etiket">Bülten tarihi</dt>
+            <dd className="rakam mt-1 text-lg font-semibold text-lacivert-900">
+              {kur.tarih}
+            </dd>
+          </div>
+          {kur.kaynak === "yedek" && (
+            <p className="text-sm text-damga-500">
+              TCMB servisine şu an ulaşılamıyor; son bilinen kur gösteriliyor.
+            </p>
+          )}
+        </dl>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_380px]">
           <div>
@@ -83,7 +100,7 @@ export default function FiyatlarSayfasi() {
                     </thead>
                     <tbody>
                       {grup.kalemler.map((k) => {
-                        const fiyat = fiyatYazdir(k);
+                        const fiyat = fiyatYazdir(k, kur.usd);
                         return (
                           <tr key={k.ad} className="border-b border-kurum-200">
                             <td className="py-3.5 pr-4">
@@ -98,13 +115,16 @@ export default function FiyatlarSayfasi() {
                             </td>
                             <td className="py-3.5 pr-4 whitespace-nowrap">
                               {fiyat ? (
-                                <span className="font-semibold text-lacivert-900">
-                                  {fiyat}
-                                </span>
+                                <>
+                                  <span className="rakam font-semibold text-lacivert-900">
+                                    {fiyat.metin}
+                                  </span>
+                                  <span className="ml-1 text-sm text-kurum-500">
+                                    {fiyat.birim}
+                                  </span>
+                                </>
                               ) : (
-                                <span className="text-kurum-500">
-                                  Günlük fiyat
-                                </span>
+                                <span className="text-kurum-500">Arayın</span>
                               )}
                             </td>
                             <td className="py-3.5 whitespace-nowrap">
