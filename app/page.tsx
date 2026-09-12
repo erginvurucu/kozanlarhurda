@@ -10,6 +10,8 @@ import {
   OnayIkon,
 } from "@/components/Cta";
 import { FiyatSeridi } from "@/components/FiyatSeridi";
+import { NeAliyoruz } from "@/components/NeAliyoruz";
+import { Konum } from "@/components/Konum";
 import { faqSchema, jsonLd } from "@/lib/schema";
 
 const GENEL_SSS = [
@@ -267,6 +269,9 @@ export default function AnaSayfa() {
         </div>
       </section>
 
+      {/* ── NE ALIYORUZ ── */}
+      <NeAliyoruz />
+
       {/* ── ÖNCELİKLİ BÖLGELER ── */}
       <section className="zemin-kareli border-y border-kurum-200 py-20">
         <div className="mx-auto max-w-6xl px-4">
@@ -369,6 +374,9 @@ export default function AnaSayfa() {
           </ul>
         </div>
       </section>
+
+      {/* ── KONUM ── */}
+      <Konum />
 
       <StickyCallBar />
       <script
