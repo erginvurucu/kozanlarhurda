@@ -137,14 +137,17 @@ export default function AnaSayfa() {
             </p>
 
             <h1 className="mt-5 text-[38px] leading-[1.08] text-white sm:text-[52px]">
-              Hurdanızı <span className="text-fistik-400">biz indiririz</span>,
-              <br className="hidden sm:block" /> tartımı siz izlersiniz
+              Kurumsal Firma
+              <br />{" "}
+              <span className="text-fistik-400">Hurda Alım Hizmetleri</span>
             </h1>
 
+            {/* Baslik kategori tanimi oldugu icin somut vaat buraya alindi;
+                arastirmada donusumu belirleyen sey bu cumleydi. */}
             <p className="mt-6 max-w-prose text-lg leading-relaxed text-kurum-300">
-              Kat farkı yok, asansör şartı yok, indirmek için üste para
-              istemiyoruz. Kalibreli kantarla yerinde tartım, ödeme teslim
-              anında nakit.
+              Hurdanızı biz indiririz, tartımı siz izlersiniz. Kat farkı yok,
+              asansör şartı yok, indirmek için üste para istemiyoruz. Ödeme
+              teslim anında nakit.
             </p>
 
             <ul className="mt-8 flex flex-col">
@@ -210,7 +213,10 @@ export default function AnaSayfa() {
               tasidiklari bilgi zaten metinde var. */}
           <div
             aria-hidden="true"
-            className="relative hidden aspect-[5/4] w-full select-none lg:order-1 lg:block"
+            /* pointer-events-none: gorsel buyuyunce saydam kutusu metin
+               sutununa tasiyor. Dekoratif oldugu icin tiklama ve metin
+               secimini engellememeli. */
+            className="pointer-events-none relative hidden aspect-[5/4] w-full select-none lg:order-1 lg:block"
           >
             <Image
               src="/polip-vinc.png"
@@ -218,7 +224,9 @@ export default function AnaSayfa() {
               fill
               priority
               sizes="(min-width: 1024px) 55vw, 100vw"
-              className="z-10 scale-[1.08] object-contain object-left-bottom"
+              /* Olcek merkezi sol-alt: gorsel buyurken sag ve yukari
+                 dogru acilir, makinenin tabani yerinde kalir. */
+              className="z-10 origin-bottom-left scale-[1.3] object-contain object-left-bottom"
             />
             {/* DİKKAT: sizes içinde "0px" dalı kullanma — tarayıcı sıfır
                 genişlikli kaynak seçip görseli hiç yüklemiyor. */}
