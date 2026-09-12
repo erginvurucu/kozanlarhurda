@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
+import { yazilar } from "@/data/rehber";
 import { ilceler, tumMahalleRotalari } from "@/data/ilceler";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -19,6 +20,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${site.url}/rehber`,
+      lastModified: simdi,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...yazilar.map((y) => ({
+      url: `${site.url}/rehber/${y.slug}`,
+      lastModified: new Date(y.tarih),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     { url: `${site.url}/kvkk`, lastModified: simdi, priority: 0.2 },
     { url: `${site.url}/gizlilik`, lastModified: simdi, priority: 0.2 },
   ];

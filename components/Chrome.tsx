@@ -47,6 +47,7 @@ function Marka({
 const MENU = [
   { ad: "Hurda Fiyatları", href: "/hurda-fiyatlari" },
   { ad: "Bölgeler", href: "/bolgeler" },
+  { ad: "Rehber", href: "/rehber" },
   { ad: "Nasıl Çalışır", href: "/#nasil" },
 ];
 
