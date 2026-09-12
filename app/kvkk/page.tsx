@@ -20,7 +20,7 @@ export default function KvkkSayfasi() {
         - Bir avukata kontrol ettirilmeli
         - VERBIS kayit yukumlulugu (calisan sayisi / ciro esigi) degerlendirilmeli
       */}
-      <p className="rounded-xl bg-celik-50 p-4 text-sm">
+      <p className="rounded-sm bg-kurum-50 p-4 text-sm">
         Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu
         (&quot;KVKK&quot;) uyarınca hazırlanmıştır.
       </p>
@@ -30,7 +30,7 @@ export default function KvkkSayfasi() {
           Kişisel verileriniz, veri sorumlusu sıfatıyla {site.legalName}{" "}
           tarafından aşağıda açıklanan kapsamda işlenmektedir.
         </p>
-        <p className="text-sm text-celik-500">
+        <p className="text-sm text-kurum-500">
           İletişim: {site.email} · {site.phoneDisplay}
         </p>
       </Bolum>

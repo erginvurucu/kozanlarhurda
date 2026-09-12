@@ -2,7 +2,12 @@ import Link from "next/link";
 import { site, telLink, waLink } from "@/lib/site";
 import { oncelikliler, ilceler } from "@/data/ilceler";
 import { LeadForm } from "@/components/LeadForm";
-import { StickyCallBar, PhoneIcon, WhatsAppIcon } from "@/components/Cta";
+import {
+  StickyCallBar,
+  PhoneIcon,
+  WhatsAppIcon,
+  OnayIkon,
+} from "@/components/Cta";
 import { faqSchema, jsonLd } from "@/lib/schema";
 
 const GENEL_SSS = [
@@ -40,37 +45,44 @@ const GENEL_SSS = [
   },
 ];
 
+/** Gerçek bir sıra: numaralandırma bu yüzden bilgi taşıyor. */
 const ADIMLAR = [
   {
-    no: "01",
-    ikon: "📸",
     baslik: "Fotoğrafı gönderin",
     metin:
       "WhatsApp'tan hurdanızın fotoğrafını atın veya formu doldurun. Ne kadar net görürsek fiyat o kadar net olur.",
-    renk: "from-kirmizi-500 to-kirmizi-700",
   },
   {
-    no: "02",
-    ikon: "💬",
     baslik: "Fiyatı öğrenin",
     metin:
       "Güncel piyasa üzerinden fiyat aralığını hemen söyleyelim. Anlaşırsak randevu saatini birlikte belirleriz.",
-    renk: "from-yesil-500 to-yesil-700",
   },
   {
-    no: "03",
-    ikon: "💰",
     baslik: "Ekip gelsin, ödemeyi alın",
     metin:
       "Söküm, indirme ve taşıma bize ait — kat farkı gözetmeyiz. Tartım kalibreli kantarla, ödeme teslim anında nakit.",
-    renk: "from-kirmizi-500 to-yesil-600",
   },
 ];
 
-const ISTATISTIKLER = [
-  { sayi: "39", birim: "İlçe", aciklama: "İstanbul geneli hizmet" },
-  { sayi: "7/24", birim: "Destek", aciklama: "Her zaman ulaşabilirsiniz" },
-  { sayi: "0", birim: "TL", aciklama: "Keşif & nakliye ücreti" },
+const KUNYE = [
+  { deger: "39", birim: "ilçe", aciklama: "İstanbul geneli" },
+  { deger: "0", birim: "TL", aciklama: "Keşif, indirme, nakliye" },
+  { deger: "Nakit", birim: "", aciklama: "Teslim anında ödeme" },
+];
+
+const TICKER_KALEMLERI = [
+  "Bakır",
+  "Alüminyum",
+  "Demir & Çelik",
+  "Pirinç",
+  "Paslanmaz",
+  "Kablo",
+  "Beyaz Eşya",
+  "Kombi & Kazan",
+  "Klima",
+  "Hurda Araç",
+  "Sanayi Hurdası",
+  "Ticari Mutfak",
 ];
 
 export default function AnaSayfa() {
@@ -78,30 +90,26 @@ export default function AnaSayfa() {
 
   return (
     <>
-      {/* ── TICKER BANDI ── */}
-      <div className="ticker-kutu bg-karanlik-900 text-white py-2 overflow-hidden">
-        <div className="animate-ticker flex gap-16 text-sm font-medium">
-          {[...Array(2)].map((_, outer) => (
+      {/* ── ALINAN HURDA ŞERİDİ ── */}
+      <div className="ticker-kutu overflow-hidden border-b border-lacivert-800 bg-lacivert-900 py-2.5">
+        <div className="animate-ticker flex gap-10">
+          {[0, 1].map((kopya) => (
             <span
-              key={outer}
+              key={kopya}
               /* İkinci kopya yalnızca kesintisiz döngü içindir: ekran
                  okuyucuya tekrar okutmuyoruz, hareket kapalıyken gizliyoruz. */
-              aria-hidden={outer === 1 ? true : undefined}
-              className={`flex gap-16 shrink-0${outer === 1 ? " ticker-kopya" : ""}`}
+              aria-hidden={kopya === 1 ? true : undefined}
+              className={`flex shrink-0 gap-10${
+                kopya === 1 ? " ticker-kopya" : ""
+              }`}
             >
-              {[
-                "♻ Bakır Alımı",
-                "♻ Alüminyum Alımı",
-                "♻ Demir & Çelik",
-                "♻ Beyaz Eşya",
-                "♻ Kombi & Kazan",
-                "♻ Hurda Araç",
-                "♻ Sanayi Hurdası",
-                "♻ Klima & Elektronik",
-              ].map((item) => (
-                <span key={item} className="text-karanlik-300">
-                  <span className="text-yesil-400 mr-2">●</span>
-                  {item}
+              {TICKER_KALEMLERI.map((kalem) => (
+                <span
+                  key={kalem}
+                  className="etiket flex items-center gap-2.5 text-kurum-300"
+                >
+                  <span className="h-1 w-1 shrink-0 bg-fistik-500" />
+                  {kalem}
                 </span>
               ))}
             </span>
@@ -110,148 +118,112 @@ export default function AnaSayfa() {
       </div>
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-karanlik-900 via-karanlik-800 to-karanlik-900 text-white">
-        {/* Arka plan dekorasyon küreleri */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-kirmizi-600/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-yesil-600/20 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-kirmizi-900/10 rounded-full blur-3xl" />
-        </div>
+      <section className="zemin-kareli-koyu text-white">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
+          <div>
+            <p className="etiket etiket-acik">{site.slogan}</p>
 
-        {/* Metal grid arka planı */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "40px 40px",
-          }}
-        />
-
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 py-16 lg:grid-cols-2 lg:py-24">
-          <div className="flex flex-col justify-center">
-            {/* Üst badge */}
-            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-yesil-700/50 bg-yesil-900/30 px-4 py-2 text-sm font-medium text-yesil-300 mb-6">
-              <svg viewBox="0 0 24 24" className="h-4 w-4 animate-spin-slow text-yesil-400" fill="currentColor" aria-hidden="true">
-                <path d="M17.65 6.35A7.958 7.958 0 0 0 12 4C7.58 4 4 7.58 4 12s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-              </svg>
-              İstanbul&apos;un 39 ilçesinde hizmet
-            </div>
-
-            {/* Ana başlık */}
-            <h1 className="text-4xl font-black leading-[1.1] sm:text-5xl lg:text-6xl font-heading">
-              Hurdanızı{" "}
-              <span className="text-gradient-kirmizi">biz indiririz</span>
-              ,
-              <br />
-              tartımı siz{" "}
-              <span className="text-gradient-yesil">izlersiniz</span>
+            <h1 className="mt-5 text-[38px] leading-[1.08] text-white sm:text-[52px]">
+              Hurdanızı <span className="text-fistik-400">biz indiririz</span>,
+              <br className="hidden sm:block" /> tartımı siz izlersiniz
             </h1>
 
-            <p className="mt-5 max-w-lg text-lg leading-relaxed text-karanlik-300">
+            <p className="mt-6 max-w-prose text-lg leading-relaxed text-kurum-300">
               Kat farkı yok, asansör şartı yok, indirmek için üste para
               istemiyoruz. Kalibreli kantarla yerinde tartım, ödeme teslim
               anında nakit.
             </p>
 
-            {/* Vaatler */}
-            <ul className="mt-6 flex flex-col gap-2.5">
+            <ul className="mt-8 flex flex-col">
               {site.sozler.map((s) => (
-                <li key={s} className="flex items-center gap-3 text-karanlik-200">
-                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-yesil-500 text-white text-xs font-bold">
-                    ✓
-                  </span>
-                  {s}
+                <li
+                  key={s}
+                  className="flex items-start gap-3 border-b border-white/10 py-3 first:border-t first:border-white/10"
+                >
+                  <OnayIkon
+                    className="mt-1 h-4 w-4 shrink-0 text-fistik-500"
+                    aria-hidden="true"
+                  />
+                  <span className="text-kurum-100">{s}</span>
                 </li>
               ))}
             </ul>
 
-            {/* CTA butonları */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={telLink}
                 data-cta="tel"
-                className="inline-flex items-center justify-center gap-2.5 btn-kirmizi text-white rounded-2xl px-7 py-4 text-lg font-bold"
+                className="dugme dugme-fistik px-7 py-4 text-lg"
               >
                 <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-                {site.phoneDisplay}
+                <span className="rakam">{site.phoneDisplay}</span>
               </a>
               <a
                 href={waLink("Merhaba, hurda satmak istiyorum.")}
                 data-cta="whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 btn-yesil text-white rounded-2xl px-7 py-4 text-lg font-bold"
+                className="dugme dugme-whatsapp px-7 py-4 text-lg"
               >
                 <WhatsAppIcon className="h-5 w-5" aria-hidden="true" />
                 WhatsApp&apos;tan sor
               </a>
             </div>
 
-            {/* İstatistikler */}
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-white/10 pt-8">
-              {ISTATISTIKLER.map(({ sayi, birim, aciklama }) => (
-                <div key={birim}>
-                  <dt className="text-2xl font-black text-white font-heading">
-                    {sayi}
-                    <span className="text-kirmizi-400 ml-0.5 text-xl">{birim === "TL" ? " TL" : ""}</span>
-                    {birim !== "TL" && <span className="block text-xs font-medium text-yesil-400 mt-0.5 uppercase tracking-wider">{birim}</span>}
-                  </dt>
-                  <dd className="mt-0.5 text-xs text-karanlik-400">{aciklama}</dd>
+            <dl className="mt-10 grid grid-cols-3 border-t border-white/15 pt-6">
+              {KUNYE.map((k) => (
+                <div key={k.aciklama}>
+                  <dt className="sr-only">{k.aciklama}</dt>
+                  <dd>
+                    <span className="rakam text-3xl font-semibold text-white">
+                      {k.deger}
+                    </span>
+                    {k.birim && (
+                      <span className="rakam ml-1 text-base text-fistik-400">
+                        {k.birim}
+                      </span>
+                    )}
+                    <span className="mt-1 block text-[13px] leading-snug text-kurum-400">
+                      {k.aciklama}
+                    </span>
+                  </dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          {/* Form tarafı */}
-          <div id="teklif" className="scroll-mt-24 flex items-center">
+          <div id="teklif" className="scroll-mt-24">
             <LeadForm />
           </div>
         </div>
       </section>
 
+      <div className="serit" />
+
       {/* ── NASIL ÇALIŞIR ── */}
-      <section id="nasil" className="scroll-mt-20 py-20 bg-white">
+      <section id="nasil" className="scroll-mt-20 bg-white py-20">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <span className="inline-block text-kirmizi-600 font-semibold text-sm tracking-widest uppercase mb-3">
-              Basit Süreç
-            </span>
-            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
-              Nasıl çalışır?
+          <div className="kural max-w-2xl">
+            <p className="etiket">Süreç</p>
+            <h2 className="mt-2 text-[32px] leading-tight sm:text-[38px]">
+              Üç adım, tek gün
             </h2>
-            <p className="mt-3 max-w-prose mx-auto text-karanlik-500">
-              Üç adım, tek gün. İndirme bizden, sürprizli maliyet veya gizli kesinti yok.
+            <p className="mt-3 text-lg text-kurum-600">
+              İndirme bizden. Sürpriz maliyet, gizli kesinti veya sonradan
+              düşürülen fiyat yok.
             </p>
           </div>
 
-          <ol className="grid gap-6 md:grid-cols-3">
+          <ol className="mt-12 grid gap-px border border-kurum-200 bg-kurum-200 md:grid-cols-3">
             {ADIMLAR.map((a, i) => (
-              <li
-                key={a.baslik}
-                className="relative rounded-3xl bg-white border-2 border-karanlik-100 p-8 hover:border-kirmizi-200 hover:shadow-xl hover:shadow-kirmizi-50 transition-all duration-300 group"
-              >
-                {/* Bağlantı oku */}
-                {i < ADIMLAR.length - 1 && (
-                  <div className="hidden md:block absolute -right-4 top-1/2 -translate-y-1/2 z-10 text-2xl text-karanlik-200">
-                    →
-                  </div>
-                )}
-
-                {/* Numara badge */}
-                <div
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${a.renk} text-white shadow-lg mb-5`}
-                >
-                  <span className="text-2xl">{a.ikon}</span>
-                </div>
-
-                <div className="text-xs font-bold text-karanlik-300 tracking-widest uppercase mb-2">
-                  ADIM {a.no}
-                </div>
-                <h3 className="text-xl font-bold text-karanlik-900 font-heading group-hover:text-kirmizi-600 transition-colors">
-                  {a.baslik}
-                </h3>
-                <p className="mt-2 leading-relaxed text-karanlik-500">{a.metin}</p>
+              <li key={a.baslik} className="bg-white p-7">
+                <span className="rakam text-[34px] font-semibold leading-none text-kurum-300">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-4 text-xl">{a.baslik}</h3>
+                <p className="mt-2.5 leading-relaxed text-kurum-600">
+                  {a.metin}
+                </p>
               </li>
             ))}
           </ol>
@@ -259,48 +231,42 @@ export default function AnaSayfa() {
       </section>
 
       {/* ── ÖNCELİKLİ BÖLGELER ── */}
-      <section className="py-20 bg-karanlik-50">
+      <section className="zemin-kareli border-y border-kurum-200 py-20">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-12">
-            <span className="inline-block text-yesil-600 font-semibold text-sm tracking-widest uppercase mb-3">
-              Hizmet Bölgeleri
-            </span>
-            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
-              En yoğun çalıştığımız bölgeler
+          <div className="kural max-w-2xl">
+            <p className="etiket">Bölgeler</p>
+            <h2 className="mt-2 text-[32px] leading-tight sm:text-[38px]">
+              En yoğun çalıştığımız yerler
             </h2>
-            <p className="mt-3 max-w-prose text-karanlik-500">
-              Her bölgenin hurdası farklıdır. Sizin bölgenizde neyin çıktığını ve
-              nasıl çalıştığımızı ilçe sayfasında anlattık.
+            <p className="mt-3 text-lg text-kurum-600">
+              Her bölgenin hurdası farklıdır. Sizin bölgenizde neyin çıktığını
+              ve nasıl çalıştığımızı ilçe sayfasında anlattık.
             </p>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {one.map((i) => (
               <Link
                 key={i.slug}
                 href={`/${i.slug}`}
-                className="group relative rounded-2xl bg-white border-2 border-transparent p-6 transition-all duration-300 hover:border-kirmizi-400 hover:shadow-xl hover:shadow-kirmizi-50 overflow-hidden"
+                className="evrak-vurgu group flex flex-col p-6 transition-colors hover:border-t-fistik-500"
               >
-                {/* Hover arka plan efekti */}
-                <div className="absolute inset-0 bg-gradient-to-br from-kirmizi-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                <div className="relative">
-                  {/* Geri dönüşüm ikonu */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-yesil-100 text-yesil-600 text-lg font-bold group-hover:bg-kirmizi-100 group-hover:text-kirmizi-600 transition-colors">
-                      ♻
-                    </span>
-                    <span className="text-sm font-semibold text-kirmizi-500 group-hover:translate-x-1 transition-transform">
-                      {i.varis} →
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-karanlik-900 group-hover:text-kirmizi-700 font-heading transition-colors">
-                    {i.ad} Hurdacı
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="text-xl group-hover:text-lacivert-600">
+                    {i.ad}
                   </h3>
-                  <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-karanlik-500">
-                    {i.profil}
-                  </p>
+                  <span className="etiket shrink-0">Hurdacı</span>
+                </div>
+
+                <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-kurum-600">
+                  {i.profil}
+                </p>
+
+                <div className="mt-5 flex items-center justify-between border-t border-kurum-200 pt-3.5">
+                  <span className="etiket">Varış</span>
+                  <span className="rakam text-sm font-medium text-lacivert-700">
+                    {i.varis}
+                  </span>
                 </div>
               </Link>
             ))}
@@ -308,50 +274,38 @@ export default function AnaSayfa() {
 
           <Link
             href="/bolgeler"
-            className="mt-8 inline-flex items-center gap-2 rounded-xl border-2 border-karanlik-200 px-5 py-3 font-semibold text-karanlik-700 hover:border-kirmizi-400 hover:text-kirmizi-600 transition-all duration-200"
+            className="dugme dugme-cerceve mt-9 px-5 py-3 text-[15px]"
           >
             39 ilçenin tamamını gör
-            <span>→</span>
           </Link>
         </div>
       </section>
 
       {/* ── SSS ── */}
-      <section className="py-20 bg-white">
+      <section className="bg-white py-20">
         <div className="mx-auto max-w-3xl px-4">
-          <div className="text-center mb-12">
-            <span className="inline-block text-kirmizi-600 font-semibold text-sm tracking-widest uppercase mb-3">
-              Merak Edilenler
-            </span>
-            <h2 className="text-3xl font-black text-karanlik-900 sm:text-4xl font-heading">
+          <div className="kural">
+            <p className="etiket">Merak edilenler</p>
+            <h2 className="mt-2 text-[32px] leading-tight sm:text-[38px]">
               Sık sorulan sorular
             </h2>
           </div>
 
-          <div className="space-y-3">
-            {GENEL_SSS.map((x, i) => (
-              <details
-                key={x.s}
-                className="group rounded-2xl border-2 border-karanlik-100 bg-white overflow-hidden hover:border-kirmizi-200 transition-colors"
-              >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 font-semibold text-karanlik-900 list-none">
-                  <span className="flex items-center gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-kirmizi-100 text-kirmizi-600 text-xs font-bold">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {x.s}
-                  </span>
+          <div className="mt-10 border-t border-kurum-200">
+            {GENEL_SSS.map((x) => (
+              <details key={x.s} className="group border-b border-kurum-200">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-5 py-5 font-semibold text-lacivert-900 hover:text-lacivert-600">
+                  <span>{x.s}</span>
                   <span
                     aria-hidden="true"
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-karanlik-100 text-karanlik-600 text-xl font-light group-open:bg-kirmizi-100 group-open:text-kirmizi-600 group-open:rotate-45 transition-all duration-300"
+                    className="mt-0.5 shrink-0 text-2xl font-light leading-none text-kurum-400 transition-transform duration-200 group-open:rotate-45 group-open:text-fistik-600"
                   >
                     +
                   </span>
                 </summary>
-                <div className="px-6 pb-5">
-                  <div className="h-px bg-karanlik-100 mb-4" />
-                  <p className="leading-relaxed text-karanlik-600">{x.c}</p>
-                </div>
+                <p className="max-w-prose pb-6 pr-8 leading-relaxed text-kurum-600">
+                  {x.c}
+                </p>
               </details>
             ))}
           </div>
@@ -359,20 +313,19 @@ export default function AnaSayfa() {
       </section>
 
       {/* ── TÜM İLÇELER ── */}
-      <section className="border-t-2 border-karanlik-100 py-16 bg-karanlik-50">
+      <section className="zemin-kareli border-t border-kurum-200 py-16">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-xl font-bold text-karanlik-900 font-heading flex items-center gap-3 mb-6">
-            <span className="h-1 w-6 rounded bg-kirmizi-500 inline-block" />
-            İstanbul geneli hurda alımı
-          </h2>
-          <ul className="flex flex-wrap gap-2">
+          <p className="etiket">İstanbul geneli</p>
+          <h2 className="mt-2 text-2xl">Hizmet verdiğimiz ilçeler</h2>
+
+          <ul className="mt-7 flex flex-wrap gap-2">
             {ilceler.map((i) => (
               <li key={i.slug}>
                 <Link
                   href={`/${i.slug}`}
-                  className="inline-block rounded-lg border border-karanlik-200 bg-white px-3 py-1.5 text-sm text-karanlik-600 transition-all duration-150 hover:border-kirmizi-400 hover:text-kirmizi-600 hover:shadow-sm"
+                  className="inline-block border border-kurum-200 bg-white px-3 py-1.5 text-sm text-kurum-700 transition-colors hover:border-lacivert-600 hover:text-lacivert-700"
                 >
-                  {i.ad} Hurdacı
+                  {i.ad}
                 </Link>
               </li>
             ))}

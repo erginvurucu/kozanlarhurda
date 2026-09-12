@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ilceler } from "@/data/ilceler";
+import { OnayIkon } from "./Cta";
 
 const HURDA_TURLERI = [
   "Beyaz eşya (buzdolabı, çamaşır makinesi…)",
@@ -20,6 +21,11 @@ const HURDA_TURLERI = [
 
 type Durum = "bos" | "gonderiliyor" | "tamam" | "hata";
 
+/**
+ * Talep formu — kantar fişi biçiminde.
+ * Bu sektörde güvenin somut nesnesi kantar fişidir; form da onu andırır:
+ * üstü perforeli beyaz kâğıt, mono alan etiketleri, cetvelli satırlar.
+ */
 export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
   const [durum, setDurum] = useState<Durum>("bos");
   const [hata, setHata] = useState<string>("");
@@ -48,22 +54,22 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
 
   if (durum === "tamam") {
     return (
-      <div
-        role="status"
-        className="w-full rounded-3xl border-2 border-yesil-300 bg-yesil-50 p-10 text-center"
-      >
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-yesil-500 text-white text-2xl animate-bounce-in shadow-lg shadow-yesil-200">
-          ✓
+      <div role="status" className="fis w-full p-8 text-center sm:p-10">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-fistik-500">
+          <OnayIkon className="h-8 w-8 text-lacivert-900" aria-hidden="true" />
         </div>
-        <p className="text-xl font-bold text-yesil-900">Talebiniz alındı!</p>
-        <p className="mt-2 text-yesil-700">
-          En kısa sürede sizi arayacağız. Acele ediyorsanız doğrudan
-          telefonla da ulaşabilirsiniz.
+        <p className="etiket etiket-fistik mt-5">Talep kaydedildi</p>
+        <p className="mt-2 text-xl font-bold text-lacivert-900">
+          Sizi en kısa sürede arayacağız
+        </p>
+        <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-kurum-600">
+          Acelesi varsa doğrudan telefonla da ulaşabilirsiniz — hattımız
+          her zaman açık.
         </p>
         <button
           type="button"
           onClick={() => setDurum("bos")}
-          className="mt-6 rounded-xl border-2 border-yesil-400 px-5 py-2.5 font-semibold text-yesil-800 hover:bg-yesil-100 transition-colors"
+          className="dugme dugme-cerceve mt-7 px-5 py-2.5 text-sm"
         >
           Yeni talep gönder
         </button>
@@ -72,30 +78,32 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
   }
 
   return (
-    <div className="w-full rounded-3xl bg-white/10 backdrop-blur-sm border border-white/20 p-6 shadow-2xl sm:p-8">
-      {/* Form başlığı */}
-      <div className="mb-6">
-        <div className="inline-flex items-center gap-2 rounded-full bg-kirmizi-500/20 border border-kirmizi-400/30 px-3 py-1 mb-3">
-          <span className="text-kirmizi-300 text-xs font-semibold tracking-wide uppercase">
-            Ücretsiz Fiyat Al
-          </span>
+    <div className="fis w-full p-6 sm:p-7">
+      <header className="border-b border-dashed border-kurum-300 pb-5">
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="etiket etiket-fistik">Fiyat talebi</p>
+          <p className="rakam text-[11px] text-kurum-400">ÜCRETSİZ</p>
         </div>
-        <h2 className="text-xl font-bold text-white font-heading">
-          Hızlı Teklif Formu
+        <h2 className="mt-2 text-[22px] leading-tight text-lacivert-900">
+          Hurdanızın fiyatını öğrenin
         </h2>
-        <p className="text-sm text-white/60 mt-1">
-          Keşif ve nakliye ücretsiz. Fiyatı beğenmezseniz yükümlülük yok.
+        <p className="mt-2 text-sm text-kurum-600">
+          Keşif, indirme ve nakliye ücretsiz. Fiyatı beğenmezseniz hiçbir
+          yükümlülüğünüz yok.
         </p>
-      </div>
+      </header>
 
-      <form
-        onSubmit={gonder}
-        noValidate={false}
-      >
+      <form onSubmit={gonder} className="pt-5">
         {/* Bot tuzağı */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor="website">Web siteniz</label>
-          <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          <input
+            id="website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -120,7 +128,7 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
               inputMode="tel"
               autoComplete="tel"
               pattern="[0-9\s()+-]{10,20}"
-              className={girdi}
+              className={`${girdi} rakam`}
               placeholder="05XX XXX XX XX"
             />
           </Alan>
@@ -145,7 +153,13 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
           </Alan>
 
           <Alan etiket="Hurda türü" id="tur">
-            <select id="tur" name="tur" required defaultValue="" className={girdi}>
+            <select
+              id="tur"
+              name="tur"
+              required
+              defaultValue=""
+              className={girdi}
+            >
               <option value="" disabled>
                 Seçiniz
               </option>
@@ -171,7 +185,7 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
               type="file"
               accept="image/*"
               multiple
-              className="block w-full text-sm text-white/70 file:mr-3 file:rounded-lg file:border-0 file:bg-white/20 file:px-4 file:py-2 file:font-medium file:text-white hover:file:bg-white/30 file:cursor-pointer transition-colors"
+              className="block w-full text-sm text-kurum-600 file:mr-3 file:cursor-pointer file:rounded-sm file:border-0 file:bg-lacivert-50 file:px-4 file:py-2 file:font-medium file:text-lacivert-700 hover:file:bg-lacivert-100"
             />
           </Alan>
         </div>
@@ -188,26 +202,35 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
           </Alan>
         </div>
 
-        {/* KVKK */}
-        <div className="mt-5 flex gap-3 rounded-xl bg-white/5 border border-white/10 p-4">
+        <div className="mt-5 flex gap-3 border-t border-dashed border-kurum-300 pt-5">
           <input
             id="kvkk"
             name="kvkk"
             type="checkbox"
             required
-            className="mt-1 h-5 w-5 shrink-0 accent-kirmizi-500"
+            className="mt-0.5 h-5 w-5 shrink-0 accent-lacivert-600"
           />
-          <label htmlFor="kvkk" className="text-xs leading-relaxed text-white/60">
-            <a href="/kvkk" className="font-medium underline text-white/80 hover:text-white">
+          <label
+            htmlFor="kvkk"
+            className="text-xs leading-relaxed text-kurum-600"
+          >
+            <a
+              href="/kvkk"
+              className="font-semibold text-lacivert-700 underline underline-offset-2 hover:text-lacivert-900"
+            >
               Aydınlatma Metni
             </a>
-            &apos;ni okudum. İletişim bilgilerimin talebimi karşılayabilmek amacıyla
-            bölgemdeki anlaşmalı hurda alım firmasına aktarılmasına onay veriyorum.
+            &apos;ni okudum. İletişim bilgilerimin talebimi karşılayabilmek
+            amacıyla bölgemdeki anlaşmalı hurda alım firmasına aktarılmasına
+            onay veriyorum.
           </label>
         </div>
 
         {durum === "hata" && (
-          <p role="alert" className="mt-4 rounded-xl bg-kirmizi-900/50 border border-kirmizi-600 p-3 text-sm text-kirmizi-300">
+          <p
+            role="alert"
+            className="mt-4 border-l-[3px] border-damga-500 bg-damga-50 px-4 py-3 text-sm text-damga-500"
+          >
             {hata}. Lütfen tekrar deneyin veya doğrudan telefonla ulaşın.
           </p>
         )}
@@ -215,18 +238,34 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
         <button
           type="submit"
           disabled={durum === "gonderiliyor"}
-          className="mt-5 w-full btn-kirmizi text-white rounded-2xl px-6 py-4 text-lg font-bold disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="dugme dugme-ana mt-6 w-full px-6 py-4 text-lg disabled:cursor-not-allowed disabled:opacity-60"
         >
           {durum === "gonderiliyor" ? (
             <>
-              <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              <svg
+                className="h-5 w-5 animate-spin"
+                fill="none"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                />
               </svg>
               Gönderiliyor…
             </>
           ) : (
-            "Ücretsiz Fiyat Al →"
+            "Ücretsiz fiyat al"
           )}
         </button>
       </form>
@@ -235,7 +274,7 @@ export function LeadForm({ varsayilanIlce }: { varsayilanIlce?: string }) {
 }
 
 const girdi =
-  "w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder-white/40 outline-none transition focus:border-kirmizi-400 focus:bg-white/15 focus:ring-1 focus:ring-kirmizi-400";
+  "w-full rounded-sm border border-kurum-300 bg-white px-3.5 py-2.5 text-base text-kurum-900 outline-none transition placeholder:text-kurum-400 focus:border-lacivert-600 focus:ring-2 focus:ring-lacivert-100";
 
 function Alan({
   etiket,
@@ -252,16 +291,16 @@ function Alan({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold text-white/80">
+      <label htmlFor={id} className="etiket mb-1.5 block">
         {etiket}
         {zorunluDegil && (
-          <span className="ml-1.5 text-xs font-normal text-white/40">
+          <span className="ml-1.5 normal-case tracking-normal text-kurum-400">
             (isteğe bağlı)
           </span>
         )}
       </label>
       {children}
-      {ipucu && <p className="mt-1.5 text-xs text-white/40">{ipucu}</p>}
+      {ipucu && <p className="mt-1.5 text-xs text-kurum-500">{ipucu}</p>}
     </div>
   );
 }

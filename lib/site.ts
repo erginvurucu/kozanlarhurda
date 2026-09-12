@@ -26,6 +26,14 @@ export const site = {
     maps: "https://maps.google.com/?q=Firuzköy+Mahallesi+Halide+Edip+Adıvar+Caddesi+No:15+Avcılar+İstanbul",
   },
 
+  /**
+   * Marka slogani. Kurumsal ton - marka kilitlemesinin yaninda kullanilir.
+   * Hero basligini DEGISTIRMEZ: orada somut vaat durur (indirme + tartim),
+   * cunku saha arastirmasi musterinin soyut soze degil somut vaade
+   * tepki verdigini gosterdi.
+   */
+  slogan: "Sorumlu geri dönüşüm, net değerlendirme",
+
   description:
     "İstanbul genelinde yerinde hurda alımı. Bakır, alüminyum, demir, beyaz eşya ve sanayi hurdası için ücretsiz keşif, indirme dahil, tartım gözünüzün önünde.",
   locale: "tr_TR",

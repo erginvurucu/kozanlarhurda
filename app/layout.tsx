@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0f1a",
+  themeColor: "#27348b",
   width: "device-width",
   initialScale: 1,
 };
@@ -44,7 +44,7 @@ export default function RootLayout({
       <body>
         <a
           href="#icerik"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-celik-900 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-sm focus:bg-lacivert-900 focus:px-4 focus:py-2 focus:text-white"
         >
           İçeriğe geç
         </a>

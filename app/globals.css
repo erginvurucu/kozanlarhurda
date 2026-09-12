@@ -1,234 +1,343 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
+/* ============================================================
+   KOZANLAR HURDA — TASARIM SİSTEMİ
+   Yön: kantar fişi / sevkiyat evrakı.
+   Bu sektörde güvenin somut nesnesi kantar fişidir; arayüz de o
+   belgenin dilini konuşur — cetvelli satırlar, mono rakamlar,
+   damga gibi kullanılan aksan rengi.
+   Gradient, cam efekti ve kutu gölgesi bilinçli olarak yok:
+   hiyerarşiyi çizgi, boşluk ve yazı ağırlığı kurar.
+   ============================================================ */
+
 @theme {
-  /* === KOZANLAR HURDA TASARIM SİSTEMİ === */
+  /* --- Kurumsal lacivert: yapı, başlık, ana eylem --- */
+  --color-lacivert-50: #eef0f8;
+  --color-lacivert-100: #d8dcef;
+  --color-lacivert-200: #b3bade;
+  --color-lacivert-300: #8791c8;
+  --color-lacivert-400: #5a66ae;
+  --color-lacivert-500: #3a4796;
+  --color-lacivert-600: #27348b; /* ← marka rengi */
+  --color-lacivert-700: #202b73;
+  --color-lacivert-800: #1a2259;
+  --color-lacivert-900: #141a42;
+  --color-lacivert-950: #0b0f28;
 
-  /* Kırmızı - Ana CTA & Güç */
-  --color-kirmizi-50: #fff1f0;
-  --color-kirmizi-100: #ffe0de;
-  --color-kirmizi-200: #ffc6c2;
-  --color-kirmizi-300: #ff9a93;
-  --color-kirmizi-400: #ff5f55;
-  --color-kirmizi-500: #f83030;
-  --color-kirmizi-600: #e51111;
-  --color-kirmizi-700: #c10b0b;
-  --color-kirmizi-800: #9f0d0d;
-  --color-kirmizi-900: #830f0f;
+  /* --- Kurumsal fıstık yeşili: onay, doğrulama, vurgu --- */
+  --color-fistik-50: #f6fbe8;
+  --color-fistik-100: #ebf6cc;
+  --color-fistik-200: #d8ed9f;
+  --color-fistik-300: #bfdf64;
+  --color-fistik-400: #a8d03a;
+  --color-fistik-500: #95c11f; /* ← marka rengi */
+  --color-fistik-600: #7ba315;
+  --color-fistik-700: #5d7c13;
+  --color-fistik-800: #4a6115;
+  --color-fistik-900: #3d5116;
 
-  /* Yeşil - Geri Dönüşüm & Çevre */
-  --color-yesil-50: #f0fdf3;
-  --color-yesil-100: #dcfce5;
-  --color-yesil-200: #bbf7ca;
-  --color-yesil-300: #86efac;
-  --color-yesil-400: #4ade80;
-  --color-yesil-500: #22c55e;
-  --color-yesil-600: #16a34a;
-  --color-yesil-700: #15803d;
-  --color-yesil-800: #166534;
-  --color-yesil-900: #14532d;
+  /* --- Nötrler: saf gri değil, lacivere doğru eğimli --- */
+  --color-kurum-50: #f6f7fa;
+  --color-kurum-100: #eef0f5;
+  --color-kurum-200: #e0e3ed;
+  --color-kurum-300: #c6cbdb;
+  --color-kurum-400: #959cb4;
+  --color-kurum-500: #6d7591;
+  --color-kurum-600: #4e5670;
+  --color-kurum-700: #3a4157;
+  --color-kurum-800: #262c3d;
+  --color-kurum-900: #161a27;
 
-  /* Koyu - Metin & Arka Plan */
-  --color-karanlik-50: #f4f5f7;
-  --color-karanlik-100: #e5e7eb;
-  --color-karanlik-200: #d1d5db;
-  --color-karanlik-300: #9ca3af;
-  --color-karanlik-400: #6b7280;
-  --color-karanlik-500: #4b5563;
-  --color-karanlik-600: #374151;
-  --color-karanlik-700: #1f2937;
-  --color-karanlik-800: #111827;
-  --color-karanlik-900: #0a0f1a;
+  /* --- Uyarı: evrak dünyasından, ıslak damga kızılı --- */
+  --color-damga-500: #b4451f;
+  --color-damga-50: #fdf1ec;
 
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-heading: "Space Grotesk", ui-sans-serif, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-baslik: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
 }
 
 /* =====================
-   TEMEL AYARLAR
+   TEMEL
    ===================== */
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
+/* DİKKAT: Bu blok @layer base İÇİNDE olmalı.
+   Tailwind v4'te yardımcı sınıflar @layer utilities içindedir ve
+   KATMANSIZ css her zaman katmanlı css'i ezer — özgüllükten bağımsız.
+   Katmansız bırakılırsa aşağıdaki `h1 { color }` kuralı `text-white`
+   sınıfını eziyor ve koyu zemindeki başlıklar görünmez oluyor. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
 
-body {
-  background: #ffffff;
-  color: var(--color-karanlik-800);
-  font-family: var(--font-sans);
-  padding-bottom: env(safe-area-inset-bottom);
-  overflow-x: hidden;
-}
-
-@media (max-width: 767px) {
   body {
-    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+    background: #ffffff;
+    color: var(--color-kurum-800);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: env(safe-area-inset-bottom);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-baslik);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    color: var(--color-lacivert-900);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-fistik-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-fistik-200);
+    color: var(--color-lacivert-900);
   }
 }
 
-:focus-visible {
-  outline: 3px solid var(--color-kirmizi-500);
-  outline-offset: 2px;
-  border-radius: 4px;
+/* DİKKAT: Bileşen sınıfları @layer components İÇİNDE olmalı.
+   Katmansız bırakılırsa `.dugme { display:inline-flex }` gibi kurallar
+   Tailwind'in `md:hidden` yardımcısını ezer ve duyarlı davranış bozulur. */
+@layer components {
+
+/* Rakamların sütun hâlinde hizalanması — fiyat ve ağırlık tabloları için */
+.rakam {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 }
 
 /* =====================
-   ÖZEL ANİMASYONLAR
+   BELGE DİLİ
    ===================== */
 
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+/* Form alanı etiketi gibi duran küçük kod/başlık.
+   Sadece gerçek bir şeyi adlandırdığı yerde kullanılır. */
+.etiket {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-kurum-500);
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(248, 48, 48, 0.4); }
-  50% { box-shadow: 0 0 0 16px rgba(248, 48, 48, 0); }
+.etiket-fistik { color: var(--color-fistik-700); }
+.etiket-acik { color: var(--color-fistik-400); }
+
+/* Bölüm başlığının üstündeki kısa kural çizgisi */
+.kural::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--color-fistik-500);
+  margin-bottom: 1rem;
 }
 
-@keyframes float-up {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Cetvelli satır — kart yerine. Fiyat listeleri ve özellik dizileri. */
+.satir {
+  border-bottom: 1px solid var(--color-kurum-200);
+}
+.satir:first-child {
+  border-top: 1px solid var(--color-kurum-200);
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
+/* Evrak bloğu: kutu gölgesi değil, net kenar. */
+.evrak {
+  background: #fff;
+  border: 1px solid var(--color-kurum-200);
 }
 
-@keyframes bounce-in {
-  0% { transform: scale(0.85); opacity: 0; }
-  60% { transform: scale(1.05); }
-  100% { transform: scale(1); opacity: 1; }
+.evrak-vurgu {
+  background: #fff;
+  border: 1px solid var(--color-kurum-200);
+  border-top: 3px solid var(--color-lacivert-600);
 }
 
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Kantar fişi: üst kenarı zımbalı/perforeli kâğıt izlenimi */
+.fis {
+  background: #fff;
+  border: 1px solid var(--color-kurum-300);
+  position: relative;
 }
+.fis::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: -1px;
+  height: 6px;
+  background-image: radial-gradient(
+    circle at 6px 0,
+    transparent 0 4px,
+    var(--color-kurum-300) 4px 4.6px,
+    transparent 4.6px
+  );
+  background-size: 12px 6px;
+  background-repeat: repeat-x;
+}
+
+/* Sanayi şeridi — yapısal ayraç. Sayfada yalnızca birkaç yerde. */
+.serit {
+  height: 6px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-lacivert-600) 0 10px,
+    var(--color-lacivert-800) 10px 20px
+  );
+}
+
+.serit-fistik {
+  height: 4px;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-fistik-500) 0 10px,
+    var(--color-fistik-600) 10px 20px
+  );
+}
+
+/* Ölçülü milimetrik zemin — kâğıt hissi, çok hafif */
+.zemin-kareli {
+  background-color: var(--color-kurum-50);
+  background-image:
+    linear-gradient(var(--color-kurum-200) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-kurum-200) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+/* Lacivert zeminde aynı ızgara, aksan tarafında */
+.zemin-kareli-koyu {
+  background-color: var(--color-lacivert-900);
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+/* =====================
+   EYLEMLER
+   ===================== */
+
+.dugme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-baslik);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 2px;
+  transition: background-color 0.15s ease, color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+/* Ana eylem: telefon. Marka laciverti, dolu ve kararlı. */
+.dugme-ana {
+  background: var(--color-lacivert-600);
+  color: #fff;
+  border: 2px solid var(--color-lacivert-600);
+}
+.dugme-ana:hover {
+  background: var(--color-lacivert-800);
+  border-color: var(--color-lacivert-800);
+}
+
+/* İkincil: fıstık. Onay/enerji rengi, lacivert yazıyla okunur. */
+.dugme-fistik {
+  background: var(--color-fistik-500);
+  color: var(--color-lacivert-900);
+  border: 2px solid var(--color-fistik-500);
+}
+.dugme-fistik:hover {
+  background: var(--color-fistik-400);
+  border-color: var(--color-fistik-400);
+}
+
+/* Çerçeveli: ikincil gezinme */
+.dugme-cerceve {
+  background: transparent;
+  color: var(--color-lacivert-700);
+  border: 2px solid var(--color-kurum-300);
+}
+.dugme-cerceve:hover {
+  border-color: var(--color-lacivert-600);
+  color: var(--color-lacivert-900);
+}
+
+/* Koyu zeminde çerçeveli */
+.dugme-cerceve-acik {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+}
+.dugme-cerceve-acik:hover {
+  border-color: var(--color-fistik-500);
+  color: var(--color-fistik-400);
+}
+
+/* WhatsApp kendi rengini korur: burada renk değil, tanınan bir işarettir. */
+.dugme-whatsapp {
+  background: #25d366;
+  color: #06301a;
+  border: 2px solid #25d366;
+}
+.dugme-whatsapp:hover {
+  background: #1fb855;
+  border-color: #1fb855;
+}
+
+/* Bağlantı altı çizgisi — menü ve metin içi */
+.bag-alti {
+  position: relative;
+}
+.bag-alti::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 2px;
+  width: 0;
+  background: var(--color-fistik-500);
+  transition: width 0.2s ease;
+}
+.bag-alti:hover::after,
+.bag-alti:focus-visible::after {
+  width: 100%;
+}
+
+}
+/* ← @layer components sonu */
+
+/* =====================
+   HAREKET
+   ===================== */
 
 @keyframes ticker-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
 
-/* =====================
-   YARDIMCI SINIFLAR
-   ===================== */
-
-.animate-spin-slow {
-  animation: spin-slow 8s linear infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-.animate-float-up {
-  animation: float-up 0.6s ease-out forwards;
-}
-
-.animate-shimmer {
-  background-size: 200% auto;
-  animation: shimmer 3s linear infinite;
-}
-
-.animate-bounce-in {
-  animation: bounce-in 0.5s ease-out forwards;
-}
-
 .animate-ticker {
   animation: ticker-scroll 50s linear infinite;
   display: flex;
   white-space: nowrap;
-}
-
-/* Gradient metin efekti */
-.text-gradient-kirmizi {
-  background: linear-gradient(135deg, #f83030 0%, #c10b0b 50%, #f83030 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-.text-gradient-yesil {
-  background: linear-gradient(135deg, #22c55e 0%, #15803d 50%, #22c55e 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
-}
-
-/* Metal doku arka planı */
-.bg-metal-pattern {
-  background-color: #0a0f1a;
-  background-image: 
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.015) 2px,
-      rgba(255,255,255,0.015) 4px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 2px,
-      rgba(255,255,255,0.01) 2px,
-      rgba(255,255,255,0.01) 4px
-    );
-}
-
-/* Cam efekti */
-.glass-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-/* Kırmızı gradient buton */
-.btn-kirmizi {
-  background: linear-gradient(135deg, #f83030 0%, #c10b0b 100%);
-  box-shadow: 0 4px 20px rgba(248, 48, 48, 0.35);
-  transition: all 0.3s ease;
-}
-
-.btn-kirmizi:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(248, 48, 48, 0.5);
-  filter: brightness(1.08);
-}
-
-.btn-kirmizi:active {
-  transform: translateY(0);
-}
-
-/* Yeşil gradient buton */
-.btn-yesil {
-  background: linear-gradient(135deg, #25D366 0%, #15803d 100%);
-  box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
-  transition: all 0.3s ease;
-}
-
-.btn-yesil:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.45);
-  filter: brightness(1.08);
-}
-
-/* Section divider */
-.diagonal-divider {
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-}
-
-.diagonal-divider-reverse {
-  clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -243,17 +352,8 @@ body {
     transition-duration: 0.01ms !important;
   }
 
-  /* Sürekli dönen dekoratif hareketler tamamen dursun. */
-  .animate-ticker,
-  .animate-spin-slow,
-  .animate-pulse-glow,
-  .animate-shimmer {
-    animation: none !important;
-  }
-
-  /* Ticker bilgi taşıyor; durduğunda da okunabilir kalmalı.
-     Tek satırda kaydırmak yerine sarmalayıp ortalıyoruz. */
   .animate-ticker {
+    animation: none !important;
     transform: none !important;
     flex-wrap: wrap;
     justify-content: center;
@@ -277,4 +377,10 @@ body {
   .ticker-kutu:focus-within .animate-ticker {
     animation-play-state: paused;
   }
+}
+
+/* Geniş içerik hiçbir zaman sayfayı yana kaydırmaz */
+.tasma-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

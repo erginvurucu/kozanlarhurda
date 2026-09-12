@@ -45,15 +45,15 @@ export default function FiyatlarSayfasi() {
   return (
     <>
       <div className="mx-auto max-w-6xl px-4 py-10">
-        <h1 className="text-4xl font-bold text-celik-900">
+        <h1 className="text-4xl font-bold text-lacivert-900">
           Güncel Hurda Fiyatları
         </h1>
-        <p className="mt-4 max-w-prose text-lg text-celik-600">
+        <p className="mt-4 max-w-prose text-lg text-kurum-600">
           Hurda fiyatları LME endeksi ve kura bağlı olarak her gün değişir.
           Aşağıdaki tablo alım yaptığımız kalemleri gösterir; günün kesin rakamı
           için bizi arayın.
         </p>
-        <p className="mt-3 text-sm text-celik-500">
+        <p className="mt-3 text-sm text-kurum-500">
           Son güncelleme: <time dateTime={guncelleme}>{tarih}</time>
         </p>
 
@@ -61,22 +61,22 @@ export default function FiyatlarSayfasi() {
           <div>
             {fiyatGruplari.map((grup) => (
               <section key={grup.baslik} className="mb-12">
-                <h2 className="text-2xl font-bold text-celik-900">
+                <h2 className="text-2xl font-bold text-lacivert-900">
                   {grup.baslik}
                 </h2>
-                <p className="mt-2 text-celik-600">{grup.aciklama}</p>
+                <p className="mt-2 text-kurum-600">{grup.aciklama}</p>
 
                 <div className="mt-5 overflow-x-auto">
                   <table className="w-full min-w-[480px] border-collapse text-left">
                     <thead>
-                      <tr className="border-b-2 border-celik-300">
-                        <th scope="col" className="py-3 pr-4 font-semibold text-celik-800">
+                      <tr className="border-b-2 border-kurum-300">
+                        <th scope="col" className="py-3 pr-4 font-semibold text-kurum-800">
                           Kalem
                         </th>
-                        <th scope="col" className="py-3 pr-4 font-semibold text-celik-800">
+                        <th scope="col" className="py-3 pr-4 font-semibold text-kurum-800">
                           Fiyat
                         </th>
-                        <th scope="col" className="py-3 font-semibold text-celik-800">
+                        <th scope="col" className="py-3 font-semibold text-kurum-800">
                           <span className="sr-only">İşlem</span>
                         </th>
                       </tr>
@@ -85,24 +85,24 @@ export default function FiyatlarSayfasi() {
                       {grup.kalemler.map((k) => {
                         const fiyat = fiyatYazdir(k);
                         return (
-                          <tr key={k.ad} className="border-b border-celik-200">
+                          <tr key={k.ad} className="border-b border-kurum-200">
                             <td className="py-3.5 pr-4">
-                              <span className="font-medium text-celik-800">
+                              <span className="font-medium text-kurum-800">
                                 {k.ad}
                               </span>
                               {k.not && (
-                                <span className="mt-0.5 block text-sm text-celik-500">
+                                <span className="mt-0.5 block text-sm text-kurum-500">
                                   {k.not}
                                 </span>
                               )}
                             </td>
                             <td className="py-3.5 pr-4 whitespace-nowrap">
                               {fiyat ? (
-                                <span className="font-semibold text-celik-900">
+                                <span className="font-semibold text-lacivert-900">
                                   {fiyat}
                                 </span>
                               ) : (
-                                <span className="text-celik-500">
+                                <span className="text-kurum-500">
                                   Günlük fiyat
                                 </span>
                               )}
@@ -110,7 +110,7 @@ export default function FiyatlarSayfasi() {
                             <td className="py-3.5 whitespace-nowrap">
                               <a
                                 href="#teklif"
-                                className="text-sm font-semibold text-bakir-600 underline underline-offset-4"
+                                className="text-sm font-semibold text-lacivert-600 underline underline-offset-4"
                               >
                                 Fiyat al
                               </a>
@@ -125,22 +125,22 @@ export default function FiyatlarSayfasi() {
             ))}
 
             <section className="mt-4">
-              <h2 className="text-2xl font-bold text-celik-900">
+              <h2 className="text-2xl font-bold text-lacivert-900">
                 Fiyatlar hakkında sık sorulanlar
               </h2>
-              <div className="mt-6 divide-y divide-celik-200 border-y border-celik-200">
+              <div className="mt-6 divide-y divide-kurum-200 border-y border-kurum-200">
                 {SSS.map((x) => (
                   <details key={x.s} className="group py-5">
-                    <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-celik-900">
+                    <summary className="flex cursor-pointer items-start justify-between gap-4 font-semibold text-lacivert-900">
                       {x.s}
                       <span
                         aria-hidden="true"
-                        className="mt-1 shrink-0 text-bakir-500 transition group-open:rotate-45"
+                        className="mt-1 shrink-0 text-lacivert-600 transition group-open:rotate-45"
                       >
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 leading-relaxed text-celik-600">{x.c}</p>
+                    <p className="mt-3 leading-relaxed text-kurum-600">{x.c}</p>
                   </details>
                 ))}
               </div>
