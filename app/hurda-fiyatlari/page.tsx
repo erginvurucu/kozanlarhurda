@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { fiyatYazdir } from "@/data/fiyatlar";
+import { metalSayfalari } from "@/data/metaller";
 import { fiyatlariBirlestir } from "@/lib/fiyatDeposu";
 import { usdKuru, tlYaz } from "@/lib/kur";
 import { site } from "@/lib/site";
@@ -77,6 +79,22 @@ export default async function FiyatlarSayfasi() {
             </p>
           )}
         </dl>
+
+        <nav aria-label="Metal kalemleri" className="mt-8">
+          <p className="etiket">Kaleme göre</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {metalSayfalari.map((m) => (
+              <li key={m.slug}>
+                <Link
+                  href={`/hurda-fiyatlari/${m.slug}`}
+                  className="inline-block border border-kurum-200 bg-white px-3.5 py-2 text-sm font-medium text-kurum-700 transition-colors hover:border-lacivert-600 hover:text-lacivert-700"
+                >
+                  {m.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className="mt-10 grid gap-12 lg:grid-cols-[1fr_380px]">
           <div>

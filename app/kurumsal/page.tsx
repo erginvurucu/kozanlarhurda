@@ -110,7 +110,7 @@ export default function KurumsalSayfasi() {
             <h1 className="mt-5 text-[36px] leading-[1.1] text-white sm:text-[46px]">
               Tesisinizin hurdası,
               <br className="hidden sm:block" />{" "}
-              <span className="text-fistik-400">eksiksiz evrakla</span>
+              <span className="text-fistik-400">söküm dahil alıyoruz</span>
             </h1>
 
             <p className="mt-6 max-w-prose text-lg leading-relaxed text-kurum-300">

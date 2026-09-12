@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { yazilar } from "@/data/rehber";
+import { metalSayfalari } from "@/data/metaller";
 import { ilceler, tumMahalleRotalari } from "@/data/ilceler";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...metalSayfalari.map((m) => ({
+      url: `${site.url}/hurda-fiyatlari/${m.slug}`,
+      lastModified: simdi,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
     {
       url: `${site.url}/kurumsal`,
       lastModified: simdi,
