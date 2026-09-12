@@ -233,8 +233,48 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  /* DİKKAT: Tek başına `animation-duration: 0.01ms` sonsuz döngülü
+     animasyonları DURDURMAZ — saniyede yüz binlerce kez başa sardırır ve
+     ortaya titreyen bir görüntü çıkar. `iteration-count: 1` bu yüzden şart. */
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /* Sürekli dönen dekoratif hareketler tamamen dursun. */
+  .animate-ticker,
+  .animate-spin-slow,
+  .animate-pulse-glow,
+  .animate-shimmer {
+    animation: none !important;
+  }
+
+  /* Ticker bilgi taşıyor; durduğunda da okunabilir kalmalı.
+     Tek satırda kaydırmak yerine sarmalayıp ortalıyoruz. */
+  .animate-ticker {
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+    gap: 0.5rem 1.5rem;
+  }
+  /* İçteki grup da sarmalanmalı; aksi halde tek parça kalıp taşar ve
+     kapsayıcının overflow-hidden'ı kalemlerin çoğunu kırpar. */
+  .animate-ticker > span {
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-shrink: 1;
+    gap: 0.5rem 1.5rem;
+  }
+  .ticker-kopya { display: none; }
+}
+
+/* Okumak isteyen kullanıcı bandın üzerine gelince duraksın. */
+@media (prefers-reduced-motion: no-preference) {
+  .ticker-kutu:hover .animate-ticker,
+  .ticker-kutu:focus-within .animate-ticker {
+    animation-play-state: paused;
   }
 }

@@ -79,10 +79,16 @@ export default function AnaSayfa() {
   return (
     <>
       {/* ── TICKER BANDI ── */}
-      <div className="bg-karanlik-900 text-white py-2 overflow-hidden">
+      <div className="ticker-kutu bg-karanlik-900 text-white py-2 overflow-hidden">
         <div className="animate-ticker flex gap-16 text-sm font-medium">
           {[...Array(2)].map((_, outer) => (
-            <span key={outer} className="flex gap-16 shrink-0">
+            <span
+              key={outer}
+              /* İkinci kopya yalnızca kesintisiz döngü içindir: ekran
+                 okuyucuya tekrar okutmuyoruz, hareket kapalıyken gizliyoruz. */
+              aria-hidden={outer === 1 ? true : undefined}
+              className={`flex gap-16 shrink-0${outer === 1 ? " ticker-kopya" : ""}`}
+            >
               {[
                 "♻ Bakır Alımı",
                 "♻ Alüminyum Alımı",
