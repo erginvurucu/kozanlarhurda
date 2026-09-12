@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { site, telLink } from "@/lib/site";
+import { site, telLink, mailLink } from "@/lib/site";
 import { PhoneIcon } from "./Cta";
 import { yakayaGore } from "@/data/ilceler";
 
@@ -114,17 +114,44 @@ export function Footer() {
               {site.description}
             </p>
 
-            <a
-              href={telLink}
-              data-cta="tel"
-              className="mt-5 inline-flex items-center gap-2 text-kirmizi-400 font-semibold hover:text-kirmizi-300 transition-colors"
-            >
-              <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-              {site.phoneDisplay}
-            </a>
+            {/* İletişim bilgileri */}
+            <div className="mt-5 flex flex-col gap-2.5">
+              <a
+                href={telLink}
+                data-cta="tel"
+                className="inline-flex items-center gap-2 text-kirmizi-400 font-semibold hover:text-kirmizi-300 transition-colors"
+              >
+                <PhoneIcon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                {site.phoneDisplay}
+              </a>
+
+              <a
+                href={mailLink}
+                className="inline-flex items-center gap-2 text-karanlik-400 hover:text-white transition-colors text-sm"
+              >
+                {/* E-posta ikonu */}
+                <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="currentColor" aria-hidden="true">
+                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/>
+                </svg>
+                {site.email}
+              </a>
+
+              <a
+                href={site.address.maps}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-start gap-2 text-karanlik-400 hover:text-white transition-colors text-sm"
+              >
+                {/* Konum ikonu */}
+                <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0 mt-0.5" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/>
+                </svg>
+                <span>{site.address.tam}</span>
+              </a>
+            </div>
 
             {/* Çevre badge */}
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-yesil-900/50 border border-yesil-700 px-3 py-1.5">
+            <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-yesil-900/50 border border-yesil-700 px-3 py-1.5">
               <span className="text-yesil-400 text-xs">♻</span>
               <span className="text-xs text-yesil-300 font-medium">Çevre Dostu Geri Dönüşüm</span>
             </div>

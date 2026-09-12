@@ -10,13 +10,22 @@ import { site } from "./site";
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "LocalBusiness",
     name: site.name,
+    legalName: site.legalName,
     url: site.url,
     description: site.description,
     telephone: site.phone,
     email: site.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: `${site.address.mahalle} ${site.address.cadde}`,
+      addressLocality: site.address.ilce,
+      addressRegion: site.address.sehir,
+      addressCountry: "TR",
+    },
     areaServed: { "@type": "City", name: "İstanbul" },
+    hasMap: site.address.maps,
   };
 }
 
