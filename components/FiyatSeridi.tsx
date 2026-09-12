@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { fiyatGruplari, fiyatYazdir, type FiyatKalemi } from "@/data/fiyatlar";
+import { fiyatYazdir, type FiyatKalemi, type FiyatGrubu } from "@/data/fiyatlar";
+import { fiyatlariBirlestir } from "@/lib/fiyatDeposu";
 import { usdKuru, tlYaz } from "@/lib/kur";
 
 /**
@@ -20,8 +21,8 @@ const VITRIN = [
   "Bakır kablo (soyulmuş)",
 ];
 
-function kalemBul(ad: string): FiyatKalemi | undefined {
-  for (const grup of fiyatGruplari) {
+function kalemBul(gruplar: FiyatGrubu[], ad: string): FiyatKalemi | undefined {
+  for (const grup of gruplar) {
     const k = grup.kalemler.find((x) => x.ad === ad);
     if (k) return k;
   }
@@ -29,10 +30,13 @@ function kalemBul(ad: string): FiyatKalemi | undefined {
 }
 
 export async function FiyatSeridi() {
-  const kur = await usdKuru();
+  const [kur, { gruplar }] = await Promise.all([
+    usdKuru(),
+    fiyatlariBirlestir(),
+  ]);
 
   const satirlar = VITRIN.map((ad) => {
-    const kalem = kalemBul(ad);
+    const kalem = kalemBul(gruplar, ad);
     return kalem
       ? { ad, kisaAd: kisalt(ad), fiyat: fiyatYazdir(kalem, kur.usd) }
       : null;

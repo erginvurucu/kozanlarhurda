@@ -1,5 +1,5 @@
-import { fiyatGruplari } from "@/data/fiyatlar";
 import { usdKuru, tlyeCevir } from "@/lib/kur";
+import { fiyatlariBirlestir } from "@/lib/fiyatDeposu";
 import { LeadForm } from "./LeadForm";
 import {
   HesapMakinesi,
@@ -14,9 +14,12 @@ import {
  * Boylece kur cagrisi tarayiciya tasinmaz ve USD marjlari disari sizmaz.
  */
 export async function TeklifVeHesap({ varsayilanIlce }: { varsayilanIlce?: string }) {
-  const kur = await usdKuru();
+  const [kur, { gruplar: kayitli }] = await Promise.all([
+    usdKuru(),
+    fiyatlariBirlestir(),
+  ]);
 
-  const gruplar: HesapGrubu[] = fiyatGruplari
+  const gruplar: HesapGrubu[] = kayitli
     .map((g) => ({
       kategori: g.baslik,
       kalemler: g.kalemler

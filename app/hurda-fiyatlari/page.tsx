@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { fiyatGruplari, fiyatYazdir } from "@/data/fiyatlar";
+import { fiyatYazdir } from "@/data/fiyatlar";
+import { fiyatlariBirlestir } from "@/lib/fiyatDeposu";
 import { usdKuru, tlYaz } from "@/lib/kur";
 import { site } from "@/lib/site";
 import { CtaBlok, StickyCallBar } from "@/components/Cta";
@@ -37,7 +38,10 @@ const SSS = [
 ];
 
 export default async function FiyatlarSayfasi() {
-  const kur = await usdKuru();
+  const [kur, { gruplar: fiyatGruplari }] = await Promise.all([
+    usdKuru(),
+    fiyatlariBirlestir(),
+  ]);
 
   return (
     <>
