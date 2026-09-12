@@ -123,8 +123,12 @@ export default function AnaSayfa() {
 
       {/* ── HERO ── */}
       <section className="zemin-kareli-koyu text-white">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1fr_0.95fr] lg:py-16">
-          <div>
+        {/* Gorsel solda, metin sagda.
+            Metin DOM'da ONCE geliyor (h1 erken olsun), gorsel CSS
+            sirasiyla sola aliniyor - boylece ekran okuyucu ve arama
+            motoru dogru sirayi gorurken duzen istenen sekilde kaliyor. */}
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.08fr_1fr] lg:py-16">
+          <div className="lg:order-2">
             {/* Eyebrow'da marka slogani kullanilmiyor: basligin kendisi de
                 slogan oldugu icin ikisi ust uste dolgu gibi okunuyordu.
                 Slogan footer'da marka kilitlemesinin yaninda duruyor. */}
@@ -206,7 +210,7 @@ export default function AnaSayfa() {
               tasidiklari bilgi zaten metinde var. */}
           <div
             aria-hidden="true"
-            className="relative hidden aspect-square w-full select-none lg:block"
+            className="relative hidden aspect-square w-full select-none lg:order-1 lg:block"
           >
             <Image
               src="/polip-vinc.png"
@@ -214,7 +218,7 @@ export default function AnaSayfa() {
               fill
               priority
               sizes="(min-width: 1024px) 46vw, 100vw"
-              className="object-contain object-right-top"
+              className="object-contain object-left-top"
             />
             {/* DİKKAT: sizes içinde "0px" dalı kullanma — tarayıcı sıfır
                 genişlikli kaynak seçip görseli hiç yüklemiyor. */}
@@ -225,7 +229,7 @@ export default function AnaSayfa() {
               height={850}
               priority
               sizes="(min-width: 1024px) 30vw, 100vw"
-              className="absolute -bottom-2 left-0 h-auto w-[64%] object-contain"
+              className="absolute -bottom-2 right-0 h-auto w-[64%] object-contain"
             />
           </div>
         </div>
