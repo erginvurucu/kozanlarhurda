@@ -1,4 +1,4 @@
-import { put, list } from "@vercel/blob";
+import { put, get } from "@vercel/blob";
 import { fiyatGruplari } from "@/data/fiyatlar";
 
 /**
@@ -35,16 +35,21 @@ export async function fiyatlariOku(): Promise<KayitliFiyatlar> {
   if (!tokenVarMi()) return BOS;
 
   try {
-    const { blobs } = await list({ prefix: DOSYA, limit: 1 });
-    const blob = blobs.find((b) => b.pathname === DOSYA);
-    if (!blob) return BOS;
+    // Depo "private" oldugu icin SDK uzerinden okuyoruz; dosya URL'si
+    // disaridan dogrudan cekilemez. Fiyatin disariya acik olmasina
+    // gerek de yok - siteye biz basiyoruz.
+    const blob = await get(DOSYA, {
+      access: "private",
+      // Panelden kaydedilen degisiklik aninda gorunsun.
+      useCache: false,
+    });
 
-    const res = await fetch(blob.url, { next: { revalidate: 60 } });
-    if (!res.ok) return BOS;
+    if (!blob || blob.statusCode !== 200 || !blob.stream) return BOS;
 
-    const veri = (await res.json()) as unknown;
-    return dogrula(veri);
+    const metin = await new Response(blob.stream).text();
+    return dogrula(JSON.parse(metin) as unknown);
   } catch {
+    // Dosya henuz yok, ag hatasi veya bozuk JSON - hepsinde bos don.
     return BOS;
   }
 }
@@ -63,7 +68,7 @@ export async function fiyatlariYaz(kalemler: KayitliFiyatlar["kalemler"]) {
   };
 
   await put(DOSYA, JSON.stringify(govde), {
-    access: "public",
+    access: "private",
     contentType: "application/json",
     // Ayni dosyanin uzerine yaz; her kayitta yeni dosya olusmasin.
     allowOverwrite: true,
