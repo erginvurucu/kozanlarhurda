@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site, telLink, mailLink } from "@/lib/site";
 import { PhoneIcon } from "./Cta";
+import { MobilMenu } from "./MobilMenu";
 import { yakayaGore, sehreGore } from "@/data/ilceler";
 
 /**
@@ -54,7 +55,7 @@ const MENU = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-kurum-200">
+    <header className="sticky top-0 z-40 border-b border-kurum-200 bg-white">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5">
         <Link href="/" aria-label={`${site.name} ana sayfa`}>
           <Marka />
@@ -80,15 +81,19 @@ export function Header() {
           </a>
         </nav>
 
-        <a
-          href={telLink}
-          data-cta="tel"
-          aria-label={`Telefonla ara: ${site.phoneDisplay}`}
-          className="dugme dugme-ana px-4 py-2.5 text-sm md:hidden"
-        >
-          <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-          Hemen Ara
-        </a>
+        {/* Mobil: ana eylem gorunur kalir, gerisi menude */}
+        <div className="flex items-center gap-2 md:hidden">
+          <a
+            href={telLink}
+            data-cta="tel"
+            aria-label={`Telefonla ara: ${site.phoneDisplay}`}
+            className="dugme dugme-ana px-4 py-2.5 text-sm"
+          >
+            <PhoneIcon className="h-4 w-4" aria-hidden="true" />
+            Ara
+          </a>
+          <MobilMenu menu={MENU} />
+        </div>
       </div>
 
       {/* Marka renklerinin ince yapısal şeridi */}
