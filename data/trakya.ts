@@ -53,6 +53,36 @@ export const trakyaIlceleri: Ilce[] = [
         c: "Evet. Kurumsal alımlarda sevk irsaliyesi ve fatura zinciri eksiksiz yürütülür, kantar fişinin bir nüshası size teslim edilir.",
       },
     ],
+    altSayfalar: [
+      {
+        slug: "kizilpinar",
+        ad: "Kızılpınar",
+        profil:
+          "Kızılpınar, Çerkezköy OSB'nin hemen yanında büyümüş, sanayi ile konutun iç içe geçtiği bir bölge. OSB çevresindeki yan sanayi atölyelerinden sac fire, profil artığı, hurda kalıp ve kaynak konstrüksiyonu çıkıyor. Aynı anda hızla artan konut stoğu nedeniyle beyaz eşya, kombi ve tadilat hurdası da düzenli akış hâlinde. Tonajı düşük ama sürekli iş hacmi olan bir hat.",
+        sss: [
+          {
+            s: "OSB dışındaki atölyemden alım yapıyor musunuz?",
+            c: "Yapıyoruz. OSB girişi gerekmediği için planlama daha esnek; güzergâh üzerindeki diğer alımlarla birlikte randevu veriyoruz.",
+          },
+        ],
+      },
+      {
+        slug: "velikoy",
+        ad: "Veliköy",
+        profil:
+          "Veliköy, Çerkezköy'ün ikinci sanayi yoğunlaşma noktası. Tekstil, kimya ve plastik tesisleri ağırlıkta; buradan üretim firesi, hurda kalıp, konveyör aksamı ve paslanmaz hat malzemesi çıkıyor. Tesis ölçekleri OSB'ye göre daha değişken olduğu için hem tonajlı hem tek kalemlik işler görülüyor. Ağır araç erişimi uygun, yükleme alanları geniş.",
+        sss: [
+          {
+            s: "Tesisimizden düzenli fire çıkıyor, anlaşma yapabilir miyiz?",
+            c: "Evet. Periyodik anlaşmada belirlenen sıklıkta veya belirli bir tonaja ulaşıldığında ekip yönlendirilir; sahanız sürekli boş kalır ve her seferinde yeniden teklif toplamanız gerekmez.",
+          },
+          {
+            s: "İrsaliye düzenleniyor mu?",
+            c: "Evet. Kurumsal alımlarda sevk irsaliyesi ve fatura zinciri eksiksiz yürütülür, kantar fişinin bir nüshası size teslim edilir.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "corlu",

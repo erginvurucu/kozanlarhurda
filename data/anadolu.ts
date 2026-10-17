@@ -86,6 +86,24 @@ export const anadoluIlceleri: Ilce[] = [
       { s: "Kentsel dönüşüm bölgesinden toplu söküm var mı?", c: "Evet, Gülsuyu ve çevresinde yıkım öncesi metal sökümü yapılıyor." },
       { s: "Eğimli sokağa araç çıkabiliyor mu?", c: "Evet, bölgenin yol yapısına uygun araçlarla hizmet veriliyor." },
     ],
+    altSayfalar: [
+      {
+        slug: "cevizli",
+        ad: "Cevizli",
+        profil:
+          "Cevizli, eski sanayi alanlarının ofis ve konut projelerine dönüştüğü bir bölge. Bu dönüşüm hurda profilini de belirliyor: tasfiye edilen iş yerlerinden ofis mobilyası iskeleti, klima ve havalandırma hattı, elektrik panosu ve kablo çıkıyor. Plaza ve iş merkezi yoğunluğu nedeniyle ticari mutfak ekipmanı da düzenli bir kalem. E-5 ve Bağdat Caddesi bağlantıları sayesinde araç erişimi rahat.",
+        sss: [
+          {
+            s: "Ofis tasfiyesinde ne alıyorsunuz?",
+            c: "Metal içeren her şey: mobilya iskeleti, raf, dolap, klima ve havalandırma hattı, elektrik panosu ve kablo. Ahşap ve plastik kısımlar ayrılıp size bırakılır.",
+          },
+          {
+            s: "Ticari mutfak ekipmanı değerli mi?",
+            c: "Evet. Paslanmaz tezgâh, davlumbaz ve ocak hem hurda hem ikinci el değeri açısından değerlendirilir; çalışır durumdaki cihazlarda genellikle hurda kilo fiyatının üzerinde teklif çıkar.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "kartal",
@@ -102,6 +120,36 @@ export const anadoluIlceleri: Ilce[] = [
       { s: "Otomotiv yan sanayi hurdası alıyor musunuz?", c: "Evet. Kartal'da oto yan sanayi yoğun; sac parça, jant, akü ve motor bloğu düzenli alınıyor." },
       { s: "Fabrika yıkımından çelik konstrüksiyon alımı olur mu?", c: "Evet, tonajlı çelik konstrüksiyon sökümü ve alımı yapılıyor; kantarlı ve irsaliyeli çalışılıyor." },
       { s: "Soğanlık'taki atölyemden periyodik alım mümkün mü?", c: "Evet, düzenli fire çıkaran atölyelerle periyodik alım anlaşması yapılıyor." },
+    ],
+    altSayfalar: [
+      {
+        slug: "soganlik",
+        ad: "Soğanlık",
+        profil:
+          "Soğanlık, Kartal'ın sanayi geçmişini taşıyan ve bugün hızla dönüşen bölgesi. E-5 yakınlığı nedeniyle lojistik depo ve toptan ticaret yoğun; buradan raf sistemi, konteyner aksamı, palet demiri ve depo konstrüksiyonu çıkıyor. Kentsel dönüşümün en hareketli olduğu hatlardan biri olduğu için yıkım kaynaklı inşaat demiri, doğrama ve tesisat hurdası da düzenli kalem. Ağır araç erişimi rahat olduğundan tonajlı işler sorunsuz planlanıyor.",
+        sss: [
+          {
+            s: "Depo raf sistemi sökümü yapıyor musunuz?",
+            c: "Evet. Raf sistemi sökümü ekipman gerektiren ayrı bir kalemdir; keşifte kapsam ve süre netleştirilir, teklif hurdanın değeri ile söküm birlikte değerlendirilerek verilir.",
+          },
+          {
+            s: "Kentsel dönüşümde yıkılacak binanın hurdasını alır mısınız?",
+            c: "Alırız. Yıkım öncesi doğrama, tesisat, kazan ve demir aksam sökülerek değerlendirilir. Bu iş müteahhit veya yönetimle birlikte planlanır.",
+          },
+        ],
+      },
+      {
+        slug: "yakacik",
+        ad: "Yakacık",
+        profil:
+          "Yakacık, eski sanayi parselleri ile yoğun konutun bir arada bulunduğu bir bölge. Dönüşen sanayi alanlarından konstrüksiyon, çelik çatı ve tesisat hurdası; konut tarafından ise beyaz eşya, kombi, petek ve alüminyum doğrama çıkıyor. Yamaçlı yapısı nedeniyle bazı sokaklarda büyük araç girişi kısıtlı; bu noktalarda küçük araçla çalışıp ara aktarma yapıyoruz.",
+        sss: [
+          {
+            s: "Sokağımız dar, kamyon giremiyor. Yine de gelir misiniz?",
+            c: "Geliriz. Dar sokaklarda küçük araçla yükleme yapıp ana caddede aktarıyoruz; bu sizin için ek maliyet oluşturmaz.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -153,6 +201,52 @@ export const anadoluIlceleri: Ilce[] = [
       { s: "Samandıra'daki depomuzdan raf alımı olur mu?", c: "Evet, depo raf sistemi sökümü ve tonajlı alım yapılıyor." },
       { s: "Müstakil evimin bahçesindeki hurdayı alıyor musunuz?", c: "Evet, bahçe demiri, kazan, su deposu ve hurda metal alınıyor." },
       { s: "Aynı gün gelme imkânı var mı?", c: "Sabah verilen taleplerde çoğunlukla aynı gün, öğleden sonra verilenlerde ertesi gün ekip yönlendiriliyor." },
+    ],
+    altSayfalar: [
+      {
+        slug: "samandira",
+        ad: "Samandıra",
+        profil:
+          "Samandıra, Sancaktepe'nin sanayi yüzü. Sanayi sitesi ve çevresindeki oto tamir, kaporta ve yedek parça atölyeleri bölgenin hurda profilini belirliyor: sac fire, hurda araç parçası, motor bloğu, radyatör ve akü düzenli çıkan kalemler. TEM ve Şile yolu bağlantısı sayesinde lojistik depolar da yoğun; buralardan raf sistemi sökümü, palet demiri ve konteyner aksamı geliyor. Atölye ölçeği küçük olduğu için tonaj genelde düşük ama akış süreklidir.",
+        sss: [
+          {
+            s: "Oto sanayideki atölyemden düzenli alım yapar mısınız?",
+            c: "Yaparız. Küçük tonajlı ama düzenli çıkan işlerde güzergâh üzerinde planlama yapıyoruz; belirli bir miktara ulaşınca ekip yönlendiriliyor.",
+          },
+          {
+            s: "Hurda araç parçası ve motor bloğu alıyor musunuz?",
+            c: "Evet. Motor bloğu, şanzıman, radyatör ve kaporta sacı ayrı ayrı değerlendiriliyor; dökme demir ile sac farklı fiyatlanır.",
+          },
+        ],
+      },
+      {
+        slug: "yenidogan",
+        ad: "Yenidoğan",
+        profil:
+          "Yenidoğan, Sancaktepe'nin en hızlı kentleşen bölgelerinden. Yeni site ve apartman stoğu yüksek olduğu için hurda akışı ağırlıklı olarak ev kaynaklı: taşınma ve tadilatlardan çıkan beyaz eşya, kombi, petek, alüminyum doğrama ve mutfak ankastresi. Eski müstakil doku ile yeni siteler iç içe geçtiği için aynı sokakta hem bahçe demiri hem site tadilat hurdası çıkabiliyor.",
+        sss: [
+          {
+            s: "Asansörsüz binadayım, eşyayı indirir misiniz?",
+            c: "İndiririz. Kat farkı gözetmiyoruz ve indirme için ayrıca ücret talep etmiyoruz; kat ve asansör bilgisini önceden belirtmeniz ekibi doğru planlamamızı sağlar.",
+          },
+          {
+            s: "Site yönetimi olarak toplu hurda verebilir miyiz?",
+            c: "Evet. Site tadilatlarında çıkan petek, doğrama ve hurda metal için tek seferde alım yapıyoruz; yönetimle randevu üzerinden çalışıyoruz.",
+          },
+        ],
+      },
+      {
+        slug: "sarigazi",
+        ad: "Sarıgazi",
+        profil:
+          "Sarıgazi, konut ile küçük imalatın yan yana durduğu bir bölge. Sanayi sitesinde mobilya, metal işleme ve plastik atölyeleri bulunuyor; buradan profil artığı, sac fire, hurda kalıp ve tezgâh çıkıyor. Konut tarafında ise yoğun apartman dokusu nedeniyle beyaz eşya ve tadilat hurdası sürekli akış hâlinde. İki profil bir arada olduğu için hem küçük hem orta ölçekli işler aynı güzergâhta planlanabiliyor.",
+        sss: [
+          {
+            s: "Atölyemdeki hurda tezgâhı alır mısınız?",
+            c: "Alırız. Tezgâh ve makine hem tonaj hem metal cinsi olarak değerlendirilir; yerinden sökülmesi gerekiyorsa keşifte birlikte planlıyoruz.",
+          },
+        ],
+      },
     ],
   },
   {

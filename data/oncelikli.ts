@@ -52,6 +52,23 @@ export const oncelikliIlceler: Ilce[] = [
     ],
     altSayfalar: [
       {
+        slug: "guzelyurt",
+        ad: "Güzelyurt",
+        profil:
+          "Güzelyurt, Esenyurt'un en yoğun konut bölgelerinden. Site ve apartman stoğu yüksek, nüfus hareketliliği fazla olduğu için hurda akışı büyük ölçüde taşınma ve tadilat kaynaklı: beyaz eşya, kombi, petek, alüminyum doğrama ve mutfak ankastresi. Ticaret hattında küçük işletmeler bulunduğundan dükkân tadilatlarından çıkan vitrin profili ve soğutma ekipmanı da düzenli kalem.",
+        sss: [
+          {
+            s: "Taşınıyorum, tek seferde çok eşya var. Gelir misiniz?",
+            c: "Geliriz. Taşınma hurdası bizim en sık yaptığımız iş; indirme ve taşıma dahildir, kat farkı gözetmiyoruz. Fotoğraf gönderirseniz araç ve ekip planlamasını önceden yaparız.",
+          },
+          {
+            s: "Dükkân tadilatından çıkan hurdayı alıyor musunuz?",
+            c: "Evet. Vitrin profili, raf, soğutma dolabı ve klima dahil metal içeren her şey değerlendirilir.",
+          },
+        ],
+      },
+
+      {
         slug: "kirac",
         ad: "Kıraç",
         profil:
