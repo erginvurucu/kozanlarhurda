@@ -28,7 +28,29 @@ export async function generateMetadata({
   if (!ilce) return {};
 
   const baslik = `${ilce.ad} Hurdacı — Yerinde Hurda Alımı`;
-  const aciklama = `${ilce.ad} ve çevresinde yerinde hurda alımı. ${ilce.varis} içinde ekip. Keşif ve nakliye ücretsiz, ödeme yerinde nakit.`;
+
+  /**
+   * Arama sonucunda gorunen metin. Uc sey onemli:
+   * - Telefon numarasi: yerel hizmet aramasinda tiklamanin en guclu tetikleyicisi
+   * - Somut vaat (indirme dahil, kantar): rakiplerin yazmadigi sey
+   * - ~155 karakter: Google'in kirpmadan gosterdigi sinir
+   *
+   * `varis` metni ile cumle kurarken dikkat: Istanbul'da "Ortalama 30-45
+   * dakika", Trakya'da "Randevulu — tonaja gore planlanir" yaziyor. Ikisine
+   * birden "... icinde ekip" eklemek Trakya'da bozuk cumle uretiyordu.
+   */
+  const varisCumlesi = ilce.varis.toLowerCase().includes("dakika")
+    ? `${ilce.varis} içinde ekip yönlendiriyoruz.`
+    : `${ilce.varis}.`;
+
+  const bas = `${ilce.ad} hurdacı ☎ ${site.phoneDisplay} — yerinde hurda alımı. `;
+  const son = `İndirme dahil, kalibreli kantarla tartım, ödeme teslim anında nakit.`;
+
+  /* Google ~160 karakterden sonrasini kirpiyor. Varis cumlesi bazi
+     ilcelerde uzun ("Ortalama 30-45 dakika, Kirac hattinda 20-30 dakika");
+     sigmiyorsa onu atiyoruz, telefon ve vaat her zaman kaliyor. */
+  const uzun = `${bas}${varisCumlesi} ${son}`;
+  const aciklama = uzun.length <= 160 ? uzun : `${bas}${son}`;
 
   return {
     title: baslik,

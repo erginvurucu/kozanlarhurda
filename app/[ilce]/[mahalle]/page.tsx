@@ -29,7 +29,13 @@ export async function generateMetadata({
   if (!ilce || !mahalle) return {};
 
   const baslik = `${mahalle.ad} Hurdacı (${ilce.ad}) — Yerinde Hurda Alımı`;
-  const aciklama = `${ilce.ad} ${mahalle.ad}'de yerinde hurda alımı. Keşif ve nakliye ücretsiz, ödeme yerinde nakit.`;
+
+  /* Telefon + somut vaat; ~155 karakterlik alanin tamami kullaniliyor.
+     Onceki metin 95 karakterde kaliyor ve alanin yarisini bos birakiyordu. */
+  const bas = `${mahalle.ad} hurdacı ☎ ${site.phoneDisplay} — ${ilce.ad} ${mahalle.ad}'de yerinde hurda alımı. `;
+  const uzun = `${bas}Keşif ve indirme ücretsiz, kalibreli kantarla tartım, ödeme teslim anında nakit.`;
+  const kisa = `${bas}İndirme dahil, kantarla tartım, ödeme anında nakit.`;
+  const aciklama = uzun.length <= 160 ? uzun : kisa;
 
   return {
     title: baslik,
