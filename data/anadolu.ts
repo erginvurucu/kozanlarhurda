@@ -35,6 +35,52 @@ export const anadoluIlceleri: Ilce[] = [
       { s: "Tarihi evimden çıkan eski doğramayı alıyor musunuz?", c: "Evet, ancak tescilli yapılarda koruma kurulu izni olmadan söküm yapılmıyor." },
       { s: "Altunizade'deki ofisimizden alım yapılabilir mi?", c: "Evet, kurumsal ofis boşaltmaları için ekip yönlendiriliyor ve irsaliye düzenleniyor." },
     ],
+    altSayfalar: [
+      {
+        slug: "altunizade",
+        ad: "Altunizade",
+        profil:
+          "Altunizade, Üsküdar'ın ofis ve plaza bölgesi. Hurda profili ilçenin geri kalanından belirgin biçimde farklı: ağırlık kurumsal tasfiyeden geliyor. Taşınan veya yenilenen ofislerden mobilya iskeleti, metal dolap ve raf, klima ve havalandırma hattı, elektrik panosu ve kablo çıkıyor. İş merkezlerindeki kafe ve yemekhanelerden ticari mutfak ekipmanı da düzenli bir kalem. Otopark ve yükleme alanları bulunduğu için araç erişimi rahat.",
+        sss: [
+          {
+            s: "Ofis tasfiyesinde neyi alıyorsunuz?",
+            c: "Metal içeren her şey: mobilya iskeleti, dolap, raf, klima ve havalandırma hattı, pano ve kablo. Ahşap ve plastik kısımlar ayrılıp size bırakılır.",
+          },
+          {
+            s: "Mesai dışında çalışabilir misiniz?",
+            c: "Evet. İş merkezlerinde yükleme genellikle mesai dışına planlanır; bina yönetiminin verdiği saat aralığına uyuyoruz.",
+          },
+        ],
+      },
+      {
+        slug: "bulgurlu",
+        ad: "Bulgurlu",
+        profil:
+          "Bulgurlu, yoğun konut ile ticaret hattının yan yana durduğu bir bölge. Cadde üzerindeki dükkân ve küçük işletmelerden vitrin profili, raf, soğutma dolabı ve klima çıkıyor. Konut tarafında ise apartman stoğu eski olduğu için tadilat kaynaklı hurda sürekli: petek, kombi, alüminyum doğrama ve banyo-mutfak sökümü. Yokuşlu sokak yapısı nedeniyle bazı noktalarda büyük araç girişi kısıtlı.",
+        sss: [
+          {
+            s: "Dükkân tadilatından çıkan hurdayı alıyor musunuz?",
+            c: "Evet. Vitrin profili, raf, soğutma ekipmanı ve klima dahil metal içeren her şey değerlendirilir.",
+          },
+        ],
+      },
+      {
+        slug: "cengelkoy",
+        ad: "Çengelköy",
+        profil:
+          "Çengelköy, eski doku ile sahil yerleşiminin korunduğu bir bölge. Tarihî ve müstakil yapı oranı yüksek olduğundan hurda çoğunlukla restorasyon ve tadilat kaynaklı: dökme demir kalorifer, eski tesisat borusu, ferforje, bahçe demiri ve kazan. Sahil hattındaki kafe ve restoranlardan ticari mutfak ekipmanı çıkıyor. Sokaklar dar ve eğimli; bu noktalarda küçük araçla yükleyip ana caddede aktarıyoruz.",
+        sss: [
+          {
+            s: "Sokağımıza kamyon giremiyor, yine de gelir misiniz?",
+            c: "Geliriz. Dar ve eğimli sokaklarda küçük araçla yükleme yapıp ana caddede aktarıyoruz; bu size ek maliyet oluşturmaz.",
+          },
+          {
+            s: "Eski dökme demir kalorifer ve ferforje alıyor musunuz?",
+            c: "Evet. Dökme demir ayrı bir kalemdir ve sac hurdasından farklı fiyatlanır; ferforje ve bahçe demiri de değerlendirilir.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "atasehir",
@@ -315,6 +361,24 @@ export const anadoluIlceleri: Ilce[] = [
       { s: "Şile'ye gerçekten geliyor musunuz?", c: "Evet, ancak mesafe nedeniyle randevu önceden planlanıyor ve toplu alımlar tercih ediliyor." },
       { s: "Yazlık evimden sezon sonu alım yapılabilir mi?", c: "Evet, sezon kapanışlarında toplu alım randevusu veriliyor." },
       { s: "Tekne aksamı ve paslanmaz alıyor musunuz?", c: "Evet, paslanmaz ve alüminyum tekne aksamı ayrı kategoride değerlendiriliyor." },
+    ],
+    altSayfalar: [
+      {
+        slug: "agva",
+        ad: "Ağva",
+        profil:
+          "Ağva, Şile'nin turizm merkezi. Pansiyon, butik otel ve kır restoranları yoğun olduğundan hurda akışı sezon ritmine bağlı: sezon sonu yenilemelerinde ticari mutfak ekipmanı, paslanmaz tezgâh, soğutma dolabı, klima ve bahçe mobilyası iskeleti çıkıyor. Çevre köylerde ise tarımsal yapı baskın; hurdaya ayrılmış tarım makinesi, römork, su deposu ve ahır demiri düzenli kalemler. Kırsal yollarda araç tipi mevsime göre seçiliyor.",
+        sss: [
+          {
+            s: "Köydeyim, uzak nokta. Yine de gelir misiniz?",
+            c: "Geliriz. Uzak noktalarda randevu güzergâh planına göre verilir; tonaj düşükse bölgedeki diğer alımlarla birlikte planlanır.",
+          },
+          {
+            s: "Hurda tarım makinesi ve römork alıyor musunuz?",
+            c: "Evet. Tarım makinesi hem tonaj hem metal cinsi bakımından değerlidir. Trafik kaydı olan araçlarda hurdaya ayırma işlemi ayrı bir süreçtir, birlikte planlıyoruz.",
+          },
+        ],
+      },
     ],
   },
   {

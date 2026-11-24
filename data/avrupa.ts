@@ -69,6 +69,36 @@ export const avrupaIlceleri: Ilce[] = [
       { s: "Kombi ve petek değişiminde eski ürünü alıyor musunuz?", c: "Evet. Bahçelievler'de kombi-petek değişimi çok yaygın; eski ürünler yerinde tartılarak alınıyor." },
       { s: "Sunucu ve elektronik atık alıyor musunuz?", c: "Metal içerikli elektronik ekipman alınıyor. Veri içeren cihazlarda disk sökümü ve teslimi talep üzerine yapılıyor." },
     ],
+    altSayfalar: [
+      {
+        slug: "yenibosna",
+        ad: "Yenibosna",
+        profil:
+          "Yenibosna, Bahçelievler'in sanayi ve iş merkezi yüzü. Basın Ekspres hattı boyunca plaza, otel ve ofis yoğunluğu; arka hatlarda ise matbaa, tekstil ve metal işleme atölyeleri bulunuyor. Bu ikili yapı hurda profilini belirliyor: bir yanda ofis tasfiyesinden çıkan mobilya iskeleti, klima ve pano; diğer yanda atölyelerden sac fire, hurda kalıp, matbaa silindiri ve alüminyum ofset kalıbı. Ofset kalıbı bölgede en sık çıkan yüksek değerli kalemlerden biri.",
+        sss: [
+          {
+            s: "Matbaa ofset kalıbı alıyor musunuz?",
+            c: "Evet. Alüminyum ofset kalıbı ayrı bir kalem olarak değerlendirilir ve karışık alüminyumun üzerinde fiyatlanır; ayrı biriktirmeniz getirisini artırır.",
+          },
+          {
+            s: "Plaza ve ofis tasfiyesi yapıyor musunuz?",
+            c: "Evet. Bina yönetiminin verdiği saat aralığında çalışıyor, metal olanları ayırıp kalanını size bırakıyoruz.",
+          },
+        ],
+      },
+      {
+        slug: "sirinevler",
+        ad: "Şirinevler",
+        profil:
+          "Şirinevler, yoğun konut ve cadde ticaretinin iç içe geçtiği bir bölge. Apartman stoğu eski olduğu için tadilat kaynaklı hurda sürekli akış hâlinde: petek, kombi, alüminyum doğrama, banyo-mutfak sökümü ve eski tesisat. Cadde üzerindeki dükkânlardan vitrin profili, raf ve soğutma dolabı çıkıyor. Trafik ve park yoğunluğu yüksek olduğu için yükleme saatini önceden planlıyoruz.",
+        sss: [
+          {
+            s: "Apartman tadilatında çıkan hurdayı alır mısınız?",
+            c: "Alırız. Petek, kombi, doğrama ve tesisat hurdası düzenli aldığımız kalemler; indirme ve taşıma bize ait, kat farkı gözetmiyoruz.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "gungoren",
@@ -102,6 +132,36 @@ export const avrupaIlceleri: Ilce[] = [
       { s: "Kentsel dönüşüm binamızdan söküm yapıyor musunuz?", c: "Evet. Esenler'de yıkım öncesi doğrama ve demir sökümü müteahhit koordinasyonuyla yapılıyor." },
       { s: "Davutpaşa'daki atölyemden düzenli alım olur mu?", c: "Evet, düzenli fire çıkaran atölyelerle periyodik alım anlaşması yapılıyor." },
       { s: "Yokuşlu sokağa araç çıkabiliyor mu?", c: "Evet. Esenler'in eğimli sokak yapısına uygun kamyonetlerle çalışılıyor." },
+    ],
+    altSayfalar: [
+      {
+        slug: "davutpasa",
+        ad: "Davutpaşa",
+        profil:
+          "Davutpaşa, Esenler'in sanayi çekirdeği. Tekstil, konfeksiyon, ayakkabı ve küçük metal imalat atölyeleri yoğun. Çıkan hurdanın karakteri atölye ölçeğine uygun: sac fire, profil artığı, hurda kalıp, makine ve tezgâh, askı ve raf sistemi. Konfeksiyon yoğunluğu nedeniyle metal askı ve manken iskeleti de düzenli bir kalem. Sanayi sitesi yapısı nedeniyle tonaj genelde orta ölçekli ama akış süreklidir.",
+        sss: [
+          {
+            s: "Atölyemdeki hurda tezgâhı ve makineyi alır mısınız?",
+            c: "Alırız. Tezgâh ve makine hem tonaj hem metal cinsi olarak değerlendirilir; yerinden sökülmesi gerekiyorsa keşifte birlikte planlıyoruz.",
+          },
+          {
+            s: "Küçük tonajlı ama düzenli iş için gelir misiniz?",
+            c: "Geliriz. Güzergâh üzerindeki diğer alımlarla birlikte planlıyoruz; belirli bir miktara ulaşınca ekip yönlendiriliyor.",
+          },
+        ],
+      },
+      {
+        slug: "orucreis",
+        ad: "Oruçreis",
+        profil:
+          "Oruçreis, konut ile küçük imalatın yan yana durduğu bir bölge. Sanayi sitesi çevresindeki atölyelerden sac fire ve profil artığı; konut tarafından ise beyaz eşya, kombi, petek ve tadilat hurdası çıkıyor. Apartman yoğunluğu yüksek ve çoğu asansörsüz; bu yüzden indirme bizim için standart iş, kat farkı için ücret talep etmiyoruz.",
+        sss: [
+          {
+            s: "Asansörsüz 4. kattayım, ücret farkı çıkar mı?",
+            c: "Çıkmaz. İndirme hizmete dahildir ve kat farkı gözetmiyoruz. Kat bilgisini önceden belirtmeniz ekibe ilave personel vermemizi sağlar.",
+          },
+        ],
+      },
     ],
   },
   {
@@ -324,6 +384,36 @@ export const avrupaIlceleri: Ilce[] = [
       { s: "Mimarsinan OSB'den tonajlı alım var mı?", c: "Evet, kantarlı kamyonla ve irsaliyeli çalışılıyor." },
       { s: "Mesafe nedeniyle ek ücret alıyor musunuz?", c: "Hayır, keşif ve nakliye ücretsiz. Ancak uzak noktalarda randevu bir gün önceden planlanıyor." },
     ],
+    altSayfalar: [
+      {
+        slug: "mimarsinan",
+        ad: "Mimarsinan",
+        profil:
+          "Mimarsinan, Büyükçekmece'nin organize sanayi yüzü. Metal işleme, plastik, gıda ve yapı malzemesi tesisleri bulunuyor. Çıkan hurda tonajlı ve kurumsal: pres ve giyotin fire, torna talaşı, hurda kalıp, konveyör aksamı ve paslanmaz proses hattı. Tesis yenilemelerinde çelik konstrüksiyon ve çatı sökümü de gündeme geliyor. OSB içi yollar ağır araca uygun, yükleme alanları geniş.",
+        sss: [
+          {
+            s: "Tonajlı alımda tartım nasıl yapılıyor?",
+            c: "Araç boş ve dolu tartılır, aradaki fark net ağırlıktır. Kantar fişinin bir nüshası size teslim edilir; fatura tutarının dayanağı budur.",
+          },
+          {
+            s: "Çelik konstrüksiyon sökümü yapıyor musunuz?",
+            c: "Evet. Kesim ve vinç gerektiren işlerde kapsam, süre ve iş güvenliği sorumluluğu keşifte yazılı olarak netleştirilir.",
+          },
+        ],
+      },
+      {
+        slug: "kumburgaz",
+        ad: "Kumburgaz",
+        profil:
+          "Kumburgaz, sahil turizmi ve ticaret hattının belirlediği bir bölge. Otel, pansiyon ve sahil restoranları yoğun; bu yüzden ticari mutfak ekipmanı, paslanmaz tezgâh, davlumbaz, soğutma dolabı ve klima en sık çıkan kalemler. Sezon sonu yenilemelerinde toplu çıkış oluyor. Villa ve yazlık site dokusu nedeniyle bahçe demiri, ferforje ve su deposu da düzenli değerlendiriliyor.",
+        sss: [
+          {
+            s: "Otelimizi yeniliyoruz, toplu ekipman çıkışı var. Gelir misiniz?",
+            c: "Geliriz. Sezon sonu toplu yenilemelerde tek seferde alım yapıyoruz; çalışır durumdaki ekipmanda hurda kilo fiyatı yerine ikinci el değeri konuşulur, bu genellikle daha yüksek bir rakam demektir.",
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "silivri",
@@ -374,6 +464,48 @@ export const avrupaIlceleri: Ilce[] = [
       { s: "Hadımköy'deki fabrikamızdan tonajlı alım yapıyor musunuz?", c: "Evet. Hadımköy bölgesinde kantarlı kamyonla, irsaliyeli ve düzenli periyotlu alım yapılıyor." },
       { s: "Depo raf sistemi sökümü yapılıyor mu?", c: "Evet, raf ve çelik konstrüksiyon sökümü ekiple ve iş güvenliği kurallarına uygun yapılıyor." },
       { s: "Konteyner bırakma hizmetiniz var mı?", c: "Evet, düzenli fire çıkaran tesislere konteyner bırakılıp dolunca alım yapılabiliyor." },
+    ],
+    altSayfalar: [
+      {
+        slug: "hadimkoy",
+        ad: "Hadımköy",
+        profil:
+          "Hadımköy, Arnavutköy'ün en ağır sanayi hattı. Tekstil, plastik, ambalaj ve lojistik tesisleri yoğun; buradan çıkan hurda tonajlı ve kurumsal karakterde: pres fire, sac artığı, hurda kalıp, konveyör ve raf sistemi. Depo yoğunluğu nedeniyle palet demiri, konteyner aksamı ve çelik çatı sökümü de düzenli iş kalemleri. Tesisler kurumsal olduğu için irsaliye ve kantar fişi standart beklentidir.",
+        sss: [
+          {
+            s: "Tesisimizden düzenli fire çıkıyor, periyodik anlaşma olur mu?",
+            c: "Olur. Belirlenen sıklıkta veya belirli bir tonaja ulaşıldığında ekip yönlendiriliyor; sahanız sürekli boş kalır, her seferinde yeniden teklif toplamanız gerekmez.",
+          },
+          {
+            s: "İrsaliye ve kantar fişi veriyor musunuz?",
+            c: "Evet. Kurumsal alımlarda sevk irsaliyesi ve fatura zinciri eksiksiz yürütülür, kantar fişinin bir nüshası size teslim edilir.",
+          },
+        ],
+      },
+      {
+        slug: "deliklikaya",
+        ad: "Deliklikaya",
+        profil:
+          "Deliklikaya, havalimanı ve kuzey çevre yolu hattının getirdiği lojistik yoğunluğun merkezinde. Bölgede depo, aktarma merkezi ve orta ölçekli imalat tesisleri bulunuyor. Çıkan hurdanın ağırlığını depolama ve taşıma ekipmanı oluşturuyor: raf sistemi, palet demiri, konteyner ve römork aksamı, forklift. Metal işleme atölyelerinden ise sac fire ve profil artığı geliyor. Geniş parseller ve açık saha yapısı sayesinde ağır araçla yükleme sorunsuz.",
+        sss: [
+          {
+            s: "Depo raf sistemi sökümü yapıyor musunuz?",
+            c: "Evet. Raf sökümü ekipman gerektiren ayrı bir kalemdir; keşifte kapsam ve süre netleştirilir, teklif hurdanın değeri ile söküm birlikte değerlendirilerek verilir.",
+          },
+        ],
+      },
+      {
+        slug: "tasoluk",
+        ad: "Taşoluk",
+        profil:
+          "Taşoluk, Arnavutköy'ün en hızlı konutlaşan bölgesi. Toplu konut ve site stoğu yüksek, nüfus hareketliliği fazla; bu yüzden hurda akışı ağırlıklı olarak ev kaynaklı. Taşınma ve tadilatlardan çıkan beyaz eşya, kombi, petek ve alüminyum doğrama düzenli kalemler. Eski köy dokusunun korunduğu kesimlerde ise bahçe demiri, su deposu ve hurda kazan da çıkıyor.",
+        sss: [
+          {
+            s: "Site tadilatından çıkan hurdayı toplu alır mısınız?",
+            c: "Alırız. Petek, doğrama, tesisat ve hurda metal için tek seferde alım yapıyoruz; site yönetimiyle randevu üzerinden çalışıyoruz.",
+          },
+        ],
+      },
     ],
   },
 ];
